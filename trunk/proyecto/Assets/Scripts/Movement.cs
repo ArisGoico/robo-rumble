@@ -2,17 +2,30 @@
 using System.Collections;
 
 public class Movement : MonoBehaviour {
-
-	public int player = 1;
+	//debug variables
+	public bool debug = false;
 	public GUIText inputCapture;
+
+	//player
+	public int player = 1;
+	public GameObject torso;
+
+	//enemy player
+	public GameObject enemy;
+
+	//targeting mode
+	public bool snapTarget = false;
+	public float targetSpeed = 0.5f;
+	private bool lockOn = false;
+
+	//movement variables
 	public float speed;
 	public float dashSpeed = 1.0f;
 	public float dashDelay = 1.0f;
 	public float idleDrag = 5.0f;
 	public float hoverDrag = 0.75f;
-
-	public bool debug = false;
-
+		
+	//delay and activation variables
 	private bool hovering = false;
 	private bool dashing = false;
 
@@ -26,6 +39,8 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
+		//hovering 
 		Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"+player)*speed,0, Input.GetAxis("Vertical"+player)*speed);
 		if (debug) {
 			Debug.DrawRay(transform.position, transform.forward, Color.red);
@@ -42,6 +57,7 @@ public class Movement : MonoBehaviour {
 			inputCapture.text = "walking";
 		}
 
+		//dashing
 		if (Input.GetAxisRaw ("dash"+player) == 1 && !dashing) {
 			dashing = true;
 			//genera movimiento casi instantaneo en la direccion pulsada o hacia adelante en caso de no indicar direccion)
@@ -58,8 +74,29 @@ public class Movement : MonoBehaviour {
 			//dashing = false;
 			StartCoroutine(waitForDash(dashDelay));
 		} 
-	}
 
+		//targeting
+		if (snapTarget){
+			if (Input.GetAxisRaw("lockOn"+player) == 1) {
+				lockOn = true;
+			}
+			else { 
+				lockOn = false;
+			}
+			if (lockOn) {
+				//Look at and dampen the rotation
+				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed);
+			}
+		} else { 
+			if (Input.GetAxisRaw("lockOn"+player) == 1) {
+				//Look at and dampen the rotation
+				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed);
+			}
+		}		
+	}
+	
 	IEnumerator waitForDash (float time) {
 		yield return new WaitForSeconds(time);
 		dashing = false;
