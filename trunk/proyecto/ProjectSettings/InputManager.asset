@@ -42,7 +42,7 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
-    altNegativeButton: 
+    altNegativeButton: mouse 1
     altPositiveButton: mouse 0
     gravity: 1000
     dead: .00100000005
@@ -60,10 +60,10 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 3
+    gravity: 500
     dead: .100000001
     sensitivity: 1
-    snap: 0
+    snap: 1
     invert: 0
     type: 2
     axis: 2
@@ -223,7 +223,7 @@ InputManager:
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
-    snap: 0
+    snap: 1
     invert: 0
     type: 0
     axis: 0
@@ -236,10 +236,10 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 3
+    gravity: 500
     dead: .300000012
     sensitivity: 1
-    snap: 0
+    snap: 1
     invert: 0
     type: 2
     axis: 2

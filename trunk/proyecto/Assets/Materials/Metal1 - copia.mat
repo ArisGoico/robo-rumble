@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Metal2
+  m_Name: Metal1 - copia
   m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,27 +17,27 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 91ff2b3fddf2a1f4f8acf945b683ae29, type: 3}
-          m_Scale: {x: 3, y: 1}
+          m_Texture: {fileID: 2800000, guid: 0bee6b8f31b8ba443b5ba83e5d9781c7, type: 3}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: 67872b8de86143343bd226e3a3c8da81, type: 3}
-          m_Scale: {x: 3, y: 1}
+          m_Texture: {fileID: 2800000, guid: 76723fd0262d0ff4895c7d04124470d7, type: 3}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: .141123101
+        second: .536742568
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .748275876, g: .748275876, b: .748275876, a: 1}
+        second: {r: 1, g: .573529422, b: .573529422, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: 0, g: .514705658, b: 1, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
