@@ -16,7 +16,11 @@ public class Movement : MonoBehaviour {
 	//targeting mode
 	public bool snapTarget = false;
 	public float targetSpeed = 0.5f;
+	private float lockTime = 0.25f;
 	private bool lockOn = false;
+	private bool lockingTarget = false;
+	public GUIText lockOnGUIText;
+	public GUIText lockModeGUIText;
 
 	//movement variables
 	public float speed;
@@ -39,22 +43,33 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (Input.GetAxis("Horizontal"+player)!= 0 ||  Input.GetAxis("Vertical"+player)!= 0 || dashing) {
+			//hovering 
+			Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"+player)*speed,0, Input.GetAxis("Vertical"+player)*speed);
+			if (debug) {
+				Debug.DrawRay(transform.position, transform.forward, Color.red);
+				Debug.DrawRay(transform.position, moveDir, Color.green);
+			}
+			transform.rigidbody.AddForce(moveDir);
+			hovering = Input.GetAxisRaw ("hover"+player) == 1 && !dashing;
 
-		//hovering 
-		Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"+player)*speed,0, Input.GetAxis("Vertical"+player)*speed);
-		if (debug) {
-			Debug.DrawRay(transform.position, transform.forward, Color.red);
-			Debug.DrawRay(transform.position, moveDir, Color.green);
-		}
-		transform.rigidbody.AddForce(moveDir);
-		hovering = Input.GetAxisRaw ("hover"+player) == 1 && !dashing;
-
-		if (hovering) {
-			transform.rigidbody.drag = hoverDrag;
-			inputCapture.text = "hovering";
+			if (hovering) {
+				//animation.CrossFade ("hover");
+				transform.rigidbody.drag = hoverDrag;
+				inputCapture.text = "hovering";
+			} else {
+				if (dashing){
+					//animation.CrossFade ("dashing");
+					inputCapture.text = "dashing";
+				} else {
+					//animation.CrossFade("walking");
+					inputCapture.text = "walking";
+				}
+				transform.rigidbody.drag = idleDrag;
+			}
 		} else { 
-			transform.rigidbody.drag = idleDrag;
-			inputCapture.text = "walking";
+			inputCapture.text = "idle";
+			//animation.CrossFade("idle");
 		}
 
 		//dashing
@@ -74,31 +89,48 @@ public class Movement : MonoBehaviour {
 			//dashing = false;
 			StartCoroutine(waitForDash(dashDelay));
 		} 
+		
 
 		//targeting
 		if (snapTarget){
-			if (Input.GetAxisRaw("lockOn"+player) == 1) {
-				lockOn = true;
-			}
-			else { 
-				lockOn = false;
+			if (Input.GetAxisRaw("lockOn"+player) == 1 && !lockingTarget) {
+				lockingTarget = true;
+				lockOn = !lockOn;
+				StartCoroutine(waitForLock(lockTime));
 			}
 			if (lockOn) {
+				lockOnGUIText.text = "Target Set";
 				//Look at and dampen the rotation
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed);
-			}
+			} else { lockOnGUIText.text = "Select Target"; }
+			lockModeGUIText.text = "Locking mode: Auto";
 		} else { 
 			if (Input.GetAxisRaw("lockOn"+player) == 1) {
+				lockOnGUIText.text = "Target Set";
 				//Look at and dampen the rotation
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed);
-			}
-		}		
+			} else { lockOnGUIText.text = "Select Target"; }
+			lockModeGUIText.text = "Locking mode: Manual";
+		}
+		//changing LockMode
+		if (Input.GetAxisRaw("lockMode"+player) == 1 && !lockingTarget) {
+			lockingTarget = true;
+			snapTarget = !snapTarget;
+			lockOn = snapTarget;
+			StartCoroutine(waitForLock(lockTime));
+		}
+
 	}
 	
 	IEnumerator waitForDash (float time) {
 		yield return new WaitForSeconds(time);
 		dashing = false;
+	}
+
+	IEnumerator waitForLock (float time) {
+		yield return new WaitForSeconds(time);
+		lockingTarget = false;
 	}
 }
