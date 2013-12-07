@@ -65,7 +65,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 153: {fileID: 15300000}
   m_Layer: 0
-  m_Name: Arm right
+  m_Name: Arm right2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ GameObject:
   - 54: {fileID: 5400002}
   - 153: {fileID: 15300002}
   m_Layer: 0
-  m_Name: Arm left
+  m_Name: Arm left2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .74652952, y: -.25, z: .250000119}
+  m_LocalPosition: {x: .896121442, y: -.25, z: -.00910106301}
   m_LocalScale: {x: .100000001, y: .5, z: 2}
   m_Children: []
   m_Father: {fileID: 400010}
@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .25, z: -.25}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400012}
   - {fileID: 400006}
@@ -221,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.778128386, y: -.25, z: .249999866}
+  m_LocalPosition: {x: -.952167928, y: -.25, z: -.0697421134}
   m_LocalScale: {x: .100000001, y: .5, z: 2}
   m_Children: []
   m_Father: {fileID: 400010}
@@ -231,8 +231,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -3.08063364, y: .699999988, z: 1.66260076}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
+  m_LocalPosition: {x: 6, y: .699999988, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 400002}
@@ -417,7 +417,7 @@ Rigidbody:
   m_Mass: .200000003
   m_Drag: .100000001
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -432,7 +432,7 @@ Rigidbody:
   m_Mass: .200000003
   m_Drag: .100000001
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -508,7 +508,7 @@ BoxCollider:
   m_GameObject: {fileID: 100012}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -523,10 +523,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cf22806b50c5841a375f97502f27df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   player: 1
   force: 5
   leftArm: {fileID: 100012}
   rightArm: {fileID: 100006}
+  punchingR: 0
+  punchingL: 0
+  punchDelay: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -571,10 +575,10 @@ ConfigurableJoint:
   m_AngularYMotion: 0
   m_AngularZMotion: 0
   m_LinearLimit:
-    limit: .25
-    bounciness: 1
-    spring: 25
-    damper: 2
+    limit: 0
+    bounciness: 0
+    spring: 0
+    damper: 0
   m_LowAngularXLimit:
     limit: 0
     bounciness: 0
@@ -662,10 +666,10 @@ ConfigurableJoint:
   m_AngularYMotion: 0
   m_AngularZMotion: 0
   m_LinearLimit:
-    limit: .25
-    bounciness: 1
-    spring: 25
-    damper: 2
+    limit: 0
+    bounciness: 0
+    spring: 0
+    damper: 0
   m_LowAngularXLimit:
     limit: 0
     bounciness: 0

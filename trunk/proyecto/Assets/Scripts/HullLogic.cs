@@ -4,7 +4,7 @@ using System.Collections;
 public class HullLogic : MonoBehaviour {
 
 	//Hull Integrity / Salud 
-	private int hullIntegrityCurrent		= 100;		//Current hull integrity / Current health
+	public int hullIntegrityCurrent			= 100;		//Current hull integrity / Current health
 	public int hullIntegrityMax				= 100;		//Max hull integrity / Max health
 	public float hullDensity				= 1f;		//Percentage of each hit damage that goes through (0 - 1)
 	public float hullPlating				= 0f;		//Min damage that goes through
