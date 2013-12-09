@@ -29,7 +29,7 @@ public class CameraFocus : MonoBehaviour {
 				//camara distancia
 				medianPoint = (player1.transform.position + player2.transform.position)/2.0f;
 				transform.position = Vector3.Lerp(transform.position, initialPos + medianPoint, Time.deltaTime * focusSpeed);
-				transform.camera.orthographicSize = Mathf.Lerp (minFocusDis, maxFocusDis, Vector3.Distance(player1.transform.position, player2.transform.position)/10.0f );
+			transform.camera.orthographicSize = Mathf.Lerp (minFocusDis, maxFocusDis, Hermit(Vector3.Distance(player1.transform.position, player2.transform.position)/10.0f ));
 				break;
 			case 2:
 				//camara rotante
@@ -40,7 +40,7 @@ public class CameraFocus : MonoBehaviour {
 			case 3:
 				//combi
 				medianPoint = (player1.transform.position + player2.transform.position)/2.0f;
-				transform.position = Vector3.Lerp(transform.position, initialPos + medianPoint, Time.deltaTime * focusSpeed);
+				transform.position = Vector3.Lerp(transform.position, initialPos + medianPoint, Time.deltaTime*focusSpeed);
 				transform.camera.orthographicSize = Mathf.Lerp (minFocusDis, maxFocusDis, Vector3.Distance(player1.transform.position, player2.transform.position)/10.0f );
 				rotation = Quaternion.LookRotation(medianPoint - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * focusSpeed);
@@ -51,5 +51,10 @@ public class CameraFocus : MonoBehaviour {
 				transform.position = initialPos;														
 			break;
 		}
+	}
+
+	float Hermit(float t)
+	{
+		return 3 * t * t * t - 2*t*t;
 	}
 }

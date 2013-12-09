@@ -16,6 +16,9 @@ public class Movement : MonoBehaviour {
 	//targeting mode
 	public bool snapTarget = false;
 	public float targetSpeed = 0.5f;
+	private float effectiveTargetSpeed = 0.1f;
+	private float blocking = 0f;
+	private float snapping = 0f;
 	private float lockTime = 0.25f;
 	private bool lockOn = false;
 	private bool lockingTarget = false;
@@ -33,24 +36,31 @@ public class Movement : MonoBehaviour {
 	private bool hovering = false;
 	private bool dashing = false;
 
-
 	// Use this for initialization
 	void Start () {
-		//idea para el futuro: rigidbody.mass = suma de masa de los componentes, mass influye en los rigidbody addforce.
-	
+		//idea para el futuro: rigidbody.mass = suma de masa de los componentes, mass influye en los rigidbody addforce.	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetAxis("Horizontal"+player)!= 0 ||  Input.GetAxis("Vertical"+player)!= 0 || dashing) {
+		blocking = torso.GetComponent<Attack> ().blocking ? 2f : 0.1f;
+		snapping = snapTarget ? 2f : 0.1f;
+
+		effectiveTargetSpeed = targetSpeed / (blocking + snapping);
+
+		if (Input.GetAxis("Horizontal"+player)!= 0 ||  Input.GetAxis("Vertical"+player)!= 0 ||  Input.GetAxis("hover"+player)!= 0  || dashing) {
 			//hovering 
 			Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"+player)*speed,0, Input.GetAxis("Vertical"+player)*speed);
+			if (moveDir.Equals (Vector3.zero)) {
+				moveDir = this.transform.forward*speed;
+			}
 			if (debug) {
 				Debug.DrawRay(transform.position, transform.forward, Color.red);
 				Debug.DrawRay(transform.position, moveDir, Color.green);
 			}
 			transform.rigidbody.AddForce(moveDir);
+			torso.transform.rigidbody.AddForce(moveDir);
 			hovering = Input.GetAxisRaw ("hover"+player) == 1 && !dashing;
 
 			if (hovering) {
@@ -79,12 +89,13 @@ public class Movement : MonoBehaviour {
 			transform.rigidbody.drag = idleDrag;
 			Vector3 dashDir = (new Vector3(Input.GetAxis("Horizontal"+player),0, Input.GetAxis("Vertical"+player))).normalized;
 			if (dashDir.Equals (Vector3.zero)) {
-				//TODO: revisar, puede que el forward del transform no sea el punto donde mira el robot. Seria torso.transform.forward;
 				dashDir = this.transform.forward;
 			}
 			//aplicar la fuerza
 			if (debug) Debug.DrawRay(transform.position, dashDir*5.0f, Color.yellow);
 			transform.rigidbody.AddForce(dashDir*dashSpeed, ForceMode.Impulse);
+			torso.transform.LookAt (transform.position + transform.forward);
+			torso.transform.rigidbody.AddForce(dashDir*dashSpeed, ForceMode.Impulse);
 			inputCapture.text = "dash";
 			//dashing = false;
 			StartCoroutine(waitForDash(dashDelay));
@@ -102,7 +113,7 @@ public class Movement : MonoBehaviour {
 				lockOnGUIText.text = "Target Set";
 				//Look at and dampen the rotation
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
-				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			} else { lockOnGUIText.text = "Select Target"; }
 			lockModeGUIText.text = "Locking mode: Auto";
 		} else { 
@@ -110,7 +121,7 @@ public class Movement : MonoBehaviour {
 				lockOnGUIText.text = "Target Set";
 				//Look at and dampen the rotation
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
-				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			} else { lockOnGUIText.text = "Select Target"; }
 			lockModeGUIText.text = "Locking mode: Manual";
 		}
@@ -121,7 +132,6 @@ public class Movement : MonoBehaviour {
 			lockOn = snapTarget;
 			StartCoroutine(waitForLock(lockTime));
 		}
-
 	}
 	
 	IEnumerator waitForDash (float time) {

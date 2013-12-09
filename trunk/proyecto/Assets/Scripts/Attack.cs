@@ -4,7 +4,7 @@ using System.Collections;
 public class Attack : MonoBehaviour {
 
 	public bool debug = false;
-	public int player = 1;
+	private int player = 1;
 	public float force;
 	public GameObject leftArm;
 	public GameObject rightArm;
@@ -14,18 +14,22 @@ public class Attack : MonoBehaviour {
 	private SoftJointLimit jointConstrained;
 	public bool punchingR = false;
 	public bool punchingL = false;
+	public bool blocking = false;
 	public float punchDelay = 0.5f;
+	public float relaxedLimit = 0.5f;
+	public float constrainedLimit = 0f;
 
 	// Use this for initialization
 	void Start () {
+		player = transform.parent.GetComponent<Movement> ().player;
 		leftCJ = leftArm.GetComponent<ConfigurableJoint>();
 		rightCJ = rightArm.GetComponent<ConfigurableJoint>();	
 
 		jointRelaxed = new SoftJointLimit();
 		jointConstrained = new SoftJointLimit();
 
-		jointRelaxed.limit = 0.5f;
-		jointConstrained.limit = 0f;
+		jointRelaxed.limit = relaxedLimit;
+		jointConstrained.limit = constrainedLimit;
 	}
 	
 	// Update is called once per frame
@@ -57,7 +61,7 @@ public class Attack : MonoBehaviour {
 		if (Input.GetAxisRaw ("punch"+player) <0 && !punchingR) {
 			//TODO Golpe con la derecha
 			punchingR = true;
-			rightArm.transform.Rotate (new Vector3(0,330,0));
+			rightArm.transform.Rotate (new Vector3(0,30,0));
 			Debug.Log ("pega con la dcha");
 			rightCJ.linearLimit = jointRelaxed;
 			rightArm.rigidbody.AddForce(rArmDirection*force, ForceMode.Impulse);
