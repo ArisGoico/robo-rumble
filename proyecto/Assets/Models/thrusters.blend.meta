@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: d0413403bc6c2a445bd2721d44e406d4
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: distributor
+    100002: distributor_MeshPart0
+    100004: distributor_MeshPart1
+    100006: exhaust
+    100008: flare_000
+    100010: flare_001
+    100012: //RootNode
+    100014: distributor_001
+    100016: distributor_003
+    100018: exhaust_001
+    100020: exhaust_002
+    100022: flare
+    100024: wall
+    100026: Cube
+    400000: distributor
+    400002: distributor_MeshPart0
+    400004: distributor_MeshPart1
+    400006: exhaust
+    400008: flare_000
+    400010: flare_001
+    400012: //RootNode
+    400014: distributor_001
+    400016: distributor_003
+    400018: exhaust_001
+    400020: exhaust_002
+    400022: flare
+    400024: wall
+    400026: Cube
+    2300000: distributor_MeshPart0
+    2300002: distributor_MeshPart1
+    2300004: exhaust
+    2300006: flare_000
+    2300008: flare_001
+    2300010: distributor
+    2300012: distributor_001
+    2300014: distributor_003
+    2300016: exhaust_001
+    2300018: exhaust_002
+    2300020: flare
+    2300022: wall
+    2300024: Cube
+    3300000: distributor_MeshPart0
+    3300002: distributor_MeshPart1
+    3300004: exhaust
+    3300006: flare_000
+    3300008: flare_001
+    3300010: distributor
+    3300012: distributor_001
+    3300014: distributor_003
+    3300016: exhaust_001
+    3300018: exhaust_002
+    3300020: flare
+    3300022: wall
+    3300024: Cube
+    4300000: flare_000
+    4300002: flare_001
+    4300004: distributor_MeshPart0
+    4300006: distributor_MeshPart1
+    4300008: exhaust
+    4300010: distributor
+    4300012: exhaust_001
+    4300014: distributor_003
+    4300016: exhaust_002
+    4300018: distributor_001
+    4300020: flare
+    4300022: wall
+    4300024: Cube
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
