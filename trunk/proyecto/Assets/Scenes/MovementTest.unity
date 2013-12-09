@@ -103,14 +103,12 @@ Transform:
   - {fileID: 1389708823}
   - {fileID: 368522875}
   - {fileID: 1337289385}
-  - {fileID: 34292041}
   - {fileID: 118178479}
   - {fileID: 1092495364}
   - {fileID: 710854433}
   - {fileID: 1705825801}
   - {fileID: 392958076}
   - {fileID: 365483965}
-  - {fileID: 2066778784}
   - {fileID: 120106140}
   - {fileID: 1614879173}
   m_Father: {fileID: 0}
@@ -186,57 +184,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2093194518}
   m_GameObject: {fileID: 34057946}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &34292039
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100004, guid: 79f956cf0a7ec5f49a66599a34413134, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 34292041}
-  - 132: {fileID: 34292040}
-  m_Layer: 0
-  m_Name: energyLabel2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!132 &34292040
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13200002, guid: 79f956cf0a7ec5f49a66599a34413134,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 34292039}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: Energy
-  m_Anchor: 4
-  m_Alignment: 1
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
---- !u!4 &34292041
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400004, guid: 79f956cf0a7ec5f49a66599a34413134, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 34292039}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .693993747, y: .0309336558, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 20489670}
 --- !u!1 &118178477
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 120106139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0667000562, y: .125933543, z: 0}
+  m_LocalPosition: {x: .0667000562, y: .125933543, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 20489670}
@@ -846,7 +793,7 @@ GameObject:
   - 4: {fileID: 368522875}
   - 131: {fileID: 368522876}
   m_Layer: 0
-  m_Name: life1
+  m_Name: lifeBar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1144,14 +1091,16 @@ MonoBehaviour:
   torso: {fileID: 1844190662}
   enemy: {fileID: 2085224677}
   snapTarget: 1
-  targetSpeed: 5
+  targetSpeed: 7
   lockOnGUIText: {fileID: 392958077}
   lockModeGUIText: {fileID: 1614879174}
   speed: 10
   dashSpeed: 25
   dashDelay: .5
   idleDrag: 4.5
-  hoverDrag: .300000012
+  hoverDrag: .200000003
+  hoverConsume: .300000012
+  dashConsume: 10
 --- !u!1001 &387215809
 Prefab:
   m_ObjectHideFlags: 0
@@ -2062,7 +2011,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
       propertyPath: targetSpeed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
       propertyPath: dashSpeed
@@ -2091,6 +2040,22 @@ Prefab:
     - target: {fileID: 400036, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
       propertyPath: m_LocalScale.z
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: dashConsume
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: hoverConsume
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: punchConsume
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: hoverDrag
+      value: .200000003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
@@ -2880,7 +2845,7 @@ GameObject:
   - 4: {fileID: 1337289385}
   - 131: {fileID: 1337289386}
   m_Layer: 0
-  m_Name: energyBase2
+  m_Name: energyBar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3063,7 +3028,7 @@ GameObject:
   - 4: {fileID: 1389708823}
   - 131: {fileID: 1389708824}
   m_Layer: 0
-  m_Name: energyBase1
+  m_Name: energyBar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4144,6 +4109,7 @@ GameObject:
   - 114: {fileID: 1803487431}
   - 54: {fileID: 1803487436}
   - 59: {fileID: 1803487437}
+  - 114: {fileID: 1803487438}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -4167,10 +4133,14 @@ MonoBehaviour:
   force: 5
   leftArm: {fileID: 1687050509}
   rightArm: {fileID: 346743942}
+  punchConsume: 10
+  blockConsume: .300000012
+  blockTickConsume: 1.5
   punchingR: 0
   punchingL: 0
   blocking: 0
   punchDelay: .25
+  blockDelay: .5
   relaxedLimit: .75
   constrainedLimit: 0
 --- !u!23 &1803487432
@@ -4278,6 +4248,28 @@ HingeJoint:
     maxBounce: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+--- !u!114 &1803487438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1803487430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfa692eacd754f4aa8b6b214b82a47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeBar: {fileID: 368522874}
+  hullIntegrityCurrent: 100
+  hullIntegrityMax: 100
+  hullDensity: 1
+  hullPlating: 0
+  energyBar: {fileID: 1389708822}
+  energyLabel: {fileID: 120106141}
+  energyCurrent: 100
+  energyMax: 100
+  energyRegenRate: 20
+  energyRegenDelay: 0
 --- !u!1 &1803688102
 GameObject:
   m_ObjectHideFlags: 0
@@ -4370,6 +4362,7 @@ GameObject:
   - 114: {fileID: 1844190666}
   - 54: {fileID: 1844190664}
   - 59: {fileID: 1844190665}
+  - 114: {fileID: 1844190670}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -4455,10 +4448,14 @@ MonoBehaviour:
   force: 5
   leftArm: {fileID: 855646796}
   rightArm: {fileID: 369496685}
+  punchConsume: 10
+  blockConsume: .300000012
+  blockTickConsume: 1.5
   punchingR: 0
   punchingL: 0
   blocking: 0
   punchDelay: .25
+  blockDelay: .5
   relaxedLimit: .75
   constrainedLimit: 0
 --- !u!23 &1844190667
@@ -4504,6 +4501,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2093194518}
   m_GameObject: {fileID: 1844190662}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1844190670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1844190662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfa692eacd754f4aa8b6b214b82a47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeBar: {fileID: 368522874}
+  hullIntegrityCurrent: 100
+  hullIntegrityMax: 100
+  hullDensity: 1
+  hullPlating: 0
+  energyBar: {fileID: 1337289384}
+  energyLabel: {fileID: 695835603}
+  energyCurrent: 100
+  energyMax: 100
+  energyRegenRate: 20
+  energyRegenDelay: 0
 --- !u!1 &1976446123
 GameObject:
   m_ObjectHideFlags: 0
@@ -4762,57 +4781,6 @@ Prefab:
   m_RootGameObject: {fileID: 401226122}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &2066778783
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100004, guid: 79f956cf0a7ec5f49a66599a34413134, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2066778784}
-  - 132: {fileID: 2066778785}
-  m_Layer: 0
-  m_Name: energyLabel1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2066778784
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400004, guid: 79f956cf0a7ec5f49a66599a34413134, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2066778783}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .295927435, y: .0218669549, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 20489670}
---- !u!132 &2066778785
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13200002, guid: 79f956cf0a7ec5f49a66599a34413134,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2066778783}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: Energy
-  m_Anchor: 4
-  m_Alignment: 1
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!1 &2072077311
 GameObject:
   m_ObjectHideFlags: 0
@@ -5000,14 +4968,16 @@ MonoBehaviour:
   torso: {fileID: 1803487430}
   enemy: {fileID: 371790705}
   snapTarget: 1
-  targetSpeed: 5
+  targetSpeed: 7
   lockOnGUIText: {fileID: 1705825800}
   lockModeGUIText: {fileID: 365483966}
   speed: 10
   dashSpeed: 25
   dashDelay: .5
   idleDrag: 4.5
-  hoverDrag: .300000012
+  hoverDrag: .200000003
+  hoverConsume: .300000012
+  dashConsume: 10
 --- !u!4 &2085224680
 Transform:
   m_ObjectHideFlags: 0
@@ -5110,7 +5080,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
       propertyPath: targetSpeed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
       propertyPath: dashSpeed
@@ -5139,6 +5109,22 @@ Prefab:
     - target: {fileID: 400036, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
       propertyPath: m_LocalScale.z
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: hoverConsume
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: dashConsume
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: punchConsume
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: hoverDrag
+      value: .200000003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
