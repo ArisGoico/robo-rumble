@@ -9,28 +9,31 @@ public class Movement : MonoBehaviour {
 	//player
 	public int player = 1;
 	public GameObject torso;
+	private HullLogic Energy;
 
 	//enemy player
 	public GameObject enemy;
 
 	//targeting mode
-	public bool snapTarget = false;
-	public float targetSpeed = 0.5f;
-	private float effectiveTargetSpeed = 0.1f;
-	private float blocking = 0f;
-	private float snapping = 0f;
-	private float lockTime = 0.25f;
-	private bool lockOn = false;
-	private bool lockingTarget = false;
+	public bool snapTarget 					= false;
+	public float targetSpeed 				= 0.5f;
+	private float effectiveTargetSpeed 		= 0.1f;
+	private float blocking 					= 0f;
+	private float snapping 					= 0f;
+	private float lockTime 					= 0.25f;
+	private bool lockOn 					= false;
+	private bool lockingTarget				= false;
 	public GUIText lockOnGUIText;
 	public GUIText lockModeGUIText;
 
 	//movement variables
 	public float speed;
-	public float dashSpeed = 1.0f;
-	public float dashDelay = 1.0f;
-	public float idleDrag = 5.0f;
-	public float hoverDrag = 0.75f;
+	public float dashSpeed 					= 1.0f;
+	public float dashDelay 					= 1.0f;
+	public float idleDrag 					= 5.0f;
+	public float hoverDrag 					= 0.75f;
+	public float hoverConsume 				= 1f;
+	public float dashConsume 				= 5f;
 		
 	//delay and activation variables
 	private bool hovering = false;
@@ -39,6 +42,7 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//idea para el futuro: rigidbody.mass = suma de masa de los componentes, mass influye en los rigidbody addforce.	
+		Energy = torso.GetComponent<HullLogic> ();
 	}
 	
 	// Update is called once per frame
@@ -61,10 +65,11 @@ public class Movement : MonoBehaviour {
 			}
 			transform.rigidbody.AddForce(moveDir);
 			torso.transform.rigidbody.AddForce(moveDir);
-			hovering = Input.GetAxisRaw ("hover"+player) == 1 && !dashing;
+			hovering = (Energy.energyCurrent - dashConsume > 0) && Input.GetAxisRaw ("hover"+player) == 1 && !dashing;
 
 			if (hovering) {
 				//animation.CrossFade ("hover");
+				Energy.consumeEnergy(hoverConsume);
 				transform.rigidbody.drag = hoverDrag;
 				inputCapture.text = "hovering";
 			} else {
@@ -83,8 +88,9 @@ public class Movement : MonoBehaviour {
 		}
 
 		//dashing
-		if (Input.GetAxisRaw ("dash"+player) == 1 && !dashing) {
+		if (Energy.energyCurrent - dashConsume > 0 && Input.GetAxisRaw ("dash"+player) == 1 && !dashing) {
 			dashing = true;
+			Energy.consumeEnergy(dashConsume);
 			//genera movimiento casi instantaneo en la direccion pulsada o hacia adelante en caso de no indicar direccion)
 			transform.rigidbody.drag = idleDrag;
 			Vector3 dashDir = (new Vector3(Input.GetAxis("Horizontal"+player),0, Input.GetAxis("Vertical"+player))).normalized;
