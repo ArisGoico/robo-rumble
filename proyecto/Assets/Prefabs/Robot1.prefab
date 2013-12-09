@@ -332,6 +332,7 @@ GameObject:
   - 4: {fileID: 400036}
   - 114: {fileID: 11400002}
   - 54: {fileID: 5400006}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Robot1
   m_TagString: Untagged
@@ -1332,6 +1333,69 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100036}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 64c7ff1ca2a7a304f9db6cc109142dfa, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 100
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: -4.79129653e-07
+      outSlope: -4.79129653e-07
+      tangentMode: 0
+    - time: .307851672
+      value: .400924206
+      inSlope: -1.58545518
+      outSlope: -1.58545518
+      tangentMode: 0
+    - time: .851674557
+      value: 0
+      inSlope: -.0591063835
+      outSlope: -.0591063835
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: .00555555569
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1347,9 +1411,14 @@ MonoBehaviour:
   force: 5
   leftArm: {fileID: 100030}
   rightArm: {fileID: 100016}
+  punchConsume: 5
+  blockConsume: .300000012
+  blockTickConsume: 1.5
   punchingR: 0
   punchingL: 0
+  blocking: 0
   punchDelay: .5
+  blockDelay: .5
   relaxedLimit: .5
   constrainedLimit: 0
 --- !u!114 &11400002
@@ -1367,6 +1436,7 @@ MonoBehaviour:
   inputCapture: {fileID: 0}
   player: 1
   torso: {fileID: 100034}
+  audioVolumeMin: .400000006
   enemy: {fileID: 0}
   snapTarget: 1
   targetSpeed: 25
@@ -1377,6 +1447,8 @@ MonoBehaviour:
   dashDelay: .5
   idleDrag: 4.5
   hoverDrag: .300000012
+  hoverConsume: 1
+  dashConsume: 5
 --- !u!153 &15300000
 ConfigurableJoint:
   m_ObjectHideFlags: 1
