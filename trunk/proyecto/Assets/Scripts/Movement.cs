@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour {
 	public int player = 1;
 	public GameObject torso;
 	private HullLogic Energy;
+	private AudioSource Audio;
+	public float audioVolumeMin				= 0.2f;
 
 	//enemy player
 	public GameObject enemy;
@@ -43,6 +45,8 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		//idea para el futuro: rigidbody.mass = suma de masa de los componentes, mass influye en los rigidbody addforce.	
 		Energy = torso.GetComponent<HullLogic> ();
+		Audio = this.GetComponent<AudioSource>();
+		Audio.volume = audioVolumeMin;
 	}
 	
 	// Update is called once per frame
@@ -72,6 +76,7 @@ public class Movement : MonoBehaviour {
 				Energy.consumeEnergy(hoverConsume);
 				transform.rigidbody.drag = hoverDrag;
 				inputCapture.text = "hovering";
+				Audio.pitch = 2.5f;
 			} else {
 				if (dashing){
 					//animation.CrossFade ("dashing");
@@ -81,6 +86,7 @@ public class Movement : MonoBehaviour {
 					inputCapture.text = "walking";
 				}
 				transform.rigidbody.drag = idleDrag;
+				Audio.pitch = 1.0f;
 			}
 		} else { 
 			inputCapture.text = "idle";

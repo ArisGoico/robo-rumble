@@ -1037,6 +1037,7 @@ GameObject:
   - 4: {fileID: 371790706}
   - 114: {fileID: 371790708}
   - 54: {fileID: 371790707}
+  - 82: {fileID: 371790709}
   m_Layer: 0
   m_Name: Robot2
   m_TagString: Untagged
@@ -1089,6 +1090,7 @@ MonoBehaviour:
   inputCapture: {fileID: 1092495365}
   player: 2
   torso: {fileID: 1844190662}
+  audioVolumeMin: .400000006
   enemy: {fileID: 2085224677}
   snapTarget: 1
   targetSpeed: 7
@@ -1101,6 +1103,70 @@ MonoBehaviour:
   hoverDrag: .200000003
   hoverConsume: .300000012
   dashConsume: 10
+--- !u!82 &371790709
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: 501b04f1df3d0f245961909a75d6429e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2093194518}
+  m_GameObject: {fileID: 371790705}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 64c7ff1ca2a7a304f9db6cc109142dfa, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 30
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: -4.79129653e-07
+      outSlope: -4.79129653e-07
+      tangentMode: 0
+    - time: .307851672
+      value: .400924206
+      inSlope: -1.58545518
+      outSlope: -1.58545518
+      tangentMode: 0
+    - time: .851674557
+      value: 0
+      inSlope: -.0591063835
+      outSlope: -.0591063835
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: .00555555569
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &387215809
 Prefab:
   m_ObjectHideFlags: 0
@@ -4264,12 +4330,12 @@ MonoBehaviour:
   hullIntegrityMax: 100
   hullDensity: 1
   hullPlating: 0
-  energyBar: {fileID: 1389708822}
-  energyLabel: {fileID: 120106141}
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
   energyRegenDelay: 0
+  energyBar: {fileID: 1389708822}
+  energyLabel: {fileID: 120106141}
 --- !u!1 &1803688102
 GameObject:
   m_ObjectHideFlags: 0
@@ -4517,12 +4583,12 @@ MonoBehaviour:
   hullIntegrityMax: 100
   hullDensity: 1
   hullPlating: 0
-  energyBar: {fileID: 1337289384}
-  energyLabel: {fileID: 695835603}
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
   energyRegenDelay: 0
+  energyBar: {fileID: 1337289384}
+  energyLabel: {fileID: 695835603}
 --- !u!1 &1976446123
 GameObject:
   m_ObjectHideFlags: 0
@@ -4927,6 +4993,7 @@ GameObject:
   - 4: {fileID: 2085224680}
   - 114: {fileID: 2085224679}
   - 54: {fileID: 2085224678}
+  - 82: {fileID: 2085224681}
   m_Layer: 0
   m_Name: Robot1
   m_TagString: Untagged
@@ -4966,6 +5033,7 @@ MonoBehaviour:
   inputCapture: {fileID: 118178478}
   player: 1
   torso: {fileID: 1803487430}
+  audioVolumeMin: .400000006
   enemy: {fileID: 371790705}
   snapTarget: 1
   targetSpeed: 7
@@ -4991,6 +5059,70 @@ Transform:
   - {fileID: 533651095}
   - {fileID: 1803487435}
   m_Father: {fileID: 0}
+--- !u!82 &2085224681
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: 501b04f1df3d0f245961909a75d6429e,
+    type: 2}
+  m_PrefabInternal: {fileID: 761086077}
+  m_GameObject: {fileID: 2085224677}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 64c7ff1ca2a7a304f9db6cc109142dfa, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 100
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: -4.79129653e-07
+      outSlope: -4.79129653e-07
+      tangentMode: 0
+    - time: .307851672
+      value: .400924206
+      inSlope: -1.58545518
+      outSlope: -1.58545518
+      tangentMode: 0
+    - time: .851674557
+      value: 0
+      inSlope: -.0591063835
+      outSlope: -.0591063835
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: .00555555569
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &2093194518
 Prefab:
   m_ObjectHideFlags: 0
@@ -5125,6 +5257,18 @@ Prefab:
     - target: {fileID: 11400002, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
       propertyPath: hoverDrag
       value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: MinDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}
+      propertyPath: MaxDistance
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 501b04f1df3d0f245961909a75d6429e, type: 2}

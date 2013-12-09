@@ -11,8 +11,6 @@ public class HullLogic : MonoBehaviour {
 	public float hullPlating				= 0f;		//Min damage that goes through
 	
 	//Energy
-	public GameObject energyBar;						//GUI Energy graphic representation
-	public GUIText energyLabel;							//GUI Energy text representation
 	public float energyCurrent				= 100f;		//Current energy
 	public float energyMax					= 100f;		//Max energy
 	public float energyRegenRate			= 10f;		//Energy regenerated per second
@@ -20,6 +18,9 @@ public class HullLogic : MonoBehaviour {
 	
 	private float energyLastUsed			= 0f;		//Last time energy was used.
 	
+	//GUI
+	public GameObject energyBar;						//GUI Energy graphic representation
+	public GUIText energyLabel;							//GUI Energy text representation	
 	
 	
 	void Start() {
