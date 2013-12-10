@@ -315,6 +315,8 @@ GameObject:
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400004}
   - 59: {fileID: 5900000}
+  - 114: {fileID: 11400004}
+  - 82: {fileID: 8200002}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -608,7 +610,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9f7e22d3af11f0e45b5ad61f0b634d5d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -629,7 +631,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9f7e22d3af11f0e45b5ad61f0b634d5d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1126,7 +1128,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!54 &5400002
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1141,7 +1143,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!54 &5400004
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1156,7 +1158,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!54 &5400006
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1167,7 +1169,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 5
   m_AngularDrag: .0500000007
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
@@ -1235,8 +1237,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .180000007, y: .600000322, z: 1.67999995}
-  m_Center: {x: -.270000011, y: .0108631551, z: -.129999995}
+  m_Size: {x: .50999999, y: .600000322, z: 1.67999995}
+  m_Center: {x: -.129999995, y: .0108631551, z: -.129999995}
 --- !u!65 &6500006
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1307,8 +1309,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .180000007, y: .600000322, z: 1.67999995}
-  m_Center: {x: -.270000011, y: .0108631551, z: -.129999995}
+  m_Size: {x: .50999999, y: .600000322, z: 1.67999995}
+  m_Center: {x: -.129999995, y: .0108631551, z: -.129999995}
 --- !u!65 &6500018
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1396,6 +1398,64 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8200002
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100034}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1411,15 +1471,15 @@ MonoBehaviour:
   force: 5
   leftArm: {fileID: 100030}
   rightArm: {fileID: 100016}
-  punchConsume: 5
+  punchConsume: 10
   blockConsume: .300000012
   blockTickConsume: 1.5
   punchingR: 0
   punchingL: 0
   blocking: 0
-  punchDelay: .5
+  punchDelay: .25
   blockDelay: .5
-  relaxedLimit: .5
+  relaxedLimit: .75
   constrainedLimit: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1439,16 +1499,48 @@ MonoBehaviour:
   audioVolumeMin: .400000006
   enemy: {fileID: 0}
   snapTarget: 1
-  targetSpeed: 25
+  targetSpeed: 7
   lockOnGUIText: {fileID: 0}
   lockModeGUIText: {fileID: 0}
   speed: 10
-  dashSpeed: 15
+  dashSpeed: 25
   dashDelay: .5
   idleDrag: 4.5
-  hoverDrag: .300000012
-  hoverConsume: 1
-  dashConsume: 5
+  hoverDrag: .200000003
+  hoverConsume: .300000012
+  dashConsume: 10
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfa692eacd754f4aa8b6b214b82a47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 0
+  lifeBar: {fileID: 0}
+  hullIntegrityCurrent: 100
+  hullIntegrityMax: 100
+  hullDensity: 1
+  hullPlating: 0
+  energyCurrent: 100
+  energyMax: 100
+  energyRegenRate: 20
+  energyRegenDelay: 0
+  energyBar: {fileID: 0}
+  energyLabel: {fileID: 0}
+  torsoHitSFX:
+  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
+  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
+  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
+  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
+  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
+  blockHitSFX:
+  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
+  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
 --- !u!153 &15300000
 ConfigurableJoint:
   m_ObjectHideFlags: 1

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class HullLogic : MonoBehaviour {
 
+	public bool debug						= false;
 	//Hull Integrity / Salud 
 	public GameObject lifeBar;							//GUI Life graphic representation
 	public int hullIntegrityCurrent			= 100;		//Current hull integrity / Current health
@@ -20,13 +21,18 @@ public class HullLogic : MonoBehaviour {
 	
 	//GUI
 	public GameObject energyBar;						//GUI Energy graphic representation
-	public GUIText energyLabel;							//GUI Energy text representation	
-	
+	public GUIText energyLabel;							//GUI Energy text representation
+
+	//Hit Sounds
+	public AudioClip[] torsoHitSFX;
+	public AudioClip[] blockHitSFX;
+	private AudioSource SFXAudio;
 	
 	void Start() {
 		hullIntegrityCurrent = hullIntegrityMax;
 		energyCurrent = energyMax;
 		energyLabel.text = Mathf.FloorToInt(energyCurrent).ToString ();
+		SFXAudio = this.GetComponent<AudioSource>();
 	}
 	
 	void Update() {
@@ -60,5 +66,31 @@ public class HullLogic : MonoBehaviour {
 		else 
 			return false;
 	}
-		
+
+	void OnCollisionEnter(Collision collision) {
+		if (collision.collider.tag == "Fists") {
+			if (collision.relativeVelocity.magnitude > 10f) {		//Si el golpe es producido por un puñetazo...
+				//Cuanto daño se manda exactamente? 
+				float temp = collision.relativeVelocity.magnitude;
+				if (damageHull(temp)) {
+					SFXAudio.clip = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
+				}
+				else if (!SFXAudio.isPlaying){
+					SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
+				}
+
+
+			}
+			else if (!SFXAudio.isPlaying)
+				SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
+			SFXAudio.Play();
+			if (debug) {
+				Debug.Log("Relative velocity: " + collision.relativeVelocity);
+				Debug.Log("Magnitude: " + collision.relativeVelocity.magnitude);
+			}
+		}
+
+
+	}
+	
 }

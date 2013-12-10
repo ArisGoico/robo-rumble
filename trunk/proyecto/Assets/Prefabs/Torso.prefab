@@ -1003,9 +1003,14 @@ MonoBehaviour:
   force: 5
   leftArm: {fileID: 100022}
   rightArm: {fileID: 100012}
+  punchConsume: 5
+  blockConsume: .300000012
+  blockTickConsume: 1.5
   punchingR: 0
   punchingL: 0
+  blocking: 0
   punchDelay: .5
+  blockDelay: .5
   relaxedLimit: .5
   constrainedLimit: 0
 --- !u!153 &15300000
