@@ -91,6 +91,7 @@ public class Movement : MonoBehaviour {
 			}
 		} else { 
 			inputCapture.text = "idle";
+			moveDir = Vector3.zero;
 			//animation.CrossFade("idle");
 		}
 
@@ -162,5 +163,8 @@ public class Movement : MonoBehaviour {
 	}
 	public bool getDashing() {
 		return dashing;
+	}
+	public bool getHovering() {
+		return hovering;
 	}
 }
