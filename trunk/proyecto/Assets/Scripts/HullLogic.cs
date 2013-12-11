@@ -77,7 +77,7 @@ public class HullLogic : MonoBehaviour {
 	 * Este bloque de OnCollisionEnter funciona por velocidades unicamente, 
 	 * sin tener en cuenta la masa de ninguno de los dos objetos.
 	 * */
-	/*
+
 	void OnCollisionEnter(Collision collision) {
 		if (collision.collider.tag == "Fists") {		//Si el golpe es producido por un puñetazo...
 			if (collision.relativeVelocity.magnitude > 10f) {
@@ -101,14 +101,14 @@ public class HullLogic : MonoBehaviour {
 			}
 		}
 	}
-	*/
+
 
 	/*OPTION 
 	 * Este bloque de OnTriggerEnter funciona por velocidades y masas, 
 	 * multiplicando a cada velocidad la masa de su objeto (torso para golpeado
 	 * y robot entero para el que golpea).
 	 * */
-
+	/*
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Fists") {		//Si el golpe es producido por un puñetazo...
 			Vector3 dirVector = Vector3.zero;
@@ -138,6 +138,6 @@ public class HullLogic : MonoBehaviour {
 				Debug.Log("Weighted Magnitude: " + dirVector.magnitude);
 			}
 		}
-	}
+	}*/
 	
 }

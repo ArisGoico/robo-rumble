@@ -36,6 +36,7 @@ public class Movement : MonoBehaviour {
 	public float hoverDrag 					= 0.75f;
 	public float hoverConsume 				= 1f;
 	public float dashConsume 				= 5f;
+	private Vector3 moveDir;
 		
 	//delay and activation variables
 	private bool hovering = false;
@@ -59,7 +60,7 @@ public class Movement : MonoBehaviour {
 
 		if (Input.GetAxis("Horizontal"+player)!= 0 ||  Input.GetAxis("Vertical"+player)!= 0 ||  Input.GetAxis("hover"+player)!= 0  || dashing) {
 			//hovering 
-			Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"+player)*speed,0, Input.GetAxis("Vertical"+player)*speed);
+			moveDir = new Vector3(Input.GetAxis("Horizontal"+player)*speed,0, Input.GetAxis("Vertical"+player)*speed);
 			if (moveDir.Equals (Vector3.zero)) {
 				moveDir = this.transform.forward*speed;
 			}
@@ -154,5 +155,12 @@ public class Movement : MonoBehaviour {
 	IEnumerator waitForLock (float time) {
 		yield return new WaitForSeconds(time);
 		lockingTarget = false;
+	}
+
+	public Vector3 getMoveDir() {
+		return moveDir;
+	}
+	public bool getDashing() {
+		return dashing;
 	}
 }
