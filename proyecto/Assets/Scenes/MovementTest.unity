@@ -1374,8 +1374,8 @@ MonoBehaviour:
   player2: {fileID: 1662825150}
   cameraMode: 1
   focusSpeed: 20
-  minFocusDis: 5
-  maxFocusDis: 8
+  minFocusDis: 3
+  maxFocusDis: 12
 --- !u!1 &475266592
 GameObject:
   m_ObjectHideFlags: 0
