@@ -411,6 +411,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: strongSoundDelay
+      value: .300000012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
   m_RootGameObject: {fileID: 1282291416}
@@ -672,7 +676,7 @@ Transform:
   m_PrefabInternal: {fileID: 323831401}
   m_GameObject: {fileID: 217436448}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 20.6416206, y: .699999988, z: 3.90896416}
+  m_LocalPosition: {x: -11.5402184, y: .699999988, z: -.457082748}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 992315623}
@@ -796,7 +800,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400034, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.6416206
+      value: -11.5402184
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
       propertyPath: m_LocalPosition.y
@@ -804,7 +808,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3.90896416
+      value: -.457082748
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
       propertyPath: m_LocalRotation.x
@@ -861,6 +865,10 @@ Prefab:
     - target: {fileID: 8200000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: strongSoundDelay
+      value: .300000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
@@ -4355,6 +4363,7 @@ MonoBehaviour:
   blockHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  strongSoundDelay: .300000012
 --- !u!82 &1662825154
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5929,6 +5938,7 @@ MonoBehaviour:
   blockHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  strongSoundDelay: .300000012
 --- !u!82 &2135044167
 AudioSource:
   m_ObjectHideFlags: 0

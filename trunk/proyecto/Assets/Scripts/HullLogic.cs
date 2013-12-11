@@ -28,6 +28,9 @@ public class HullLogic : MonoBehaviour {
 	public AudioClip[] torsoHitSFX;
 	public AudioClip[] blockHitSFX;
 	private AudioSource SFXAudio;
+	private bool strongHitSoundPlaying		= false;
+	private float lastStrongSoundPlayed		= 0f;
+	public float strongSoundDelay			= 0.3f;
 	
 	void Start() {
 		hullIntegrityCurrent = hullIntegrityMax;
@@ -49,6 +52,9 @@ public class HullLogic : MonoBehaviour {
 		if (energyCurrent > energyMax) {
 			energyCurrent = energyMax;
 		}
+
+		if (!SFXAudio.isPlaying)
+			strongHitSoundPlaying = false;
 	}
 	
 	public bool consumeEnergy(float quantity) {
@@ -83,18 +89,47 @@ public class HullLogic : MonoBehaviour {
 			if (collision.relativeVelocity.magnitude > 10f) {
 				//Cuanto daño se manda exactamente? 
 				float temp = collision.relativeVelocity.magnitude;
-				if (damageHull(temp)) {
+				if (damageHull(temp) && !strongHitSoundPlaying) {
 					SFXAudio.clip = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
+					strongHitSoundPlaying = true;
 				}
-				else if (!SFXAudio.isPlaying){
+				else if (!SFXAudio.isPlaying && !strongHitSoundPlaying){
+					SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
+					strongHitSoundPlaying = false;
+				}
+			}
+			else if (!SFXAudio.isPlaying) {
+				SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
+				strongHitSoundPlaying = false;
+			}
+			if ((strongHitSoundPlaying || !SFXAudio.isPlaying) && (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
+				SFXAudio.Play();
+				if (strongHitSoundPlaying)
+					lastStrongSoundPlayed = Time.time;
+			}
+			if (debug) {
+				Debug.Log("Relative velocity: " + collision.relativeVelocity);
+				Debug.Log("Magnitude: " + collision.relativeVelocity.magnitude);
+			}
+		}
+		else {											//Si el golpe no lo produce un puñetazo...
+			if (collision.relativeVelocity.magnitude > 10f) {
+				//Cuanto daño se manda exactamente? 
+				float temp = collision.relativeVelocity.magnitude;
+				damageHull(temp);
+				if (!SFXAudio.isPlaying && !strongHitSoundPlaying){
 					SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
 				}
-
-
 			}
-			else if (!SFXAudio.isPlaying)
+			else if (!SFXAudio.isPlaying) {
 				SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
-			SFXAudio.Play();
+				strongHitSoundPlaying = false;
+			}
+			if ((strongHitSoundPlaying || !SFXAudio.isPlaying) && (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
+				SFXAudio.Play();
+				if (strongHitSoundPlaying)
+					lastStrongSoundPlayed = Time.time;
+			}
 			if (debug) {
 				Debug.Log("Relative velocity: " + collision.relativeVelocity);
 				Debug.Log("Magnitude: " + collision.relativeVelocity.magnitude);
