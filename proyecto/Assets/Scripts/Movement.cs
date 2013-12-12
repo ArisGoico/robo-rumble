@@ -128,7 +128,11 @@ public class Movement : MonoBehaviour {
 				//Look at and dampen the rotation
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
-			} else { lockOnGUIText.text = "Select Target"; }
+			} else { 
+				lockOnGUIText.text = "Select Target"; 
+				Quaternion rotation = Quaternion.LookRotation(torso.transform.position + torso.transform.forward);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
+			}
 			lockModeGUIText.text = "Locking mode: Auto";
 		} else { 
 			if (Input.GetAxisRaw("lockOn"+player) == 1) {
@@ -136,7 +140,11 @@ public class Movement : MonoBehaviour {
 				//Look at and dampen the rotation
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
-			} else { lockOnGUIText.text = "Select Target"; }
+			} else { 
+				lockOnGUIText.text = "Select Target"; 
+				Quaternion rotation = Quaternion.LookRotation(torso.transform.position + torso.transform.forward);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
+			}
 			lockModeGUIText.text = "Locking mode: Manual";
 		}
 		//changing LockMode
@@ -146,6 +154,7 @@ public class Movement : MonoBehaviour {
 			lockOn = snapTarget;
 			StartCoroutine(waitForLock(lockTime));
 		}
+
 	}
 	
 	IEnumerator waitForDash (float time) {
