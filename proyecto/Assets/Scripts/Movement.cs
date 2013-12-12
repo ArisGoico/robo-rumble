@@ -164,7 +164,4 @@ public class Movement : MonoBehaviour {
 	public bool getDashing() {
 		return dashing;
 	}
-	public bool getHovering() {
-		return hovering;
-	}
 }
