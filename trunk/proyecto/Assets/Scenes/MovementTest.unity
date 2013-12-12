@@ -1532,6 +1532,8 @@ GameObject:
   - 153: {fileID: 475266596}
   - 65: {fileID: 475266595}
   - 65: {fileID: 475266594}
+  - 114: {fileID: 475266600}
+  - 82: {fileID: 475266601}
   m_Layer: 0
   m_Name: Armleft
   m_TagString: Fists
@@ -1715,6 +1717,89 @@ MeshFilter:
   m_PrefabInternal: {fileID: 161610952}
   m_GameObject: {fileID: 475266592}
   m_Mesh: {fileID: 4300004, guid: 24d7aa677f75f9b4e9c94b022c43135e, type: 3}
+--- !u!114 &475266600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 475266592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torsoHitSFX:
+  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
+  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
+  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
+  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
+  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
+  blockHitSFX:
+  - {fileID: 8300000, guid: 73c735eec39d299409ff2b7fe06d4ad0, type: 3}
+  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
+  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
+  softHitSFX:
+  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
+  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  strongSoundDelay: .300000012
+--- !u!82 &475266601
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 475266592}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &476432081
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,6 +2565,8 @@ GameObject:
   - 153: {fileID: 905422331}
   - 65: {fileID: 905422330}
   - 65: {fileID: 905422329}
+  - 114: {fileID: 905422335}
+  - 82: {fileID: 905422336}
   m_Layer: 0
   m_Name: Armleft
   m_TagString: Fists
@@ -2663,6 +2750,89 @@ MeshFilter:
   m_PrefabInternal: {fileID: 323831401}
   m_GameObject: {fileID: 905422327}
   m_Mesh: {fileID: 4300004, guid: 24d7aa677f75f9b4e9c94b022c43135e, type: 3}
+--- !u!114 &905422335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 905422327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torsoHitSFX:
+  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
+  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
+  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
+  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
+  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
+  blockHitSFX:
+  - {fileID: 8300000, guid: 73c735eec39d299409ff2b7fe06d4ad0, type: 3}
+  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
+  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
+  softHitSFX:
+  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
+  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  strongSoundDelay: .300000012
+--- !u!82 &905422336
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 905422327}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &930953519
 GameObject:
   m_ObjectHideFlags: 0
@@ -4628,6 +4798,8 @@ GameObject:
   - 153: {fileID: 1629125949}
   - 65: {fileID: 1629125948}
   - 65: {fileID: 1629125947}
+  - 114: {fileID: 1629125953}
+  - 82: {fileID: 1629125954}
   m_Layer: 0
   m_Name: Armright
   m_TagString: Fists
@@ -4811,6 +4983,89 @@ MeshFilter:
   m_PrefabInternal: {fileID: 161610952}
   m_GameObject: {fileID: 1629125945}
   m_Mesh: {fileID: 4300004, guid: 24d7aa677f75f9b4e9c94b022c43135e, type: 3}
+--- !u!114 &1629125953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1629125945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torsoHitSFX:
+  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
+  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
+  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
+  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
+  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
+  blockHitSFX:
+  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
+  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
+  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
+  softHitSFX:
+  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
+  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  strongSoundDelay: .300000012
+--- !u!82 &1629125954
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1629125945}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1638375569
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,6 +5269,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
   - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
   blockHitSFX:
+  - {fileID: 8300000, guid: 73c735eec39d299409ff2b7fe06d4ad0, type: 3}
+  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
+  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
+  softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012
@@ -6208,6 +6467,8 @@ GameObject:
   - 153: {fileID: 1988944360}
   - 65: {fileID: 1988944359}
   - 65: {fileID: 1988944358}
+  - 114: {fileID: 1988944364}
+  - 82: {fileID: 1988944365}
   m_Layer: 0
   m_Name: Armright
   m_TagString: Fists
@@ -6391,6 +6652,89 @@ MeshFilter:
   m_PrefabInternal: {fileID: 323831401}
   m_GameObject: {fileID: 1988944356}
   m_Mesh: {fileID: 4300004, guid: 24d7aa677f75f9b4e9c94b022c43135e, type: 3}
+--- !u!114 &1988944364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988944356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torsoHitSFX:
+  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
+  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
+  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
+  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
+  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
+  blockHitSFX:
+  - {fileID: 8300000, guid: 73c735eec39d299409ff2b7fe06d4ad0, type: 3}
+  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
+  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
+  softHitSFX:
+  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
+  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  strongSoundDelay: .300000012
+--- !u!82 &1988944365
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988944356}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &2008518096
 GameObject:
   m_ObjectHideFlags: 0
@@ -6740,6 +7084,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
   - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
   blockHitSFX:
+  - {fileID: 8300000, guid: 73c735eec39d299409ff2b7fe06d4ad0, type: 3}
+  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
+  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
+  softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012

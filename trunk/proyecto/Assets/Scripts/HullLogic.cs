@@ -4,14 +4,14 @@ using System.Collections;
 public class HullLogic : MonoBehaviour {
 
 	public bool debug						= false;
+
 	//Hull Integrity / Salud 
 	public GameObject lifeBar;							//GUI Life graphic representation
 	public int hullIntegrityCurrent			= 100;		//Current hull integrity / Current health
 	public int hullIntegrityMax				= 100;		//Max hull integrity / Max health
 	public float hullDensity				= 1f;		//Percentage of each hit damage that goes through (0 - 1)
 	public float hullPlating				= 0f;		//Min damage that goes through
-	private float totalMass					= 0f;		//The total mass of the robot
-	
+
 	//Energy
 	public float energyCurrent				= 100f;		//Current energy
 	public float energyMax					= 100f;		//Max energy
@@ -27,6 +27,7 @@ public class HullLogic : MonoBehaviour {
 	//Hit Sounds
 	public AudioClip[] torsoHitSFX;
 	public AudioClip[] blockHitSFX;
+	public AudioClip[] softHitSFX;
 	private AudioSource SFXAudio;
 	private bool strongHitSoundPlaying		= false;
 	private float lastStrongSoundPlayed		= 0f;
@@ -37,11 +38,6 @@ public class HullLogic : MonoBehaviour {
 		energyCurrent = energyMax;
 		energyLabel.text = Mathf.FloorToInt(energyCurrent).ToString ();
 		SFXAudio = this.GetComponent<AudioSource>();
-		Rigidbody[] rigidBodies = this.transform.parent.GetComponentsInChildren<Rigidbody>();
-		totalMass = 0f;
-		foreach (Rigidbody rigBod in rigidBodies) {
-			totalMass += rigBod.mass;
-		}
 	}
 	
 	void Update() {
@@ -79,100 +75,31 @@ public class HullLogic : MonoBehaviour {
 			return false;
 	}
 
-	/*OPTION 
-	 * Este bloque de OnCollisionEnter funciona por velocidades unicamente, 
-	 * sin tener en cuenta la masa de ninguno de los dos objetos.
-	 * */
-
 	void OnCollisionEnter(Collision collision) {
-		if (collision.collider.tag == "Fists") {		//Si el golpe es producido por un puñetazo...
-			if (collision.relativeVelocity.magnitude > 10f) {
-				//Cuanto daño se manda exactamente? 
-				float temp = collision.relativeVelocity.magnitude;
-				if (damageHull(temp) && !strongHitSoundPlaying) {
-					SFXAudio.clip = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
-					strongHitSoundPlaying = true;
-				}
-				else if (!SFXAudio.isPlaying && !strongHitSoundPlaying){
-					SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
-					strongHitSoundPlaying = false;
-				}
+
+		AudioClip audioTemp;
+		if (collision.relativeVelocity.magnitude > 10f) {
+			//Cuanto daño se manda exactamente? 
+			float temp = collision.relativeVelocity.magnitude;
+			if (damageHull(temp)) {
+				audioTemp = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
+				strongHitSoundPlaying = true;
 			}
-			else if (!SFXAudio.isPlaying) {
-				SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
+			else {
+				audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];
 				strongHitSoundPlaying = false;
-			}
-			if ((strongHitSoundPlaying || !SFXAudio.isPlaying) && (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
-				SFXAudio.Play();
-				if (strongHitSoundPlaying)
-					lastStrongSoundPlayed = Time.time;
-			}
-			if (debug) {
-				Debug.Log("Relative velocity: " + collision.relativeVelocity);
-				Debug.Log("Magnitude: " + collision.relativeVelocity.magnitude);
 			}
 		}
-		else {											//Si el golpe no lo produce un puñetazo...
-			if (collision.relativeVelocity.magnitude > 10f) {
-				//Cuanto daño se manda exactamente? 
-				float temp = collision.relativeVelocity.magnitude;
-				damageHull(temp);
-				if (!SFXAudio.isPlaying && !strongHitSoundPlaying){
-					SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
-				}
-			}
-			else if (!SFXAudio.isPlaying) {
-				SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
-				strongHitSoundPlaying = false;
-			}
-			if ((strongHitSoundPlaying || !SFXAudio.isPlaying) && (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
-				SFXAudio.Play();
-				if (strongHitSoundPlaying)
-					lastStrongSoundPlayed = Time.time;
-			}
-			if (debug) {
-				Debug.Log("Relative velocity: " + collision.relativeVelocity);
-				Debug.Log("Magnitude: " + collision.relativeVelocity.magnitude);
-			}
+		else {
+			audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];
+			strongHitSoundPlaying = false;
+		}
+		if ((strongHitSoundPlaying || !SFXAudio.isPlaying) && (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
+			SFXAudio.clip = audioTemp;
+			SFXAudio.Play();
+			if (strongHitSoundPlaying)
+				lastStrongSoundPlayed = Time.time;
 		}
 	}
 
-
-	/*OPTION 
-	 * Este bloque de OnTriggerEnter funciona por velocidades y masas, 
-	 * multiplicando a cada velocidad la masa de su objeto (torso para golpeado
-	 * y robot entero para el que golpea).
-	 * */
-	/*
-	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Fists") {		//Si el golpe es producido por un puñetazo...
-			Vector3 dirVector = Vector3.zero;
-			dirVector = (other.rigidbody.velocity * other.rigidbody.mass) + (this.rigidbody.velocity * totalMass);
-
-			if (dirVector.magnitude > other.rigidbody.mass) {
-				//Cuanto daño se manda exactamente? 
-				float temp = dirVector.magnitude;
-				if (damageHull(temp)) {
-					SFXAudio.clip = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
-				}
-				else if (!SFXAudio.isPlaying){
-					SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
-				}
-				
-				
-			}
-			else if (!SFXAudio.isPlaying)
-				SFXAudio.clip = blockHitSFX[Random.Range(0, blockHitSFX.Length)];
-			SFXAudio.Play();
-			if (debug) {
-				Debug.Log("Collider " + other.name + " velocity: " + other.rigidbody.velocity);
-				Debug.Log("Collider " + other.name + " total mass: " + totalMass);
-				Debug.Log("Collider " + this.collider.name + " velocity: " + this.rigidbody.velocity);
-				Debug.Log("Collider " + this.collider.name + " mass: " + this.rigidbody.mass);
-				Debug.Log("Weighted Relative velocity: " + dirVector);
-				Debug.Log("Weighted Magnitude: " + dirVector.magnitude);
-			}
-		}
-	}*/
-	
 }
