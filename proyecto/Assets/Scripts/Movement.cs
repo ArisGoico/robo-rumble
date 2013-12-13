@@ -37,6 +37,7 @@ public class Movement : MonoBehaviour {
 	public float hoverConsume 				= 1f;
 	public float dashConsume 				= 5f;
 	private Vector3 moveDir;
+	private Vector3 lookDir;
 		
 	//delay and activation variables
 	private bool hovering = false;
@@ -57,15 +58,18 @@ public class Movement : MonoBehaviour {
 		snapping = snapTarget ? 2f : 0.1f;
 
 		effectiveTargetSpeed = targetSpeed / (blocking + snapping);
+		lookDir = new Vector3(Input.GetAxis("lookH"+player),0, Input.GetAxis("lookV"+player));
 
 		if (Input.GetAxis("Horizontal"+player)!= 0 ||  Input.GetAxis("Vertical"+player)!= 0 ||  Input.GetAxis("hover"+player)!= 0  || dashing) {
 			//hovering 
 			moveDir = new Vector3(Input.GetAxis("Horizontal"+player)*speed,0, Input.GetAxis("Vertical"+player)*speed);
+			//lookDir = new Vector3(Input.GetAxis("lookH"+player),0, Input.GetAxis("lookV"+player));
 			if (moveDir.Equals (Vector3.zero)) {
 				moveDir = this.transform.forward*speed;
 			}
 			if (debug) {
 				Debug.DrawRay(transform.position, transform.forward, Color.red);
+				Debug.DrawRay(transform.position, lookDir*3, Color.yellow);
 				Debug.DrawRay(transform.position, moveDir, Color.green);
 			}
 			transform.rigidbody.AddForce(moveDir);
@@ -75,7 +79,8 @@ public class Movement : MonoBehaviour {
 			if (hovering) {
 				Energy.consumeEnergy(hoverConsume);
 				transform.rigidbody.drag = hoverDrag;
-				//TODO: Vo-la-re! transform.rigidbody.AddForce (98f*transform.up);
+				//TODO: Vo-la-re! 
+				transform.rigidbody.AddForce (98f*transform.up);
 				inputCapture.text = "hovering";
 				Audio.pitch = 2.5f;
 			} else {
@@ -91,6 +96,14 @@ public class Movement : MonoBehaviour {
 			inputCapture.text = "idle";
 			moveDir = Vector3.zero;
 			//TODO: animation.CrossFade("idle");
+		}
+
+		if (lookDir.Equals (Vector3.zero)) {
+			if (moveDir.Equals (Vector3.zero)) {
+				lookDir = transform.forward;
+			} else {
+				lookDir = moveDir;
+			}
 		}
 
 		//dashing
@@ -127,7 +140,9 @@ public class Movement : MonoBehaviour {
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			} else { 
-				lockOnGUIText.text = "Select Target"; 
+				lockOnGUIText.text = "Select Target";
+				Quaternion rotation = Quaternion.LookRotation(lookDir);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed * 2f);
 			}
 			lockModeGUIText.text = "Locking mode: Auto";
 		} else { 
@@ -137,7 +152,10 @@ public class Movement : MonoBehaviour {
 				Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			} else { 
-				lockOnGUIText.text = "Select Target"; 
+				lockOnGUIText.text = "Select Target";
+				lockOnGUIText.text = "Select Target";
+				Quaternion rotation = Quaternion.LookRotation(lookDir);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed * 2f);
 			}
 			lockModeGUIText.text = "Locking mode: Manual";
 		}

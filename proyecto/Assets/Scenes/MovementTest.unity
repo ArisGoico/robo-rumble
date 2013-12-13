@@ -13,9 +13,9 @@ SceneSettings:
 --- !u!104 &2
 RenderSettings:
   m_Fog: 1
-  m_FogColor: {r: .630622804, g: .719699323, b: .79411763, a: 1}
+  m_FogColor: {r: .642138898, g: .750857592, b: .786764741, a: 1}
   m_FogMode: 3
-  m_FogDensity: .0149999997
+  m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
@@ -391,6 +391,46 @@ Prefab:
       propertyPath: hoverConsume
       value: .100000001
       objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: relaxedLimit
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400006, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Limits.min
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Limits.max
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400006, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400004, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400004, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Mass
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Mass
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400002, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
   m_RootGameObject: {fileID: 1282291416}
@@ -660,7 +700,7 @@ Rigidbody:
   m_GameObject: {fileID: 217436448}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 5
+  m_Drag: 1
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -853,6 +893,66 @@ Prefab:
     - target: {fileID: 11400004, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
       propertyPath: hoverConsume
       value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: relaxedLimit
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400006, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Limits.min
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Limits.max
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400006, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400004, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400004, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Mass
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Mass
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400002, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500010, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500010, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Center.y
+      value: -.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500010, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Center.z
+      value: -.419999987
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500010, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Size.y
+      value: .870000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500010, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
+      propertyPath: m_Size.x
+      value: 2.06999993
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edc84825f59bd024ca2c8a4a58166fcd, type: 2}
@@ -1359,8 +1459,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 457082216}
-  m_LocalRotation: {x: .258819044, y: 0, z: 0, w: .965925813}
-  m_LocalPosition: {x: 0, y: 6, z: -10}
+  m_LocalRotation: {x: .342020124, y: 0, z: 0, w: .939692616}
+  m_LocalPosition: {x: 0, y: 15, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1402,8 +1502,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: .00999999978
-  far clip plane: 1000
-  field of view: 60
+  far clip plane: 100
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1427,10 +1527,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2135044163}
   player2: {fileID: 1662825150}
-  cameraMode: 1
+  cameraMode: 2
   focusSpeed: 20
   minFocusDis: 4
   maxFocusDis: 20
+  minFov: 15
+  maxFov: 60
 --- !u!1 &472212316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,9 +1741,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 161610952}
   m_GameObject: {fileID: 475266592}
   serializedVersion: 2
-  m_Mass: .200000003
+  m_Mass: .100000001
   m_Drag: .100000001
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2742,9 +2844,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 323831401}
   m_GameObject: {fileID: 905422327}
   serializedVersion: 2
-  m_Mass: .200000003
+  m_Mass: .100000001
   m_Drag: .100000001
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -3112,8 +3214,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.20000005, y: 1, z: .5}
-  m_Center: {x: 0, y: -.25, z: 0}
+  m_Size: {x: 2.06999993, y: .870000005, z: .5}
+  m_Center: {x: 0, y: -.5, z: -.419999987}
 --- !u!1 &1018747484
 GameObject:
   m_ObjectHideFlags: 0
@@ -3503,7 +3605,7 @@ TerrainCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 17dd90ba060ebcd4cabdcae1ca0345b5, type: 2}
-  m_CreateTreeColliders: 1
+  m_CreateTreeColliders: 0
 --- !u!114 &1130316547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3899,7 +4001,7 @@ Rigidbody:
   m_GameObject: {fileID: 1282291416}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 5
+  m_Drag: 1
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -5003,9 +5105,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 161610952}
   m_GameObject: {fileID: 1629125945}
   serializedVersion: 2
-  m_Mass: .200000003
+  m_Mass: .100000001
   m_Drag: .100000001
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5289,7 +5391,7 @@ Rigidbody:
   m_GameObject: {fileID: 1662825150}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 5
+  m_Drag: 1
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -5417,8 +5519,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: -5
-    max: 5
+    min: -20
+    max: 20
     minBounce: 0
     maxBounce: 0
   m_BreakForce: Infinity
@@ -5447,7 +5549,7 @@ MonoBehaviour:
   blocking: 0
   punchDelay: .25
   blockDelay: .5
-  relaxedLimit: .75
+  relaxedLimit: .5
   constrainedLimit: 0
 --- !u!23 &1662825157
 Renderer:
@@ -5679,7 +5781,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1753100643}
   m_LocalRotation: {x: 0, y: .382683486, z: 0, w: .923879564}
-  m_LocalPosition: {x: 0, y: .513282776, z: 0}
+  m_LocalPosition: {x: 0, y: .5, z: 0}
   m_LocalScale: {x: 50, y: .200000003, z: 50}
   m_Children: []
   m_Father: {fileID: 1578757694}
@@ -6686,9 +6788,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 323831401}
   m_GameObject: {fileID: 1988944356}
   serializedVersion: 2
-  m_Mass: .200000003
+  m_Mass: .100000001
   m_Drag: .100000001
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -7103,7 +7205,7 @@ Rigidbody:
   m_GameObject: {fileID: 2135044163}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 5
+  m_Drag: 1
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -7231,8 +7333,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: -5
-    max: 5
+    min: -20
+    max: 20
     minBounce: 0
     maxBounce: 0
   m_BreakForce: Infinity
@@ -7261,7 +7363,7 @@ MonoBehaviour:
   blocking: 0
   punchDelay: .25
   blockDelay: .5
-  relaxedLimit: .75
+  relaxedLimit: .5
   constrainedLimit: 0
 --- !u!23 &2135044170
 Renderer:
