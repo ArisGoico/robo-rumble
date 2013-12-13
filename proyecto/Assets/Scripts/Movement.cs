@@ -73,17 +73,15 @@ public class Movement : MonoBehaviour {
 			hovering = (Energy.energyCurrent - dashConsume > 0) && Input.GetAxisRaw ("hover"+player) == 1 && !dashing;
 
 			if (hovering) {
-				//animation.CrossFade ("hover");
 				Energy.consumeEnergy(hoverConsume);
 				transform.rigidbody.drag = hoverDrag;
+				//TODO: Vo-la-re! transform.rigidbody.AddForce (98f*transform.up);
 				inputCapture.text = "hovering";
 				Audio.pitch = 2.5f;
 			} else {
 				if (dashing){
-					//animation.CrossFade ("dashing");
 					inputCapture.text = "dashing";
 				} else {
-					//animation.CrossFade("walking");
 					inputCapture.text = "walking";
 				}
 				transform.rigidbody.drag = idleDrag;
@@ -92,7 +90,7 @@ public class Movement : MonoBehaviour {
 		} else { 
 			inputCapture.text = "idle";
 			moveDir = Vector3.zero;
-			//animation.CrossFade("idle");
+			//TODO: animation.CrossFade("idle");
 		}
 
 		//dashing
@@ -130,8 +128,6 @@ public class Movement : MonoBehaviour {
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			} else { 
 				lockOnGUIText.text = "Select Target"; 
-				Quaternion rotation = Quaternion.LookRotation(torso.transform.position + torso.transform.forward);
-				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			}
 			lockModeGUIText.text = "Locking mode: Auto";
 		} else { 
@@ -142,8 +138,6 @@ public class Movement : MonoBehaviour {
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			} else { 
 				lockOnGUIText.text = "Select Target"; 
-				Quaternion rotation = Quaternion.LookRotation(torso.transform.position + torso.transform.forward);
-				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
 			}
 			lockModeGUIText.text = "Locking mode: Manual";
 		}

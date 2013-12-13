@@ -55,6 +55,6 @@ public class CameraFocus : MonoBehaviour {
 
 	float Hermit(float t)
 	{
-		return 3 * t * t * t - 2*t*t;
+		return 3 * t - 2*t;
 	}
 }
