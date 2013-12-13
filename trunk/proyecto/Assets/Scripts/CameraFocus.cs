@@ -9,6 +9,8 @@ public class CameraFocus : MonoBehaviour {
 	public float focusSpeed = 5.0f;
 	public float minFocusDis = 5.0f;
 	public float maxFocusDis = 15.0f;
+	public float minFov = 15.0f;
+	public float maxFov = 60.0f;
 
 	private Vector3 initialPos;
 	private Vector3 medianPoint;
@@ -26,24 +28,18 @@ public class CameraFocus : MonoBehaviour {
 	void Update () {
 		switch (cameraMode) {
 			case 1:
-				//camara distancia
+				//cemara ortho
+				Camera.main.orthographic = true;
 				medianPoint = (player1.transform.position + player2.transform.position)/2.0f;
 				transform.position = Vector3.Lerp(transform.position, initialPos + medianPoint, Time.deltaTime * focusSpeed);
-			transform.camera.orthographicSize = Mathf.Lerp (minFocusDis, maxFocusDis, Hermit(Vector3.Distance(player1.transform.position, player2.transform.position)/10.0f ));
+				transform.camera.orthographicSize = Mathf.Lerp (minFocusDis, maxFocusDis, Hermit(Vector3.Distance(player1.transform.position, player2.transform.position)/10.0f ));
 				break;
 			case 2:
-				//camara rotante
+				//camera persp
+				Camera.main.orthographic = false;
 				medianPoint = (player1.transform.position + player2.transform.position)/2.0f;
-				rotation = Quaternion.LookRotation(medianPoint - transform.position);
-				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * focusSpeed);
-			break;
-			case 3:
-				//combi
-				medianPoint = (player1.transform.position + player2.transform.position)/2.0f;
-				transform.position = Vector3.Lerp(transform.position, initialPos + medianPoint, Time.deltaTime*focusSpeed);
-				transform.camera.orthographicSize = Mathf.Lerp (minFocusDis, maxFocusDis, Vector3.Distance(player1.transform.position, player2.transform.position)/10.0f );
-				rotation = Quaternion.LookRotation(medianPoint - transform.position);
-				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * focusSpeed);
+				transform.position = Vector3.Lerp(transform.position, initialPos + medianPoint, Time.deltaTime * focusSpeed);
+				transform.camera.fieldOfView = Mathf.Lerp (minFov, maxFov, Hermit(Vector3.Distance(player1.transform.position, player2.transform.position)/10.0f ));
 			break;
 			default:
 				//classic

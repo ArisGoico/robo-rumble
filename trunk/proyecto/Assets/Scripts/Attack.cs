@@ -55,25 +55,29 @@ public class Attack : MonoBehaviour {
 			Debug.DrawLine (rightArm.transform.position, transform.position + transform.forward);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetAxisRaw ("punchL" + player) > 0 && Input.GetAxisRaw ("punchL" + player) > 0 && !blocking) {
 			//TODO Bloqueo
+			Debug.Log ("Bloqueando" + Time.deltaTime);
+			blocking = true;
+		} else if (!blocking) {
+			StartCoroutine(waitBlock(0.5f));
 		}
-		
-		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punch" + player) > 0 && !punchingL) {
+
+		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchL" + player) > 0 && !punchingL && !blocking) {
 			punchingL = true;
 			Energy.consumeEnergy (punchConsume);
 			if (debug)
 				Debug.Log ("pega con la iqda");
-			leftArm.transform.Rotate (new Vector3(0,30,0));
+			leftArm.transform.LookAt (transform.position + transform.forward);
 			leftCJ.linearLimit = jointRelaxed;  //con esto los brazos irian al cuerpo rapido si no esta pulsado, pero... delay y volver a linearLimit.limit= 0;
 			leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
 			StartCoroutine(waitPunchL(punchDelay));
 		}
 		
-		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punch"+player) <0 && !punchingR) {
+		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR"+player) > 0 && !punchingR && !blocking) {
 			punchingR = true;
 			Energy.consumeEnergy (punchConsume);
-			rightArm.transform.Rotate (new Vector3(0,30,0));
+			rightArm.transform.LookAt (transform.position + transform.forward);
 			if (debug)
 				Debug.Log ("pega con la dcha");
 			rightCJ.linearLimit = jointRelaxed;
@@ -96,6 +100,13 @@ public class Attack : MonoBehaviour {
 			Debug.Log ("deja de pegarme con la izqda");
 		punchingL = false;
 		leftCJ.linearLimit = jointConstrained;
+	}
+
+	private IEnumerator waitBlock(float time) {
+		yield return new WaitForSeconds(time);
+		if (debug)
+			Debug.Log ("deja de bloquear");
+		blocking = false;
 	}
 
 }
