@@ -3,7 +3,6 @@ using System.Collections;
 
 public class thrusters : MonoBehaviour {
 
-	private int player = 1;
 	public GameObject movingObject;
 	private Vector3 moveDir;
 	public Transform[] models;
@@ -12,7 +11,6 @@ public class thrusters : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = movingObject.GetComponent<Movement> ().player;
 		
 	}
 	

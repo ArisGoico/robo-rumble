@@ -120,7 +120,7 @@ public class Movement : MonoBehaviour {
 			if (debug) Debug.DrawRay(transform.position, dashDir*5.0f, Color.yellow);
 			transform.rigidbody.AddForce(dashDir*dashSpeed, ForceMode.Impulse);
 			torso.transform.LookAt (transform.position + transform.forward);
-			torso.transform.rigidbody.AddForce(dashDir*dashSpeed, ForceMode.Impulse);
+			torso.transform.rigidbody.AddForce(dashDir*dashSpeed*torso.transform.rigidbody.mass/transform.rigidbody.mass, ForceMode.Impulse);
 			inputCapture.text = "dash";
 			//dashing = false;
 			StartCoroutine(waitForDash(dashDelay));
@@ -158,14 +158,14 @@ public class Movement : MonoBehaviour {
 				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed * 2f);
 			}
 			lockModeGUIText.text = "Locking mode: Manual";
-		}
+		}/*
 		//changing LockMode
 		if (Input.GetAxisRaw("lockMode"+player) == 1 && !lockingTarget) {
 			lockingTarget = true;
 			snapTarget = !snapTarget;
 			lockOn = snapTarget;
 			StartCoroutine(waitForLock(lockTime));
-		}
+		}*/
 
 	}
 	
