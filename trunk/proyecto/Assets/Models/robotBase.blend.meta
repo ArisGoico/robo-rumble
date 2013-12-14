@@ -22,6 +22,12 @@ ModelImporter:
     100032: //RootNode
     100034: RobotParent
     100036: torso
+    100038: leftArm
+    100040: leftShoulder
+    100042: rightArm
+    100044: rightShoulder
+    100046: torso_001
+    100048: torsoBase
     400000: arms
     400002: Cube
     400004: distributor
@@ -41,6 +47,12 @@ ModelImporter:
     400032: //RootNode
     400034: RobotParent
     400036: torso
+    400038: leftArm
+    400040: leftShoulder
+    400042: rightArm
+    400044: rightShoulder
+    400046: torso_001
+    400048: torsoBase
     2300000: arms
     2300002: Cube
     2300004: distributor
@@ -58,6 +70,12 @@ ModelImporter:
     2300028: legUp
     2300030: Plane
     2300032: torso
+    2300034: leftArm
+    2300036: leftShoulder
+    2300038: rightArm
+    2300040: rightShoulder
+    2300042: torso_001
+    2300044: torsoBase
     3300000: arms
     3300002: Cube
     3300004: distributor
@@ -75,6 +93,12 @@ ModelImporter:
     3300028: legUp
     3300030: Plane
     3300032: torso
+    3300034: leftArm
+    3300036: leftShoulder
+    3300038: rightArm
+    3300040: rightShoulder
+    3300042: torso_001
+    3300044: torsoBase
     4300000: Cube
     4300002: Plane
     4300004: exhaust_001
@@ -92,6 +116,12 @@ ModelImporter:
     4300028: torso
     4300030: hipJoint2
     4300032: hips
+    4300034: leftArm
+    4300036: rightArm
+    4300038: rightShoulder
+    4300040: leftShoulder
+    4300042: torso_001
+    4300044: torsoBase
     7400000: Default Take
     9500000: //RootNode
   materials:
