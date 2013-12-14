@@ -7,19 +7,29 @@ ModelImporter:
     100002: jointArm-Forearm
     100004: protector
     100006: //RootNode
+    100008: protectorL
+    100010: protectorR_001
     400000: arm
     400002: jointArm-Forearm
     400004: protector
     400006: //RootNode
+    400008: protectorL
+    400010: protectorR_001
     2300000: arm
     2300002: jointArm-Forearm
     2300004: protector
+    2300006: protectorL
+    2300008: protectorR_001
     3300000: arm
     3300002: jointArm-Forearm
     3300004: protector
+    3300006: protectorL
+    3300008: protectorR_001
     4300000: jointArm-Forearm
     4300002: arm
     4300004: protector
+    4300006: protectorR_001
+    4300008: protectorL
     7400000: Default Take
     9500000: //RootNode
   materials:
