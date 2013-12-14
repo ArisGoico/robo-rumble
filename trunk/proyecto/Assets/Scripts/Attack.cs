@@ -17,12 +17,12 @@ public class Attack : MonoBehaviour {
 	private HullLogic 			Energy;
 
 	//delays
-	public 	bool 				punchingR 			= false;
-	public 	bool 				punchingL 			= false;
-	public 	bool 				punchingRlow 		= false;
-	public 	bool 				punchingLlow 		= false;
-	public 	bool 				blocking 			= false;
-	public 	float 				punchDelay 			= 0.5f;
+	private 	bool 				punchingR 			= false;
+	private 	bool 				punchingL 			= false;
+	private 	bool 				punchingRlow 		= false;
+	private 	bool 				punchingLlow 		= false;
+	private 	bool 				blocking 			= false;
+	private 	float 				punchDelay 			= 0.5f;
 
 	//joints
 	private ConfigurableJoint 	leftCJ;
@@ -34,7 +34,7 @@ public class Attack : MonoBehaviour {
 	private SoftJointLimit 		jointBlockingLimit;
 	private SoftJointLimit 		jointBlockingLimitInv;
 	public 	float 				relaxedLimit 		= 0.5f;
-	public 	float 				constrainedLimit 	= 0f;
+	private float	 			constrainedLimit 	= 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -187,4 +187,7 @@ public class Attack : MonoBehaviour {
 		}
 	}
 
+	public bool getBlocking () {
+		return blocking;
+	}
 }
