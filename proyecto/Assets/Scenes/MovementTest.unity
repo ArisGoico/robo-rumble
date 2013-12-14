@@ -553,10 +553,8 @@ MonoBehaviour:
   torso: {fileID: 2135044163}
   audioVolumeMin: .400000006
   enemy: {fileID: 1282291416}
-  snapTarget: 0
   targetSpeed: .5
   lockOnGUIText: {fileID: 1705825800}
-  lockModeGUIText: {fileID: 365483966}
   speed: 50
   dashSpeed: 100
   dashDelay: .5
@@ -4001,10 +3999,8 @@ MonoBehaviour:
   torso: {fileID: 1662825150}
   audioVolumeMin: .400000006
   enemy: {fileID: 217436448}
-  snapTarget: 0
   targetSpeed: .5
   lockOnGUIText: {fileID: 392958077}
-  lockModeGUIText: {fileID: 1614879174}
   speed: 50
   dashSpeed: 100
   dashDelay: .5
@@ -5587,6 +5583,8 @@ MonoBehaviour:
   blockTickConsume: 1.5
   punchingR: 0
   punchingL: 0
+  punchingRlow: 0
+  punchingLlow: 0
   blocking: 0
   punchDelay: .75
   relaxedLimit: .5
@@ -7364,6 +7362,8 @@ MonoBehaviour:
   blockTickConsume: 1.5
   punchingR: 0
   punchingL: 0
+  punchingRlow: 0
+  punchingLlow: 0
   blocking: 0
   punchDelay: .5
   relaxedLimit: .5
