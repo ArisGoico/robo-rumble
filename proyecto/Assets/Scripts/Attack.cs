@@ -9,6 +9,8 @@ public class Attack : MonoBehaviour {
 	public 	float 				force;
 	public 	GameObject 			leftArm;
 	public 	GameObject 			rightArm;
+	public 	GameObject 			leftShoulder;
+	public 	GameObject 			rightShoulder;
 	public 	float 				punchConsume 		= 5f;
 	public 	float 				blockConsume 		= 0.3f;
 	public 	float 				blockTickConsume 	= 1.5f;
@@ -24,6 +26,8 @@ public class Attack : MonoBehaviour {
 	//joints
 	private ConfigurableJoint 	leftCJ;
 	private ConfigurableJoint 	rightCJ;
+	private CharacterJoint		leftHJ;
+	private	CharacterJoint		rightHJ;
 	private SoftJointLimit 		jointRelaxed;
 	private SoftJointLimit 		jointConstrained;
 	private SoftJointLimit 		jointBlockingLimit;
@@ -36,7 +40,9 @@ public class Attack : MonoBehaviour {
 		torso = transform.parent.GetComponent<Movement> ().torso;
 		Energy = transform.GetComponent<HullLogic> ();
 		leftCJ = leftArm.GetComponent<ConfigurableJoint>();
-		rightCJ = rightArm.GetComponent<ConfigurableJoint>();	
+		rightCJ = rightArm.GetComponent<ConfigurableJoint>();
+		leftHJ = leftShoulder.GetComponent<CharacterJoint> ();
+		rightHJ = rightShoulder.GetComponent<CharacterJoint> ();
 
 		jointRelaxed = new SoftJointLimit();
 		jointConstrained = new SoftJointLimit();
@@ -64,30 +70,23 @@ public class Attack : MonoBehaviour {
 
 
 		//blocking
-		if (!punchingL && !punchingR && /*Input.GetAxisRaw ("punchL" + player) > 0 && Input.GetAxisRaw ("punchR" + player)*/Input.GetAxisRaw("lockMode"+player) > 0) {
+		if (((Input.GetAxisRaw ("punchL" + player) > 0 && Input.GetAxisRaw ("punchR" + player)) || Input.GetAxisRaw("lockMode"+player) > 0) && !punchingL && !punchingR ) {
 			if (debug) { Debug.Log ("Bloqueando" + Time.deltaTime); }
 			blocking = true;
 
-			//relax joints
-			setJointforBlock(leftCJ, true);
-			setJointforBlock(rightCJ, true);
+			setJointforBlock(leftHJ, true);
+			setJointforBlock(rightHJ, true);
+			//TODO: no va brazo derecho T_T
+			Quaternion rotationL = Quaternion.AngleAxis (80, transform.forward) * Quaternion.AngleAxis (90, transform.right);
 
-			//rotate arm vertically
-			leftArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, /*Quaternion.AngleAxis(90, transform.right) */ Quaternion.AngleAxis(90, transform.up), Time.deltaTime * 10f);
-			rightArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, /*Quaternion.AngleAxis(90, transform.right) */ Quaternion.AngleAxis(90, transform.up), Time.deltaTime * 10f);
+			leftShoulder.transform.rotation = Quaternion.Slerp (leftShoulder.transform.rotation, rotationL, Time.deltaTime*5f);
+			//rightShoulder.transform.rotation = Quaternion.Slerp (rightShoulder.transform.rotation, rotationR, Time.deltaTime*10f);
 
-			/*leftArm.transform.position = Vector3.Lerp (	leftArm.transform.position, 
-			                                           leftArm.transform.position + leftArm.transform.up* 0.5f - rightArm.transform.right* 0.4f,
-			                                           Time.deltaTime * 10f);
-			rightArm.transform.position = Vector3.Lerp ( rightArm.transform.position, 
-			                                            rightArm.transform.position + rightArm.transform.up* 0.5f - rightArm.transform.right* 0.4f, 
-			                                           Time.deltaTime * 10f);*/
+
 		} else if (blocking) {
-
-			//constrain joints
-			setJointforBlock(leftCJ, false);
-			setJointforBlock(rightCJ, false);
 			StartCoroutine(waitBlock(punchDelay));
+		} else {
+			torso.GetComponent<HingeJoint>().useLimits = true;
 		}
 
 		//punching
@@ -117,52 +116,46 @@ public class Attack : MonoBehaviour {
 	}
 
 	private IEnumerator waitPunchR(float time) {
-		yield return new WaitForSeconds(time);
+		yield return new WaitForSeconds(time*0.2f);
 		if (debug)
 			Debug.Log ("deja de pegarme con la derecha");
-		punchingR = false;
+
 		rightCJ.linearLimit = jointConstrained;
 		rightCJ.angularYMotion = ConfigurableJointMotion.Locked;
-
+		yield return new WaitForSeconds(time*0.8f);
+		punchingR = false;
 	}
 
 	private IEnumerator waitPunchL(float time) {
-		yield return new WaitForSeconds(time);
+		yield return new WaitForSeconds(time*0.2f);
 		if (debug)
 			Debug.Log ("deja de pegarme con la izqda");
-		punchingL = false;
+
 		leftCJ.linearLimit = jointConstrained;
 		leftCJ.angularYMotion = ConfigurableJointMotion.Locked;
+		yield return new WaitForSeconds(time*0.8f);
+		punchingL = false;
 	}
 
 	private IEnumerator waitBlock(float time) {
 		yield return new WaitForSeconds(time);
+		//constrain joints
+		setJointforBlock(leftHJ, false);
+		setJointforBlock(rightHJ, false);
 		if (debug)
 			Debug.Log ("deja de bloquear");
 		blocking = false;
 	}
 
-	private void setJointforBlock(ConfigurableJoint joint, bool block){
+	private void setJointforBlock(CharacterJoint joint, bool block){
 		if (block) {
 			//relax joint
-			//joint.linearLimit = jointRelaxed;
-			joint.xMotion = ConfigurableJointMotion.Limited;
-			joint.yMotion = ConfigurableJointMotion.Locked;
-			joint.zMotion = ConfigurableJointMotion.Limited;
-			joint.angularXMotion = ConfigurableJointMotion.Limited;
-			joint.angularYMotion = ConfigurableJointMotion.Limited;
-			joint.highAngularXLimit = jointBlockingLimit;
-			joint.angularYLimit = jointBlockingLimit;
+			joint.highTwistLimit = jointBlockingLimit;
+			joint.swing2Limit = jointBlockingLimit;
 		} else {
 			//constrain joint
-			joint.linearLimit = jointConstrained;
-			joint.xMotion = ConfigurableJointMotion.Locked;
-			joint.yMotion = ConfigurableJointMotion.Limited;
-			joint.zMotion = ConfigurableJointMotion.Locked;
-			joint.angularXMotion = ConfigurableJointMotion.Locked;
-			joint.angularYMotion = ConfigurableJointMotion.Locked;
-			joint.highAngularXLimit = jointConstrained;
-			joint.angularYLimit = jointConstrained;
+			joint.highTwistLimit = new SoftJointLimit();
+			joint.swing2Limit = new SoftJointLimit();
 		}
 	}
 
