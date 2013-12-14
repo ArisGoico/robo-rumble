@@ -35,6 +35,7 @@ public class Movement : MonoBehaviour {
 	public float dashConsume 				= 5f;
 	private Vector3 moveDir;
 	private Vector3 lookDir;
+	public GameObject[] flares;
 		
 	//delay and activation variables
 	private bool hovering = false;
@@ -70,6 +71,8 @@ public class Movement : MonoBehaviour {
 			hovering = (Energy.energyCurrent - dashConsume > 0) && Input.GetAxisRaw ("hover"+player) == 1 && !dashing;
 
 			if (hovering) {
+				//Efectos
+
 				Energy.consumeEnergy(hoverConsume);
 				transform.rigidbody.drag = hoverDrag;
 				//TODO: Vo-la-re! 
@@ -91,6 +94,13 @@ public class Movement : MonoBehaviour {
 			//TODO: animation.CrossFade("idle");
 		}
 
+		for (int i = 0; i < flares.Length; i++) {
+			flares[i].transform.localScale = Vector3.Lerp (flares[i].transform.localScale, 
+			                                               new Vector3(Input.GetAxis("hover"+player), Input.GetAxis("hover"+player), Input.GetAxis("hover"+player)),
+			                                               Time.deltaTime*20f);
+		}
+		
+		
 		if (lookDir.Equals (Vector3.zero)) {
 			if (moveDir.Equals (Vector3.zero)) {
 				lookDir = transform.forward;
@@ -121,7 +131,7 @@ public class Movement : MonoBehaviour {
 		
 
 		//targeting
-		blocking = torso.GetComponent<Attack> ().blocking ? 2f : 0.1f;
+		blocking = torso.GetComponent<Attack> ().getBlocking() ? 2f : 0.1f;
 		effectiveTargetSpeed = targetSpeed / blocking;
 
 		if (Input.GetAxisRaw("lockOn"+player) == 1 && !lockingTarget) {
