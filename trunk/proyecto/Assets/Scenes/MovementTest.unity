@@ -531,7 +531,7 @@ Rigidbody:
   m_Drag: 1
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -2179,7 +2179,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 704009703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.12768745, y: 0, z: .555129945}
+  m_LocalPosition: {x: .660000026, y: 0, z: .550000012}
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 2135044164}
@@ -2233,11 +2233,11 @@ CharacterJoint:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 704009703}
   m_ConnectedBody: {fileID: 2135044165}
-  m_Anchor: {x: 0, y: .5, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.12768769, y: .0999999046, z: .555129945}
-  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_ConnectedAnchor: {x: .660000265, y: 0, z: .549999237}
+  m_SwingAxis: {x: 0, y: -1, z: 0}
   m_LowTwistLimit:
     limit: 0
     bounciness: 0
@@ -2254,7 +2254,7 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 90
     bounciness: 0
     spring: 0
     damper: 0
@@ -2585,7 +2585,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 905422327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -.351284504, z: .303337246}
+  m_LocalPosition: {x: -1, y: -.351284504, z: .300000012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1845847389}
@@ -2614,7 +2614,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.69999778, y: -1.75642252, z: -1.25896442}
+  m_ConnectedAnchor: {x: -1.70000172, y: -1.75642252, z: -1.2500031}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
   m_YMotion: 0
@@ -4277,7 +4277,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1399496074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.660000801, y: 0, z: .555130124}
+  m_LocalPosition: {x: -.660000026, y: 0, z: .550000012}
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 2135044164}
@@ -4334,7 +4334,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.66000104, y: 0, z: .555130124}
+  m_ConnectedAnchor: {x: -.660000086, y: 0, z: .549999356}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: 0
@@ -6655,7 +6655,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1988944356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.46769059, y: -.351284504, z: .303338856}
+  m_LocalPosition: {x: 1, y: -.351284504, z: .300000012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 699177401}
@@ -6684,7 +6684,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.70001686, y: -1.75642252, z: -1.25895548}
+  m_ConnectedAnchor: {x: 1.700001, y: -1.75642252, z: -1.25000429}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
   m_YMotion: 0
@@ -7210,7 +7210,7 @@ Rigidbody:
   m_Drag: 1
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
