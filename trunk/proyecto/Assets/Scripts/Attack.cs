@@ -5,7 +5,6 @@ public class Attack : MonoBehaviour {
 
 	public 	bool 				debug 				= false;
 	private int 				player 				= 1;
-	private GameObject 			torso;
 	public 	float 				force;
 	public 	GameObject 			leftArm;
 	public 	GameObject 			rightArm;
@@ -20,6 +19,8 @@ public class Attack : MonoBehaviour {
 	//delays
 	public 	bool 				punchingR 			= false;
 	public 	bool 				punchingL 			= false;
+	public 	bool 				punchingRlow 		= false;
+	public 	bool 				punchingLlow 		= false;
 	public 	bool 				blocking 			= false;
 	public 	float 				punchDelay 			= 0.5f;
 
@@ -38,7 +39,6 @@ public class Attack : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = transform.parent.GetComponent<Movement> ().player;
-		torso = transform.parent.GetComponent<Movement> ().torso;
 		Energy = transform.GetComponent<HullLogic> ();
 		leftCJ = leftArm.GetComponent<ConfigurableJoint>();
 		rightCJ = rightArm.GetComponent<ConfigurableJoint>();
@@ -77,30 +77,35 @@ public class Attack : MonoBehaviour {
 
 		}
 
-		if (((Input.GetAxisRaw ("punchL" + player) > 0 && Input.GetAxisRaw ("punchR" + player) > 0) || Input.GetAxisRaw("lockMode"+player) > 0) && !punchingL && !punchingR ) {
-			if (debug) { Debug.Log ("Bloqueando" + Time.deltaTime); }
-			blocking = true;
+		if (Input.GetAxisRaw ("punchL" + player) > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingLlow && !punchingRlow) {
+						if (debug) {
+								Debug.Log ("Bloqueando" + Time.deltaTime);
+						}
+						blocking = true;
 
-			setJointforBlock(leftHJ, true, true);
-			setJointforBlock(rightHJ, true, false);
+						setJointforBlock (leftHJ, true, true);
+						setJointforBlock (rightHJ, true, false);
 
-			//por Quaternions
-			//rightArm.rigidbody.AddForce(torso.transform.forward+torso.transform.right*2f);
-			//Quaternion rotationL = Quaternion.AngleAxis (70, transform.forward) * Quaternion.AngleAxis (5, transform.right); // funciona.
-			//Quaternion rotationR = Quaternion.AngleAxis (10, transform.position - rightArm.transform.localPosition + transform.right); // Quaternion.AngleAxis (90, rightArm.transform.forward);
+						//por Quaternions
+						//rightArm.rigidbody.AddForce(torso.transform.forward+torso.transform.right*2f);
+						//Quaternion rotationL = Quaternion.AngleAxis (70, transform.forward) * Quaternion.AngleAxis (5, transform.right); // funciona.
+						//Quaternion rotationR = Quaternion.AngleAxis (10, transform.position - rightArm.transform.localPosition + transform.right); // Quaternion.AngleAxis (90, rightArm.transform.forward);
 
-			//leftShoulder.transform.localRotation = Quaternion.Slerp (leftShoulder.transform.rotation, rotationL* leftShoulder.transform.forward, Time.deltaTime*5f);
+						//leftShoulder.transform.localRotation = Quaternion.Slerp (leftShoulder.transform.rotation, rotationL* leftShoulder.transform.forward, Time.deltaTime*5f);
 
-			//por lookAts
-			rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
-			leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
+						//por lookAts
+						rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
+						leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
 
-		} else if (blocking) {
-			StartCoroutine(waitBlock(punchDelay));
-		} 
+				} else if (blocking) {
+						StartCoroutine (waitBlock (punchDelay));
+				} else { //if not blocking
+						setJointforBlock (leftHJ, false, false);
+						setJointforBlock (rightHJ, false, false);
+				}
 
 		//punching
-		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchL" + player) > 0 && !punchingL && !blocking) {
+		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchL" + player) > 0 && !punchingL && !punchingRlow && !blocking) {
 			punchingL = true;
 			Energy.consumeEnergy (punchConsume);
 			if (debug)
@@ -112,7 +117,7 @@ public class Attack : MonoBehaviour {
 			StartCoroutine(waitPunchL(punchDelay));
 		} 
 
-		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !blocking) {
+		if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !punchingLlow  && !blocking) {
 			punchingR = true;
 			Energy.consumeEnergy (punchConsume);
 			rightArm.transform.LookAt (transform.position + transform.forward);
@@ -127,6 +132,7 @@ public class Attack : MonoBehaviour {
 
 	private IEnumerator waitPunchR(float time) {
 		yield return new WaitForSeconds(time*0.2f);
+		punchingRlow = false;
 		if (debug)
 			Debug.Log ("deja de pegarme con la derecha");
 
@@ -138,6 +144,7 @@ public class Attack : MonoBehaviour {
 
 	private IEnumerator waitPunchL(float time) {
 		yield return new WaitForSeconds(time*0.2f);
+		punchingLlow = false;
 		if (debug)
 			Debug.Log ("deja de pegarme con la izqda");
 
