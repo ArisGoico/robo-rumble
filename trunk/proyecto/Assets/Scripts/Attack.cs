@@ -73,12 +73,9 @@ public class Attack : MonoBehaviour {
 			setJointforBlock(rightCJ, true);
 
 			//rotate arm vertically
-			Quaternion rotation = Quaternion.LookRotation(transform.up) * Quaternion.AngleAxis(90, Vector3.forward);
-			leftArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, rotation, Time.deltaTime * 10f);
+			leftArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, /*Quaternion.AngleAxis(90, transform.right) */ Quaternion.AngleAxis(90, transform.up), Time.deltaTime * 10f);
+			rightArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, /*Quaternion.AngleAxis(90, transform.right) */ Quaternion.AngleAxis(90, transform.up), Time.deltaTime * 10f);
 
-			rightArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, rotation, Time.deltaTime * 10f);
-
-			//translate arm 
 			/*leftArm.transform.position = Vector3.Lerp (	leftArm.transform.position, 
 			                                           leftArm.transform.position + leftArm.transform.up* 0.5f - rightArm.transform.right* 0.4f,
 			                                           Time.deltaTime * 10f);
@@ -101,8 +98,7 @@ public class Attack : MonoBehaviour {
 				Debug.Log ("pega con la iqda");
 			leftArm.transform.LookAt (transform.position + transform.forward);
 			leftCJ.linearLimit = jointRelaxed;  
-			leftCJ.angularZMotion = ConfigurableJointMotion.Limited;
-			//leftCJ.angularYLimit = jointBlockingLimit;
+			leftCJ.angularYMotion = ConfigurableJointMotion.Limited;
 			leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
 			StartCoroutine(waitPunchL(punchDelay));
 		} 
@@ -114,8 +110,7 @@ public class Attack : MonoBehaviour {
 			if (debug)
 				Debug.Log ("pega con la dcha");
 			rightCJ.linearLimit = jointRelaxed;
-			rightCJ.angularZMotion = ConfigurableJointMotion.Limited;
-			//rightCJ.angularYLimit = jointBlockingLimit;
+			rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
 			rightArm.rigidbody.AddForce(rArmDirection*force, ForceMode.Impulse);
 			StartCoroutine(waitPunchR(punchDelay));
 		}
@@ -127,7 +122,7 @@ public class Attack : MonoBehaviour {
 			Debug.Log ("deja de pegarme con la derecha");
 		punchingR = false;
 		rightCJ.linearLimit = jointConstrained;
-		rightCJ.angularZMotion = ConfigurableJointMotion.Locked;
+		rightCJ.angularYMotion = ConfigurableJointMotion.Locked;
 
 	}
 
@@ -137,7 +132,7 @@ public class Attack : MonoBehaviour {
 			Debug.Log ("deja de pegarme con la izqda");
 		punchingL = false;
 		leftCJ.linearLimit = jointConstrained;
-		leftCJ.angularZMotion = ConfigurableJointMotion.Locked;
+		leftCJ.angularYMotion = ConfigurableJointMotion.Locked;
 	}
 
 	private IEnumerator waitBlock(float time) {
@@ -163,7 +158,7 @@ public class Attack : MonoBehaviour {
 			joint.linearLimit = jointConstrained;
 			joint.xMotion = ConfigurableJointMotion.Locked;
 			joint.yMotion = ConfigurableJointMotion.Limited;
-			joint.xMotion = ConfigurableJointMotion.Locked;
+			joint.zMotion = ConfigurableJointMotion.Locked;
 			joint.angularXMotion = ConfigurableJointMotion.Locked;
 			joint.angularYMotion = ConfigurableJointMotion.Locked;
 			joint.highAngularXLimit = jointConstrained;
