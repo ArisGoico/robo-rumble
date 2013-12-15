@@ -12,9 +12,7 @@ public class ControlLogic : MonoBehaviour {
 
 	public GameObject player1;
 	public GameObject player2;
-
-	private GameObject player1Spawn;
-	private GameObject player2Spawn;
+	
 	private HullLogic player1Hull;
 	private HullLogic player2Hull;
 
@@ -23,12 +21,10 @@ public class ControlLogic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player1Spawn = Instantiate(player1, spawnPoint1.position, spawnPoint1.rotation) as GameObject;
-		player2Spawn = Instantiate(player2, spawnPoint2.position, spawnPoint2.rotation) as GameObject;
-		player1Hull = player1Spawn.GetComponentInChildren<HullLogic>();
-		player2Hull = player2Spawn.GetComponentInChildren<HullLogic>();
-		player1.SetActive(false);
-		player2.SetActive(false);
+		player1Hull = player1.GetComponentInChildren<HullLogic>();
+		player2Hull = player2.GetComponentInChildren<HullLogic>();
+		player1.transform.position = spawnPoint1.position;
+		player2.transform.position = spawnPoint2.position;
 		state = State.battle;
 	}
 	
@@ -37,12 +33,10 @@ public class ControlLogic : MonoBehaviour {
 		switch (state) {
 		case State.beginning:
 			if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
-				Destroy(player1Spawn);
-				Destroy(player2Spawn);
-//				player1Spawn = Instantiate(player1, spawnPoint1.position, spawnPoint1.rotation) as GameObject;
-//				player2Spawn = Instantiate(player2, spawnPoint2.position, spawnPoint2.rotation) as GameObject;
-//				player1Hull = player1Spawn.GetComponentInChildren<HullLogic>();
-//				player2Hull = player2Spawn.GetComponentInChildren<HullLogic>();
+				player1Hull.restartHull();
+				player1.transform.position = spawnPoint1.position;
+				player2Hull.restartHull();
+				player2.transform.position = spawnPoint2.position;
 				state = State.battle;
 			}
 			break;
@@ -64,25 +58,15 @@ public class ControlLogic : MonoBehaviour {
 			break;
 		case State.win:
 			if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
-				Destroy(player1Spawn);
-				Destroy(player2Spawn);
-//				player1Spawn = Instantiate(player1, spawnPoint1.position, spawnPoint1.rotation) as GameObject;
-//				player2Spawn = Instantiate(player2, spawnPoint2.position, spawnPoint2.rotation) as GameObject;
-//				player1Hull = player1Spawn.GetComponentInChildren<HullLogic>();
-//				player2Hull = player2Spawn.GetComponentInChildren<HullLogic>();
+				player1Hull.restartHull();
+				player1.transform.position = spawnPoint1.position;
+				player2Hull.restartHull();
+				player2.transform.position = spawnPoint2.position;
 				state = State.battle;
 			}
 			break;
 		}
 
-		if (player1Spawn == null) {
-			player1Spawn = Instantiate(player1, spawnPoint1.position, spawnPoint1.rotation) as GameObject;
-			player1Hull = player1Spawn.GetComponentInChildren<HullLogic>();
-		}
-		if (player2Spawn == null) {
-			player2Spawn = Instantiate(player2, spawnPoint2.position, spawnPoint2.rotation) as GameObject;
-			player2Hull = player2Spawn.GetComponentInChildren<HullLogic>();
-		}
 
 	}
 

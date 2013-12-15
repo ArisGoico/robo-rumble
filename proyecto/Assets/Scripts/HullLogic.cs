@@ -75,6 +75,13 @@ public class HullLogic : MonoBehaviour {
 			return false;
 	}
 
+	public void restartHull() {
+		hullIntegrityCurrent = hullIntegrityMax;
+		energyCurrent = energyMax;
+		energyLastUsed = 0f;
+		lastStrongSoundPlayed = 0f;
+	}
+
 	void OnCollisionEnter(Collision collision) {
 
 		AudioClip audioTemp;
