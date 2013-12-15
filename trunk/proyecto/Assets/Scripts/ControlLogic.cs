@@ -10,21 +10,25 @@ public class ControlLogic : MonoBehaviour {
 	public Transform spawnPoint1;
 	public Transform spawnPoint2;
 
-	public GameObject player1;
-	public GameObject player2;
-	
-	private HullLogic player1Hull;
-	private HullLogic player2Hull;
+	public GameObject[] players;
+	public bool[] disabledPlayers;
+	public int activePlayers;
+	private HullLogic[] playersHull;
+	public Transform[] spawnpoints;
 
 	private enum State {beginning, battle, win, lose};
 	private State state;
 
 	// Use this for initialization
 	void Start () {
-		player1Hull = player1.GetComponentInChildren<HullLogic>();
-		player2Hull = player2.GetComponentInChildren<HullLogic>();
-		player1.transform.position = spawnPoint1.position;
-		player2.transform.position = spawnPoint2.position;
+		disabledPlayers = new bool[players.Length];
+		playersHull = new HullLogic[players.Length];
+		activePlayers = players.Length;
+		for (int i = 0; i < players.Length; i++) {
+			playersHull [i] = players [i].GetComponentInChildren<HullLogic> ();
+			players[i].transform.position = spawnpoints[i].position;
+			disabledPlayers[i] = true;
+		}
 		state = State.battle;
 	}
 	
@@ -32,36 +36,47 @@ public class ControlLogic : MonoBehaviour {
 	void Update () {
 		switch (state) {
 		case State.beginning:
-			if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
-				player1Hull.restartHull();
-				player1.transform.position = spawnPoint1.position;
-				player2Hull.restartHull();
-				player2.transform.position = spawnPoint2.position;
+			textEndingSubtitle.text = "Press start to battle!";
+			if (Input.GetButtonDown ("start0") || Input.GetButtonDown ("start1")) {
+				textEndingSubtitle.text = "";
+				for (int i = 0; i < playersHull.Length; i++){
+					playersHull[i].restartHull();
+					players[i].transform.position = spawnpoints[i].position;
+					disabledPlayers[i] = true;
+				}
 				state = State.battle;
 			}
 			break;
 		case State.battle:
-			if (player1Hull.hullIntegrityCurrent < 0f) {
-				textEnding.text = "Player 2 wins!";
-				textEndingSubtitle.text = "Press enter to start again...";
-				state = State.win;
+			string winner;
+			for (int i = 0; i < playersHull.Length; i++){
+				if (playersHull[i].hullIntegrityCurrent < 0 ){
+					playersHull[i].disable();
+					disabledPlayers[i] = false;
+					activePlayers--;
+				}
+				if (activePlayers == 1) {
+					int j = 0;
+					while (j < disabledPlayers.Length && !disabledPlayers[j]){
+						j++;
+					}
+					winner = ((int)j+1).ToString();
+					textEnding.text = string.Format ("Player {0} wins!", winner);
+					textEndingSubtitle.text = "Press start for next round";
+					state = State.win;
+				}
 			}
-			else if (player2Hull.hullIntegrityCurrent < 0f){
-				textEnding.text = "Player 1 wins!";
-				textEndingSubtitle.text = "Press enter to start again...";
-				state = State.win;
-			}
-
 			break;
 		case State.lose:
 			//TODO No se usa esto porque no hay red, pero se deja por si en el futuro la hay... ;)
 			break;
 		case State.win:
-			if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
-				player1Hull.restartHull();
-				player1.transform.position = spawnPoint1.position;
-				player2Hull.restartHull();
-				player2.transform.position = spawnPoint2.position;
+			if (Input.GetButtonDown ("start0") || Input.GetButtonDown ("start1")) {
+				for (int i = 0; i < playersHull.Length; i++){
+					playersHull[i].restartHull();
+					players[i].transform.position = spawnpoints[i].position;
+					disabledPlayers[i] = true;
+				}
 				state = State.battle;
 			}
 			break;
