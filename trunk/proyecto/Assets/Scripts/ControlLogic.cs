@@ -8,7 +8,7 @@ public class ControlLogic : MonoBehaviour {
 	public GUIText textEndingSubtitle;
 
 	public GameObject[] players;
-	public bool[] disabledPlayers;
+	public bool[] remainingPlayers;
 	public int activePlayers;
 	private HullLogic[] playersHull;
 	public Transform[] spawnpoints;
@@ -18,13 +18,13 @@ public class ControlLogic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		disabledPlayers = new bool[players.Length];
+		remainingPlayers = new bool[players.Length];
 		playersHull = new HullLogic[players.Length];
 		activePlayers = players.Length;
 		for (int i = 0; i < players.Length; i++) {
 			playersHull [i] = players [i].GetComponentInChildren<HullLogic> ();
 			players[i].transform.position = spawnpoints[i].position;
-			disabledPlayers[i] = true;
+			remainingPlayers[i] = true;
 		}
 		state = State.battle;
 	}
@@ -34,12 +34,13 @@ public class ControlLogic : MonoBehaviour {
 		switch (state) {
 		case State.beginning:
 			textEndingSubtitle.text = "Press start to battle!";
-			if (Input.GetAxisRaw ("start0")>0 || Input.GetAxisRaw ("start1")>0) {
+			if (Input.GetAxisRaw ("start0") > 0  || Input.GetAxisRaw ("start1") > 0) {
+				activePlayers = players.Length;
 				textEndingSubtitle.text = "";
 				for (int i = 0; i < playersHull.Length; i++){
 					playersHull[i].restartHull();
 					players[i].transform.position = spawnpoints[i].position;
-					disabledPlayers[i] = true;
+					remainingPlayers[i] = true;
 				}
 				state = State.battle;
 			}
@@ -49,12 +50,12 @@ public class ControlLogic : MonoBehaviour {
 			for (int i = 0; i < playersHull.Length; i++){
 				if (playersHull[i].hullIntegrityCurrent < 0 ){
 					playersHull[i].disable();
-					disabledPlayers[i] = false;
+					remainingPlayers[i] = false;
 					activePlayers--;
 				}
 				if (activePlayers == 1) {
 					int j = 0;
-					while (j < disabledPlayers.Length && !disabledPlayers[j]){
+					while (j < remainingPlayers.Length && !remainingPlayers[j]){
 						j++;
 					}
 					winner = ((int)j+1).ToString();
@@ -68,11 +69,12 @@ public class ControlLogic : MonoBehaviour {
 			//TODO No se usa esto porque no hay red, pero se deja por si en el futuro la hay... ;)
 			break;
 		case State.win:
-			if (Input.GetAxisRaw ("start0")>0 || Input.GetAxisRaw ("start1")>0) {
+			if (Input.GetAxisRaw ("start0") > 0 || Input.GetAxis ("start1") > 0) {
+				activePlayers = players.Length;
 				for (int i = 0; i < playersHull.Length; i++){
 					playersHull[i].restartHull();
 					players[i].transform.position = spawnpoints[i].position;
-					disabledPlayers[i] = true;
+					remainingPlayers[i] = true;
 				}
 				state = State.battle;
 			}
