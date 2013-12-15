@@ -20,7 +20,7 @@ public class FistImpact : MonoBehaviour {
 		if (collision.collider.transform.IsChildOf(this.transform.parent.parent)) {
 			return;
 		}
-		if (collision.relativeVelocity.magnitude > 10f) { 
+		if (collision.relativeVelocity.magnitude > 15f) { 
 			//Cuanto daño se manda exactamente? 
 			if (collision.collider.tag == "Fists") {
 				audioTemp = blockHitSFX[Random.Range(0, blockHitSFX.Length)];

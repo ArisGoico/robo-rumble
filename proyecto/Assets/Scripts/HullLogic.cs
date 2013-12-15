@@ -83,9 +83,11 @@ public class HullLogic : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-
+		if (collision.collider.transform.IsChildOf(this.transform.parent)) {
+			return;
+		}
 		AudioClip audioTemp;
-		if (collision.relativeVelocity.magnitude > 10f) {
+		if (collision.relativeVelocity.magnitude > hullPlating) {
 			//Cuanto daño se manda exactamente? 
 			float temp = collision.relativeVelocity.magnitude;
 			if (damageHull(temp)) {
