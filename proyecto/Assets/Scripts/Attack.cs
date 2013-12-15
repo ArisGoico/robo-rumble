@@ -18,6 +18,8 @@ public class Attack : MonoBehaviour {
 	private HullLogic 			Energy;
 
 	//XInput variables
+	bool playerIndexSet = false;
+	PlayerIndex playerIndex;
 	GamePadState state;
 	GamePadState prevState;
 
@@ -58,15 +60,29 @@ public class Attack : MonoBehaviour {
 		jointConstrained.limit = constrainedLimit;
 		jointBlockingLimit.limit = 90f;
 		jointBlockingLimitInv.limit = -90f;
+
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-
-
-		state = GamePad.GetState((PlayerIndex)(player-1));
-
+		if (!playerIndexSet || !prevState.IsConnected)
+		{
+			PlayerIndex testPlayerIndex = (PlayerIndex)player;
+			GamePadState testState = GamePad.GetState(testPlayerIndex);
+			if (testState.IsConnected)
+			{
+				Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+				playerIndex = testPlayerIndex;
+				playerIndexSet = true;
+			}
+		}
+		
+		
+		state = GamePad.GetState(playerIndex);
+		
 		Vector3 lArmDirection = transform.position + transform.forward - leftArm.transform.position;
 		Vector3 rArmDirection = transform.position + transform.forward - rightArm.transform.position;
 
@@ -137,6 +153,7 @@ public class Attack : MonoBehaviour {
 			rightArm.transform.LookAt (transform.position + transform.forward);
 			if (debug)
 				Debug.Log ("pega con la dcha");
+
 			rightCJ.linearLimit = jointRelaxed;
 			rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
 			rightArm.rigidbody.AddForce(rArmDirection*force, ForceMode.Impulse);
@@ -177,6 +194,7 @@ public class Attack : MonoBehaviour {
 		setJointforBlock(rightHJ, false, false);
 		if (debug)
 			Debug.Log ("deja de bloquear");
+
 		yield return new WaitForSeconds(time*0.8f);
 		blocking = false;
 	}
