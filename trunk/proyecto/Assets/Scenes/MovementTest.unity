@@ -603,9 +603,9 @@ GameObject:
   - 114: {fileID: 217436452}
   - 54: {fileID: 217436451}
   - 82: {fileID: 217436450}
-  - 212: {fileID: 217436453}
+  - 82: {fileID: 217436454}
   m_Layer: 0
-  m_Name: Robot1
+  m_Name: Robot0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -718,7 +718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   inputCapture: {fileID: 118178478}
-  player: 1
+  player: 0
   torso: {fileID: 2135044163}
   audioVolumeMin: .400000006
   enemy: {fileID: 1884196363}
@@ -726,40 +726,79 @@ MonoBehaviour:
   lockOnGUIText: {fileID: 1705825800}
   speed: 50
   dashSpeed: 150
-  liftForce: 100
+  liftForce: 120
   dashDelay: .5
   idleDrag: 1
   hoverDrag: 0
-  hoverConsume: .100000001
-  dashConsume: 10
+  hoverConsume: .300000012
+  dashConsume: 15
   flares:
   - {fileID: 92837135}
   - {fileID: 1870152136}
   - {fileID: 869089273}
   - {fileID: 1608259749}
---- !u!212 &217436453
-SpriteRenderer:
+  dashSound:
+  - {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+  - {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+--- !u!82 &217436454
+AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200008, guid: d579034e863d3f843a64ea1ad0c1a6a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 409445232}
   m_GameObject: {fileID: 217436448}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortingLayerID: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &225572433
 Prefab:
   m_ObjectHideFlags: 0
@@ -767,6 +806,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_LocalPosition.x
       value: -14.3483868
@@ -797,7 +840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_Name
-      value: Robot2
+      value: Robot1
       objectReference: {fileID: 0}
     - target: {fileID: 2300042, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_Materials.Array.data[2]
@@ -893,7 +936,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: player
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: lockOnGUIText
@@ -930,6 +973,38 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: debug
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200008, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+    - target: {fileID: 8200006, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_Volume
+      value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: liftForce
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: hoverConsume
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashConsume
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -1793,6 +1868,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_LocalPosition.x
       value: -8.47682953
@@ -1851,7 +1930,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: player
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: targetSpeed
@@ -1860,6 +1939,38 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: debug
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+    - target: {fileID: 8200006, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_Volume
+      value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: liftForce
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: hoverConsume
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashConsume
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_Name
+      value: Robot0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -5716,7 +5827,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: .600000024
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7349,8 +7460,9 @@ GameObject:
   - 114: {fileID: 1884196367}
   - 54: {fileID: 1884196365}
   - 82: {fileID: 1884196366}
+  - 82: {fileID: 1884196368}
   m_Layer: 0
-  m_Name: Robot2
+  m_Name: Robot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7463,7 +7575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   inputCapture: {fileID: 1092495365}
-  player: 2
+  player: 1
   torso: {fileID: 1320127897}
   audioVolumeMin: .400000006
   enemy: {fileID: 217436448}
@@ -7471,17 +7583,79 @@ MonoBehaviour:
   lockOnGUIText: {fileID: 392958077}
   speed: 50
   dashSpeed: 150
-  liftForce: 100
+  liftForce: 120
   dashDelay: .5
   idleDrag: 1
   hoverDrag: 0
-  hoverConsume: .100000001
-  dashConsume: 10
+  hoverConsume: .300000012
+  dashConsume: 15
   flares:
   - {fileID: 598147396}
   - {fileID: 977981426}
   - {fileID: 1324288288}
   - {fileID: 1290680675}
+  dashSound:
+  - {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+  - {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+--- !u!82 &1884196368
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200008, guid: d579034e863d3f843a64ea1ad0c1a6a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 225572433}
+  m_GameObject: {fileID: 1884196363}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1908201992
 GameObject:
   m_ObjectHideFlags: 0
@@ -8663,7 +8837,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: .600000024
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 0
   Mute: 0
