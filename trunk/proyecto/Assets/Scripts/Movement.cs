@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class Movement : MonoBehaviour {
 	//debug variables
@@ -18,8 +19,6 @@ public class Movement : MonoBehaviour {
 
 	//targeting mode
 	public float targetSpeed 				= 0.5f;
-	private float effectiveTargetSpeed 		= 0.1f;
-	private float blocking 					= 0f;
 	private float lockTime 					= 0.25f;
 	private bool lockOn 					= false;
 	private bool lockingTarget				= false;
@@ -126,9 +125,6 @@ public class Movement : MonoBehaviour {
 		
 
 		//targeting
-		blocking = torso.GetComponent<Attack> ().getBlocking() ? 2f : 0.1f;
-		effectiveTargetSpeed = targetSpeed / blocking;
-
 		if (Input.GetAxisRaw("lockOn"+player) == 1 && !lockingTarget) {
 			lockingTarget = true;
 			lockOn = !lockOn;
@@ -138,11 +134,11 @@ public class Movement : MonoBehaviour {
 			lockOnGUIText.text = "Target Set";
 			//Look at and dampen the rotation
 			Quaternion rotation = Quaternion.LookRotation(enemy.transform.position - transform.position);
-			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed*0.7f);
 		} else { 
 			lockOnGUIText.text = "Select Target";
 			Quaternion rotation = Quaternion.LookRotation(lookDir);
-			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed * 2f);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * targetSpeed);
 		}
 
 		//Effects
