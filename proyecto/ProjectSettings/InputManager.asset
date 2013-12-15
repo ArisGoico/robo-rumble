@@ -396,12 +396,12 @@ InputManager:
     positiveButton: joystick 1 button 7
     altNegativeButton: 
     altPositiveButton: enter
-    gravity: 0
-    dead: .5
-    sensitivity: 3
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
     snap: 1
-    invert: 1
-    type: 2
+    invert: 0
+    type: 0
     axis: 4
     joyNum: 2
   - serializedVersion: 3
@@ -412,12 +412,12 @@ InputManager:
     positiveButton: joystick 2 button 7
     altNegativeButton: 
     altPositiveButton: +
-    gravity: 0
-    dead: .5
-    sensitivity: 3
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
     snap: 1
-    invert: 1
-    type: 2
+    invert: 0
+    type: 0
     axis: 4
     joyNum: 2
   - serializedVersion: 3
