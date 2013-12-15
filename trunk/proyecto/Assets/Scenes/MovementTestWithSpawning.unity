@@ -606,6 +606,7 @@ GameObject:
   - 114: {fileID: 217436452}
   - 54: {fileID: 217436451}
   - 82: {fileID: 217436450}
+  - 82: {fileID: 217436453}
   m_Layer: 0
   m_Name: Robot1
   m_TagString: Untagged
@@ -739,6 +740,68 @@ MonoBehaviour:
   - {fileID: 1870152136}
   - {fileID: 869089273}
   - {fileID: 1608259749}
+  dashSound:
+  - {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+  - {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+--- !u!82 &217436453
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200008, guid: d579034e863d3f843a64ea1ad0c1a6a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 409445232}
+  m_GameObject: {fileID: 217436448}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &225572433
 Prefab:
   m_ObjectHideFlags: 0
@@ -746,6 +809,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_LocalPosition.x
       value: -14.3483868
@@ -902,6 +969,18 @@ Prefab:
       propertyPath: energyLabel
       value: 
       objectReference: {fileID: 242443976}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: hullPlating
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_RootGameObject: {fileID: 1884196363}
@@ -1764,6 +1843,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_LocalPosition.x
       value: -8.47682953
@@ -1819,6 +1902,18 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: dashSpeed
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: dashSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: hullPlating
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -5677,7 +5772,7 @@ MonoBehaviour:
   hullIntegrityCurrent: 100
   hullIntegrityMax: 100
   hullDensity: 1
-  hullPlating: 0
+  hullPlating: 15
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
@@ -7515,6 +7610,7 @@ GameObject:
   - 114: {fileID: 1884196367}
   - 54: {fileID: 1884196365}
   - 82: {fileID: 1884196366}
+  - 82: {fileID: 1884196368}
   m_Layer: 0
   m_Name: Robot2
   m_TagString: Untagged
@@ -7648,6 +7744,68 @@ MonoBehaviour:
   - {fileID: 977981426}
   - {fileID: 1324288288}
   - {fileID: 1290680675}
+  dashSound:
+  - {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+  - {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
+--- !u!82 &1884196368
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200008, guid: d579034e863d3f843a64ea1ad0c1a6a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 225572433}
+  m_GameObject: {fileID: 1884196363}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1908201992
 GameObject:
   m_ObjectHideFlags: 0
@@ -8823,7 +8981,7 @@ MonoBehaviour:
   hullIntegrityCurrent: 100
   hullIntegrityMax: 100
   hullDensity: 1
-  hullPlating: 0
+  hullPlating: 15
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20

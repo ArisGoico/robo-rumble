@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour {
 	public int player = 1;
 	public GameObject torso;
 	private HullLogic Energy;
-	private AudioSource Audio;
+	private AudioSource thrusterAudio;
 	public float audioVolumeMin				= 0.2f;
 
 	//enemy player
@@ -36,6 +36,10 @@ public class Movement : MonoBehaviour {
 	private Vector3 moveDir;
 	private Vector3 lookDir;
 	public GameObject[] flares;
+
+	//sounds
+	public AudioClip[] dashSound;
+	private AudioSource dashAudio;
 		
 	//delay and activation variables
 	private bool hovering = false;
@@ -45,8 +49,17 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		//idea para el futuro: rigidbody.mass = suma de masa de los componentes, mass influye en los rigidbody addforce.	
 		Energy = torso.GetComponent<HullLogic> ();
-		Audio = this.GetComponent<AudioSource>();
-		Audio.volume = audioVolumeMin;
+//		Audio = this.GetComponent<AudioSource>();
+		AudioSource[] temp = this.GetComponents<AudioSource>();
+		if (temp[0].clip == null) {
+			thrusterAudio = temp[1] ;
+			dashAudio = temp[0];
+		}
+		else {
+			thrusterAudio = temp[0] ;
+			dashAudio = temp[1];
+		}
+		thrusterAudio.volume = audioVolumeMin;
 	}
 	
 	// Update is called once per frame
@@ -78,7 +91,7 @@ public class Movement : MonoBehaviour {
 				//TODO: Vo-la-re! 
 				transform.rigidbody.AddForce (liftForce*transform.up);
 				inputCapture.text = "hovering";
-				Audio.pitch = 2.5f;
+				thrusterAudio.pitch = 2.5f;
 			} else {
 				if (dashing){
 					inputCapture.text = "dashing";
@@ -86,7 +99,7 @@ public class Movement : MonoBehaviour {
 					inputCapture.text = "walking";
 				}
 				transform.rigidbody.drag = idleDrag;
-				Audio.pitch = 1.0f;
+				thrusterAudio.pitch = 1.0f;
 			}
 		} else { 
 			inputCapture.text = "idle";
@@ -117,7 +130,10 @@ public class Movement : MonoBehaviour {
 			if (debug) Debug.DrawRay(transform.position, dashDir*5.0f, Color.yellow);
 			transform.rigidbody.AddForce(dashDir*dashSpeed, ForceMode.Impulse);
 			torso.transform.LookAt (transform.position + transform.forward);
+			dashAudio.clip = dashSound[Random.Range(0, dashSound.Length)];
+			dashAudio.Play();
 			torso.transform.rigidbody.AddForce(dashDir*dashSpeed*torso.transform.rigidbody.mass/transform.rigidbody.mass, ForceMode.Impulse);
+
 			inputCapture.text = "dash";
 			//dashing = false;
 			StartCoroutine(waitForDash(dashDelay));
