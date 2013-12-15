@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour {
 	//movement variables
 	public float speed;
 	public float dashSpeed 					= 1.0f;
+	public float liftForce					= 100f;
 	public float dashDelay 					= 1.0f;
 	public float idleDrag 					= 5.0f;
 	public float hoverDrag 					= 0.75f;
@@ -76,7 +77,7 @@ public class Movement : MonoBehaviour {
 				Energy.consumeEnergy(hoverConsume);
 				transform.rigidbody.drag = hoverDrag;
 				//TODO: Vo-la-re! 
-				transform.rigidbody.AddForce (98f*transform.up);
+				transform.rigidbody.AddForce (liftForce*transform.up);
 				inputCapture.text = "hovering";
 				Audio.pitch = 2.5f;
 			} else {

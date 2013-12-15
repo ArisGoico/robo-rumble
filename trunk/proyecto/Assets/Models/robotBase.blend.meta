@@ -29,6 +29,7 @@ ModelImporter:
     100046: torso_001
     100048: torsoBase
     100050: hips_001
+    100052: Icosphere
     400000: arms
     400002: Cube
     400004: distributor
@@ -55,6 +56,7 @@ ModelImporter:
     400046: torso_001
     400048: torsoBase
     400050: hips_001
+    400052: Icosphere
     2300000: arms
     2300002: Cube
     2300004: distributor
@@ -79,6 +81,7 @@ ModelImporter:
     2300042: torso_001
     2300044: torsoBase
     2300046: hips_001
+    2300048: Icosphere
     3300000: arms
     3300002: Cube
     3300004: distributor
@@ -103,6 +106,7 @@ ModelImporter:
     3300042: torso_001
     3300044: torsoBase
     3300046: hips_001
+    3300048: Icosphere
     4300000: Cube
     4300002: Plane
     4300004: exhaust_001
@@ -127,6 +131,7 @@ ModelImporter:
     4300042: torso_001
     4300044: torsoBase
     4300046: hips_001
+    4300048: Icosphere
     7400000: Default Take
     9500000: //RootNode
   materials:
