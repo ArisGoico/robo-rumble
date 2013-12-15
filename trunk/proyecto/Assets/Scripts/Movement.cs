@@ -94,13 +94,7 @@ public class Movement : MonoBehaviour {
 			//TODO: animation.CrossFade("idle");
 		}
 
-		for (int i = 0; i < flares.Length; i++) {
-			flares[i].transform.localScale = Vector3.Lerp (flares[i].transform.localScale, 
-			                                               new Vector3(Input.GetAxis("hover"+player), Input.GetAxis("hover"+player), Input.GetAxis("hover"+player)),
-			                                               Time.deltaTime*20f);
-		}
-		
-		
+		//look towards the moving dir unless explicitly changing the look dir
 		if (lookDir.Equals (Vector3.zero)) {
 			if (moveDir.Equals (Vector3.zero)) {
 				lookDir = transform.forward;
@@ -149,6 +143,16 @@ public class Movement : MonoBehaviour {
 			Quaternion rotation = Quaternion.LookRotation(lookDir);
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * effectiveTargetSpeed * 2f);
 		}
+
+		//Effects
+
+		//hovering flame
+		for (int i = 0; i < flares.Length; i++) {
+			flares[i].transform.localScale = Vector3.Lerp (flares[i].transform.localScale, 
+			                                               new Vector3(Input.GetAxis("hover"+player), Input.GetAxis("hover"+player), Input.GetAxis("hover"+player)),
+			                                               Time.deltaTime*20f);
+		}
+
 
 	}
 	
