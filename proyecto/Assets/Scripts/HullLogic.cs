@@ -6,6 +6,7 @@ public class HullLogic : MonoBehaviour {
 	public bool debug						= false;
 
 	//Hull Integrity / Salud 
+	private float initialMass;
 	public GameObject lifeBar;							//GUI Life graphic representation
 	public int hullIntegrityCurrent			= 100;		//Current hull integrity / Current health
 	public int hullIntegrityMax				= 100;		//Max hull integrity / Max health
@@ -17,6 +18,7 @@ public class HullLogic : MonoBehaviour {
 	public float energyMax					= 100f;		//Max energy
 	public float energyRegenRate			= 10f;		//Energy regenerated per second
 	public float energyRegenDelay			= 0f;		//Number of seconds (/10) to start regenerating
+	private bool disabled 					= false;	//lets or prevents the player do anything
 	
 	private float energyLastUsed			= 0f;		//Last time energy was used.
 	
@@ -34,6 +36,7 @@ public class HullLogic : MonoBehaviour {
 	public float strongSoundDelay			= 0.3f;
 	
 	void Start() {
+		initialMass = transform.parent.rigidbody.mass;
 		hullIntegrityCurrent = hullIntegrityMax;
 		energyCurrent = energyMax;
 		energyLabel.text = Mathf.FloorToInt(energyCurrent).ToString ();
@@ -65,21 +68,35 @@ public class HullLogic : MonoBehaviour {
 	}
 	
 	public bool damageHull(float quantity) {
-		float temp = hullIntegrityCurrent;
-		temp -= (quantity - hullPlating) * hullDensity;
-		if (temp < hullIntegrityCurrent) {
-			hullIntegrityCurrent = Mathf.RoundToInt(temp);
-			return true;
-		}
-		else 
+		if (!disabled){
+			float temp = hullIntegrityCurrent;
+			temp -= (quantity - hullPlating) * hullDensity;
+			if (temp < hullIntegrityCurrent) {
+				hullIntegrityCurrent = Mathf.RoundToInt(temp);
+				return true;
+			} else 
+				return false;
+		} else 
 			return false;
 	}
 
 	public void restartHull() {
+		transform.parent.rigidbody.mass = initialMass;
 		hullIntegrityCurrent = hullIntegrityMax;
 		energyCurrent = energyMax;
 		energyLastUsed = 0f;
 		lastStrongSoundPlayed = 0f;
+		disabled = false;
+	}
+
+	public bool isDisabled() {
+		return disabled;
+	}
+	
+	public void disable () {
+		disabled = true;
+		//efectos de disabled
+		transform.parent.rigidbody.mass = 200;
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -110,5 +127,6 @@ public class HullLogic : MonoBehaviour {
 				lastStrongSoundPlayed = Time.time;
 		}
 	}
+
 
 }

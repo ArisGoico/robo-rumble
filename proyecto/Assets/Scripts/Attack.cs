@@ -102,63 +102,56 @@ public class Attack : MonoBehaviour {
 
 		}
 
+		if (!Energy.isDisabled ()) {
+						if ((Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0) && (Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingLlow && !punchingRlow) {
+								if (debug) {
+										Debug.Log ("Bloqueando" + Time.deltaTime);
+								}
+								blocking = true;
 
-		if (( Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0 ) && ( Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingLlow && !punchingRlow) {
-						if (debug) {
-								Debug.Log ("Bloqueando" + Time.deltaTime);
+								setJointforBlock (leftHJ, true, true);
+								setJointforBlock (rightHJ, true, false);
+
+								//por lookAts
+								rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
+								leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
+
+						} else if (blocking) {
+								StartCoroutine (waitBlock (punchDelay));
+						} else { //if not blocking
+								setJointforBlock (leftHJ, false, false);
+								setJointforBlock (rightHJ, false, false);
 						}
-						blocking = true;
 
-						setJointforBlock (leftHJ, true, true);
-						setJointforBlock (rightHJ, true, false);
+						//punching
+						//XInput version
+						//if (Energy.energyCurrent - punchConsume > 0 && state.Triggers.Left > 0 && !punchingL && !punchingRlow && !blocking) {
+						if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0) && !punchingL && !punchingRlow && !blocking) {
+								punchingL = true;
+								Energy.consumeEnergy (punchConsume);
+								if (debug)
+										Debug.Log ("pega con la iqda");
+								leftArm.transform.LookAt (transform.position + transform.forward);
+								leftCJ.linearLimit = jointRelaxed;  
+								leftCJ.angularYMotion = ConfigurableJointMotion.Limited;
+								leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
+								StartCoroutine (waitPunchL (punchDelay));
+						} 
 
-						//por Quaternions
-						//rightArm.rigidbody.AddForce(torso.transform.forward+torso.transform.right*2f);
-						//Quaternion rotationL = Quaternion.AngleAxis (70, transform.forward) * Quaternion.AngleAxis (5, transform.right); // funciona.
-						//Quaternion rotationR = Quaternion.AngleAxis (10, transform.position - rightArm.transform.localPosition + transform.right); // Quaternion.AngleAxis (90, rightArm.transform.forward);
+						if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingR && !punchingLlow && !blocking) {
+								//Input version if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !punchingLlow  && !blocking) {
+								punchingR = true;
+								Energy.consumeEnergy (punchConsume);
+								rightArm.transform.LookAt (transform.position + transform.forward);
+								if (debug)
+										Debug.Log ("pega con la dcha");
 
-						//leftShoulder.transform.localRotation = Quaternion.Slerp (leftShoulder.transform.rotation, rotationL* leftShoulder.transform.forward, Time.deltaTime*5f);
-
-						//por lookAts
-						rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
-						leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
-
-				} else if (blocking) {
-						StartCoroutine (waitBlock (punchDelay));
-				} else { //if not blocking
-						setJointforBlock (leftHJ, false, false);
-						setJointforBlock (rightHJ, false, false);
+								rightCJ.linearLimit = jointRelaxed;
+								rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
+								rightArm.rigidbody.AddForce (rArmDirection * force, ForceMode.Impulse);
+								StartCoroutine (waitPunchR (punchDelay));
+						}
 				}
-
-		//punching
-		//XInput version
-		//if (Energy.energyCurrent - punchConsume > 0 && state.Triggers.Left > 0 && !punchingL && !punchingRlow && !blocking) {
-		if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0 ) && !punchingL && !punchingRlow && !blocking) {
-			punchingL = true;
-			Energy.consumeEnergy (punchConsume);
-			if (debug)
-				Debug.Log ("pega con la iqda");
-			leftArm.transform.LookAt (transform.position + transform.forward);
-			leftCJ.linearLimit = jointRelaxed;  
-			leftCJ.angularYMotion = ConfigurableJointMotion.Limited;
-			leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
-			StartCoroutine(waitPunchL(punchDelay));
-		} 
-
-
-		if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingR && !punchingLlow  && !blocking) {
-		//Input version if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !punchingLlow  && !blocking) {
-			punchingR = true;
-			Energy.consumeEnergy (punchConsume);
-			rightArm.transform.LookAt (transform.position + transform.forward);
-			if (debug)
-				Debug.Log ("pega con la dcha");
-
-			rightCJ.linearLimit = jointRelaxed;
-			rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
-			rightArm.rigidbody.AddForce(rArmDirection*force, ForceMode.Impulse);
-			StartCoroutine(waitPunchR(punchDelay));
-		}
 
 		prevState = state;
 	}

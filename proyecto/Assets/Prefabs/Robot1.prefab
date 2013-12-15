@@ -2380,26 +2380,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 1
   inputCapture: {fileID: 0}
-  player: 1
+  player: 0
   torso: {fileID: 100058}
   audioVolumeMin: .400000006
   enemy: {fileID: 0}
-  targetSpeed: 1
+  targetSpeed: 10
   lockOnGUIText: {fileID: 0}
   speed: 50
-  dashSpeed: 100
+  dashSpeed: 150
   liftForce: 100
   dashDelay: .5
   idleDrag: 1
   hoverDrag: 0
-  hoverConsume: .100000001
+  hoverConsume: .300000012
   dashConsume: 10
   flares:
   - {fileID: 100008}
   - {fileID: 100010}
   - {fileID: 100020}
   - {fileID: 100012}
-  dashSound: []
+  dashSound:
+  - {fileID: 8300000, guid: 69bd7cbb54900584bbfb5b370d0d1b28, type: 3}
+  - {fileID: 8300000, guid: 6a6b7ed5927520749a79d513f195c3e6, type: 3}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2535,7 +2537,7 @@ MonoBehaviour:
   hullIntegrityCurrent: 100
   hullIntegrityMax: 100
   hullDensity: 1
-  hullPlating: 0
+  hullPlating: 15
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
