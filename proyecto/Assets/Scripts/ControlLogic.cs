@@ -7,9 +7,6 @@ public class ControlLogic : MonoBehaviour {
 	public GUIText textEnding;
 	public GUIText textEndingSubtitle;
 
-	public Transform spawnPoint1;
-	public Transform spawnPoint2;
-
 	public GameObject[] players;
 	public bool[] disabledPlayers;
 	public int activePlayers;
@@ -37,7 +34,7 @@ public class ControlLogic : MonoBehaviour {
 		switch (state) {
 		case State.beginning:
 			textEndingSubtitle.text = "Press start to battle!";
-			if (Input.GetButtonDown ("start0") || Input.GetButtonDown ("start1")) {
+			if (Input.GetAxisRaw ("start0")>0 || Input.GetAxisRaw ("start1")>0) {
 				textEndingSubtitle.text = "";
 				for (int i = 0; i < playersHull.Length; i++){
 					playersHull[i].restartHull();
@@ -71,7 +68,7 @@ public class ControlLogic : MonoBehaviour {
 			//TODO No se usa esto porque no hay red, pero se deja por si en el futuro la hay... ;)
 			break;
 		case State.win:
-			if (Input.GetButtonDown ("start0") || Input.GetButtonDown ("start1")) {
+			if (Input.GetAxisRaw ("start0")>0 || Input.GetAxisRaw ("start1")>0) {
 				for (int i = 0; i < playersHull.Length; i++){
 					playersHull[i].restartHull();
 					players[i].transform.position = spawnpoints[i].position;
