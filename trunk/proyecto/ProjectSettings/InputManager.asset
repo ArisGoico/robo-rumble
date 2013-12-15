@@ -49,7 +49,7 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 2
+    type: 0
     axis: 8
     joyNum: 1
   - serializedVersion: 3
@@ -65,7 +65,7 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 2
+    type: 0
     axis: 9
     joyNum: 1
   - serializedVersion: 3
@@ -216,7 +216,7 @@ InputManager:
     m_Name: punchL2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: .
+    negativeButton: 
     positiveButton: '-'
     altNegativeButton: 
     altPositiveButton: 
@@ -225,8 +225,8 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 2
-    axis: 8
+    type: 0
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: punchR2
@@ -235,14 +235,14 @@ InputManager:
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: .
     gravity: 3
     dead: .100000001
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 2
-    axis: 9
+    type: 0
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: dash2

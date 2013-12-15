@@ -716,7 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a56cf4db79cc044089e29b99eddb5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   inputCapture: {fileID: 118178478}
   player: 1
   torso: {fileID: 2135044163}
@@ -926,6 +926,10 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: targetSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: debug
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -1852,6 +1856,10 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: targetSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: debug
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -7453,7 +7461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a56cf4db79cc044089e29b99eddb5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   inputCapture: {fileID: 1092495365}
   player: 2
   torso: {fileID: 1320127897}

@@ -67,84 +67,82 @@ public class Attack : MonoBehaviour {
 
 		state = GamePad.GetState((PlayerIndex)(player-1));
 
-		if (state.IsConnected){
+		Vector3 lArmDirection = transform.position + transform.forward - leftArm.transform.position;
+		Vector3 rArmDirection = transform.position + transform.forward - rightArm.transform.position;
 
-			Vector3 lArmDirection = transform.position + transform.forward - leftArm.transform.position;
-			Vector3 rArmDirection = transform.position + transform.forward - rightArm.transform.position;
+		//blocking
 
-			//blocking
+		if (debug){
+			Debug.DrawLine(transform.position, transform.position + transform.up, Color.green);
+			Debug.DrawLine(transform.position, transform.position + transform.forward, Color.blue);
+			Debug.DrawLine(transform.position, transform.position + transform.right, Color.red);
 
-			if (debug){
-				Debug.DrawLine(transform.position, transform.position + transform.up, Color.green);
-				Debug.DrawLine(transform.position, transform.position + transform.forward, Color.blue);
-				Debug.DrawLine(transform.position, transform.position + transform.right, Color.red);
+			Debug.DrawLine(leftShoulder.transform.position, leftShoulder.transform.position + leftShoulder.transform.up*0.5f, Color.green);
+			Debug.DrawLine(leftShoulder.transform.position, leftShoulder.transform.position + leftShoulder.transform.forward*0.5f, Color.blue);
+			Debug.DrawLine(leftShoulder.transform.position, leftShoulder.transform.position + leftShoulder.transform.right*0.5f, Color.red);
 
-				Debug.DrawLine(leftShoulder.transform.position, leftShoulder.transform.position + leftShoulder.transform.up*0.5f, Color.green);
-				Debug.DrawLine(leftShoulder.transform.position, leftShoulder.transform.position + leftShoulder.transform.forward*0.5f, Color.blue);
-				Debug.DrawLine(leftShoulder.transform.position, leftShoulder.transform.position + leftShoulder.transform.right*0.5f, Color.red);
+			//where to look with the arm
+			Debug.DrawLine(transform.position, leftShoulder.transform.position + transform.up*0.5f ,Color.cyan);
 
-				//where to look with the arm
-				Debug.DrawLine(transform.position, leftShoulder.transform.position + transform.up*0.5f ,Color.cyan);
-
-			}
-
-
-			if (Input.GetAxisRaw ("punchL" + player) > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingLlow && !punchingRlow) {
-							if (debug) {
-									Debug.Log ("Bloqueando" + Time.deltaTime);
-							}
-							blocking = true;
-
-							setJointforBlock (leftHJ, true, true);
-							setJointforBlock (rightHJ, true, false);
-
-							//por Quaternions
-							//rightArm.rigidbody.AddForce(torso.transform.forward+torso.transform.right*2f);
-							//Quaternion rotationL = Quaternion.AngleAxis (70, transform.forward) * Quaternion.AngleAxis (5, transform.right); // funciona.
-							//Quaternion rotationR = Quaternion.AngleAxis (10, transform.position - rightArm.transform.localPosition + transform.right); // Quaternion.AngleAxis (90, rightArm.transform.forward);
-
-							//leftShoulder.transform.localRotation = Quaternion.Slerp (leftShoulder.transform.rotation, rotationL* leftShoulder.transform.forward, Time.deltaTime*5f);
-
-							//por lookAts
-							rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
-							leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
-
-					} else if (blocking) {
-							StartCoroutine (waitBlock (punchDelay));
-					} else { //if not blocking
-							setJointforBlock (leftHJ, false, false);
-							setJointforBlock (rightHJ, false, false);
-					}
-
-			//punching
-			//XInput version
-			if (Energy.energyCurrent - punchConsume > 0 && state.Triggers.Left > 0 && !punchingL && !punchingRlow && !blocking) {
-			//Input version if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchL" + player) > 0 && !punchingL && !punchingRlow && !blocking) {
-				punchingL = true;
-				Energy.consumeEnergy (punchConsume);
-				if (debug)
-					Debug.Log ("pega con la iqda");
-				leftArm.transform.LookAt (transform.position + transform.forward);
-				leftCJ.linearLimit = jointRelaxed;  
-				leftCJ.angularYMotion = ConfigurableJointMotion.Limited;
-				leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
-				StartCoroutine(waitPunchL(punchDelay));
-			} 
-
-
-			if (Energy.energyCurrent - punchConsume > 0 && state.Triggers.Right > 0 && !punchingR && !punchingLlow  && !blocking) {
-			//Input version if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !punchingLlow  && !blocking) {
-				punchingR = true;
-				Energy.consumeEnergy (punchConsume);
-				rightArm.transform.LookAt (transform.position + transform.forward);
-				if (debug)
-					Debug.Log ("pega con la dcha");
-				rightCJ.linearLimit = jointRelaxed;
-				rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
-				rightArm.rigidbody.AddForce(rArmDirection*force, ForceMode.Impulse);
-				StartCoroutine(waitPunchR(punchDelay));
-			}
 		}
+
+
+		if (( Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0 ) && ( Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingLlow && !punchingRlow) {
+						if (debug) {
+								Debug.Log ("Bloqueando" + Time.deltaTime);
+						}
+						blocking = true;
+
+						setJointforBlock (leftHJ, true, true);
+						setJointforBlock (rightHJ, true, false);
+
+						//por Quaternions
+						//rightArm.rigidbody.AddForce(torso.transform.forward+torso.transform.right*2f);
+						//Quaternion rotationL = Quaternion.AngleAxis (70, transform.forward) * Quaternion.AngleAxis (5, transform.right); // funciona.
+						//Quaternion rotationR = Quaternion.AngleAxis (10, transform.position - rightArm.transform.localPosition + transform.right); // Quaternion.AngleAxis (90, rightArm.transform.forward);
+
+						//leftShoulder.transform.localRotation = Quaternion.Slerp (leftShoulder.transform.rotation, rotationL* leftShoulder.transform.forward, Time.deltaTime*5f);
+
+						//por lookAts
+						rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
+						leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
+
+				} else if (blocking) {
+						StartCoroutine (waitBlock (punchDelay));
+				} else { //if not blocking
+						setJointforBlock (leftHJ, false, false);
+						setJointforBlock (rightHJ, false, false);
+				}
+
+		//punching
+		//XInput version
+		//if (Energy.energyCurrent - punchConsume > 0 && state.Triggers.Left > 0 && !punchingL && !punchingRlow && !blocking) {
+		if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0 ) && !punchingL && !punchingRlow && !blocking) {
+			punchingL = true;
+			Energy.consumeEnergy (punchConsume);
+			if (debug)
+				Debug.Log ("pega con la iqda");
+			leftArm.transform.LookAt (transform.position + transform.forward);
+			leftCJ.linearLimit = jointRelaxed;  
+			leftCJ.angularYMotion = ConfigurableJointMotion.Limited;
+			leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
+			StartCoroutine(waitPunchL(punchDelay));
+		} 
+
+
+		if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingR && !punchingLlow  && !blocking) {
+		//Input version if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !punchingLlow  && !blocking) {
+			punchingR = true;
+			Energy.consumeEnergy (punchConsume);
+			rightArm.transform.LookAt (transform.position + transform.forward);
+			if (debug)
+				Debug.Log ("pega con la dcha");
+			rightCJ.linearLimit = jointRelaxed;
+			rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
+			rightArm.rigidbody.AddForce(rArmDirection*force, ForceMode.Impulse);
+			StartCoroutine(waitPunchR(punchDelay));
+		}
+
 		prevState = state;
 	}
 
