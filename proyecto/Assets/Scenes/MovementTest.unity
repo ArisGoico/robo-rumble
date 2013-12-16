@@ -6460,14 +6460,14 @@ GUIText:
   m_Enabled: 1
   serializedVersion: 3
   m_Text: beggining
-  m_Anchor: 0
-  m_Alignment: 0
+  m_Anchor: 4
+  m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 355fd2e2f0344884aa234cb5fb0e3b72, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 0
+  m_FontSize: 48
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -16537,14 +16537,14 @@ GUIText:
   m_Enabled: 1
   serializedVersion: 3
   m_Text: "win sub\xE7"
-  m_Anchor: 0
-  m_Alignment: 0
+  m_Anchor: 4
+  m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 355fd2e2f0344884aa234cb5fb0e3b72, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 0
+  m_FontSize: 32
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -16587,14 +16587,14 @@ GUIText:
   m_Enabled: 1
   serializedVersion: 3
   m_Text: Win
-  m_Anchor: 0
-  m_Alignment: 0
+  m_Anchor: 4
+  m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 355fd2e2f0344884aa234cb5fb0e3b72, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 0
+  m_FontSize: 48
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
