@@ -68,7 +68,9 @@ public class Movement : MonoBehaviour {
 
 			lookDir = new Vector3 (Input.GetAxis ("lookH" + player), 0, Input.GetAxis ("lookV" + player));
 
-			if (Input.GetAxis ("Horizontal" + player) != 0 || Input.GetAxis ("Vertical" + player) != 0 || Input.GetAxis ("hover" + player) != 0 || dashing) {
+			if (Input.GetAxisRaw ("Horizontal" + player) != 0 || Input.GetAxisRaw ("Vertical" + player) != 0 || Input.GetAxis ("hover" + player) != 0 || dashing) {
+				Debug.Log(Input.GetAxisRaw ("Horizontal" + player));
+
 				//hovering 
 				moveDir = new Vector3 (Input.GetAxis ("Horizontal" + player) * speed, 0, Input.GetAxis ("Vertical" + player) * speed);
 				//lookDir = new Vector3(Input.GetAxis("lookH"+player),0, Input.GetAxis("lookV"+player));

@@ -2471,7 +2471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   inputCapture: {fileID: 118178478}
-  player: 1
+  player: 0
   torso: {fileID: 2135044163}
   audioVolumeMin: .400000006
   enemy: {fileID: 807552471}
@@ -4007,7 +4007,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: player
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: targetSpeed
@@ -4061,6 +4061,14 @@ Prefab:
       propertyPath: torso
       value: 
       objectReference: {fileID: 2135044163}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_RootGameObject: {fileID: 217436448}
@@ -5399,7 +5407,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: player
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: lockOnGUIText
@@ -5476,6 +5484,14 @@ Prefab:
     - target: {fileID: 100058, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_Name
       value: Torso1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: debug
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -7482,7 +7498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cf22806b50c5841a375f97502f27df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   force: 3
   leftArm: {fileID: 521716724}
   rightArm: {fileID: 160984891}
@@ -8479,7 +8495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   inputCapture: {fileID: 1092495365}
-  player: 0
+  player: 1
   torso: {fileID: 807552471}
   audioVolumeMin: .400000006
   enemy: {fileID: 2135044163}

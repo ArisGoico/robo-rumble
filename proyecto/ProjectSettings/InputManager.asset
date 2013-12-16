@@ -5,7 +5,7 @@ InputManager:
   m_ObjectHideFlags: 0
   m_Axes:
   - serializedVersion: 3
-    m_Name: Horizonta0
+    m_Name: Horizontal0
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: left
@@ -15,7 +15,7 @@ InputManager:
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
-    snap: 1
+    snap: 0
     invert: 0
     type: 0
     axis: 0
@@ -31,13 +31,13 @@ InputManager:
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
-    snap: 1
+    snap: 0
     invert: 0
     type: 0
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: punchL0
+    m_Name: punchLDebug
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -53,7 +53,7 @@ InputManager:
     axis: 8
     joyNum: 1
   - serializedVersion: 3
-    m_Name: punchR0
+    m_Name: punchRDebug
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
