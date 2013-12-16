@@ -68,21 +68,18 @@ public class Attack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!playerIndexSet || !prevState.IsConnected)
-		{
+		if (!playerIndexSet || !prevState.IsConnected) {
 			PlayerIndex testPlayerIndex = (PlayerIndex)player;
-			GamePadState testState = GamePad.GetState(testPlayerIndex);
-			if (testState.IsConnected)
-			{
-				Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+			GamePadState testState = GamePad.GetState (testPlayerIndex);
+			if (testState.IsConnected) {
+				Debug.Log (string.Format ("GamePad found {0}", testPlayerIndex));
 				playerIndex = testPlayerIndex;
 				playerIndexSet = true;
 			}
 		}
-		
-		
-		state = GamePad.GetState(playerIndex);
-		
+
+		state = GamePad.GetState (playerIndex);
+			
 		Vector3 lArmDirection = transform.position + transform.forward - leftArm.transform.position;
 		Vector3 rArmDirection = transform.position + transform.forward - rightArm.transform.position;
 

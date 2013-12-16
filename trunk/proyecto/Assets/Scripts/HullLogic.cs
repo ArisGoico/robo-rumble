@@ -26,7 +26,7 @@ public class HullLogic : MonoBehaviour {
 	public GameObject energyBar;						//GUI Energy graphic representation
 	public GUIText energyLabel;							//GUI Energy text representation
 
-	//Hit Sounds
+	//Hit Sounds and effects
 	public AudioClip[] torsoHitSFX;
 	public AudioClip[] blockHitSFX;
 	public AudioClip[] softHitSFX;
@@ -34,6 +34,8 @@ public class HullLogic : MonoBehaviour {
 	private bool strongHitSoundPlaying		= false;
 	private float lastStrongSoundPlayed		= 0f;
 	public float strongSoundDelay			= 0.3f;
+
+	public GameObject spark;
 	
 	void Start() {
 		initialMass = transform.parent.rigidbody.mass;
@@ -110,6 +112,7 @@ public class HullLogic : MonoBehaviour {
 			if (damageHull(temp)) {
 				audioTemp = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
 				strongHitSoundPlaying = true;
+				Instantiate(spark, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
 			}
 			else {
 				audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];

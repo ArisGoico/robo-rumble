@@ -427,7 +427,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 294cd63c79805d649879f7e0e030e921, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -454,7 +454,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 61912688}
-  lengthInSec: 5
+  lengthInSec: 1
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -465,7 +465,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 100
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -503,12 +503,17 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
+          value: .0431372821
           inSlope: 0
           outSlope: 0
           tangentMode: 0
+        - time: .536458313
+          value: .333333373
+          inSlope: -0
+          outSlope: -0
+          tangentMode: 0
         - time: 1
-          value: 1
+          value: .0666666925
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -529,7 +534,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 1
     startColor:
       maxGradient:
         key0:
@@ -625,7 +630,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: .25
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -658,7 +663,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startRotation:
-      scalar: 0
+      scalar: 1.57079625
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -692,17 +697,17 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5000
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
+    type: 5
     radius: 1
     angle: 25
     length: 5
-    boxX: 1
-    boxY: 1
-    boxZ: 1
+    boxX: 10.4627781
+    boxY: 9.6979847
+    boxZ: .321637481
     placementMode: 0
     m_Mesh: {fileID: 0}
     randomDirection: 0
@@ -742,11 +747,11 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 30
+    cnt0: 100
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    time0: 0
+    time0: 10
     time1: 0
     time2: 0
     time3: 0
@@ -1381,13 +1386,13 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4294967295
+          rgba: 4278190335
         key1:
           serializedVersion: 2
-          rgba: 4294967295
+          rgba: 4278232319
         key2:
           serializedVersion: 2
-          rgba: 0
+          rgba: 4278255369
         key3:
           serializedVersion: 2
           rgba: 0
@@ -1404,8 +1409,8 @@ ParticleSystem:
           serializedVersion: 2
           rgba: 0
         ctime0: 0
-        ctime1: 65535
-        ctime2: 0
+        ctime1: 31418
+        ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0
@@ -1413,13 +1418,13 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 65535
-        atime2: 0
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 2
       minGradient:
         key0:
@@ -1506,8 +1511,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 61912688}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -11.8257618, y: 2.35958958, z: -2.80717087}
+  m_LocalRotation: {x: -.65328151, y: .270598084, z: .270598084, w: .65328151}
+  m_LocalPosition: {x: -11.6949282, y: 1.15010357, z: -.0708129406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2466,10 +2471,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   inputCapture: {fileID: 118178478}
-  player: 0
+  player: 1
   torso: {fileID: 2135044163}
   audioVolumeMin: .400000006
-  enemy: {fileID: 1884196363}
+  enemy: {fileID: 807552471}
   targetSpeed: 10
   lockOnGUIText: {fileID: 1705825800}
   speed: 50
@@ -3979,7 +3984,7 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 1884196363}
+      objectReference: {fileID: 807552471}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: lockOnGUIText
       value: 
@@ -4002,7 +4007,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: player
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: targetSpeed
@@ -4044,6 +4049,18 @@ Prefab:
       propertyPath: m_Name
       value: Robot0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: spark
+      value: 
+      objectReference: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
+    - target: {fileID: 100058, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_Name
+      value: Torso0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: torso
+      value: 
+      objectReference: {fileID: 2135044163}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_RootGameObject: {fileID: 217436448}
@@ -5382,7 +5399,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: player
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: lockOnGUIText
@@ -5395,7 +5412,7 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 2007525826}
+      objectReference: {fileID: 2135044163}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: dashSpeed
       value: 150
@@ -5451,6 +5468,14 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: dashConsume
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: spark
+      value: 
+      objectReference: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
+    - target: {fileID: 100058, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_Name
+      value: Torso1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -7262,7 +7287,7 @@ GameObject:
   - 114: {fileID: 807552475}
   - 65: {fileID: 807552474}
   m_Layer: 0
-  m_Name: Torso
+  m_Name: Torso1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7355,6 +7380,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012
+  spark: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
 --- !u!82 &807552476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8453,10 +8479,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   inputCapture: {fileID: 1092495365}
-  player: 1
+  player: 0
   torso: {fileID: 807552471}
   audioVolumeMin: .400000006
-  enemy: {fileID: 2007525826}
+  enemy: {fileID: 2135044163}
   targetSpeed: 10
   lockOnGUIText: {fileID: 392958077}
   speed: 50
@@ -11333,6 +11359,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012
+  spark: {fileID: 0}
 --- !u!82 &1320127901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15472,6 +15499,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012
+  spark: {fileID: 0}
 --- !u!82 &1942150182
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16748,7 +16776,7 @@ GameObject:
   - 114: {fileID: 2135044166}
   - 65: {fileID: 2135044174}
   m_Layer: 0
-  m_Name: Torso
+  m_Name: Torso0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16828,6 +16856,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012
+  spark: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
 --- !u!82 &2135044167
 AudioSource:
   m_ObjectHideFlags: 0
