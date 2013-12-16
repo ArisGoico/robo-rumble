@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class HullLogic : MonoBehaviour {
 
 	public bool debug						= false;
+	private int player 						= 0;
+	private GamePadState state;
 
 	//Hull Integrity / Salud 
 	private float initialMass;
@@ -38,6 +41,7 @@ public class HullLogic : MonoBehaviour {
 	public GameObject spark;
 	
 	void Start() {
+		player = transform.parent.GetComponent<Movement> ().player;
 		initialMass = transform.parent.rigidbody.mass;
 		hullIntegrityCurrent = hullIntegrityMax;
 		energyCurrent = energyMax;
@@ -46,6 +50,7 @@ public class HullLogic : MonoBehaviour {
 	}
 	
 	void Update() {
+
 		energyLabel.text = Mathf.FloorToInt(energyCurrent).ToString ();
 		if (energyCurrent < energyMax && (energyLastUsed + ((float)energyRegenDelay / 10)) < Time.time) {
 			energyCurrent += (energyRegenRate * Time.deltaTime);
@@ -83,6 +88,7 @@ public class HullLogic : MonoBehaviour {
 	}
 
 	public void restartHull() {
+		transform.GetComponent<Attack> () .relaxArms (false);
 		transform.parent.rigidbody.mass = initialMass;
 		hullIntegrityCurrent = hullIntegrityMax;
 		energyCurrent = energyMax;
@@ -98,7 +104,8 @@ public class HullLogic : MonoBehaviour {
 	public void disable () {
 		disabled = true;
 		//efectos de disabled
-		transform.parent.rigidbody.mass = 200;
+		transform.parent.rigidbody.mass = 100;
+		transform.GetComponent<Attack> () .relaxArms (true);
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -113,6 +120,7 @@ public class HullLogic : MonoBehaviour {
 				audioTemp = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
 				strongHitSoundPlaying = true;
 				Instantiate(spark, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
+				StartCoroutine(rumbleForSecs(player, 1-Vector3.Dot(collision.contacts[0].normal, -transform.right), 1-Vector3.Dot(collision.contacts[0].normal, transform.right) , 0.5f));
 			}
 			else {
 				audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];
@@ -131,5 +139,11 @@ public class HullLogic : MonoBehaviour {
 		}
 	}
 
+	IEnumerator rumbleForSecs(int player, float left, float right, float duration) {
+		GamePad.SetVibration((PlayerIndex)player, left, right);
+		yield return new WaitForSeconds(duration);
+		GamePad.SetVibration((PlayerIndex)player, 0f, 0f);
 
+	}
+		
 }
