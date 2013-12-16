@@ -78,7 +78,20 @@ public class Attack : MonoBehaviour {
 			}
 		}
 
-		state = GamePad.GetState (playerIndex);
+		state = GamePad.GetState(playerIndex);
+
+
+		string text = "Use left stick to turn the cube\n";
+		text += string.Format("IsConnected {0} Packet #{1}\n", state.IsConnected, state.PacketNumber);
+		text += string.Format("\tTriggers {0} {1}\n", state.Triggers.Left, state.Triggers.Right);
+		text += string.Format("\tD-Pad {0} {1} {2} {3}\n", state.DPad.Up, state.DPad.Right, state.DPad.Down, state.DPad.Left);
+		text += string.Format("\tButtons Start {0} Back {1}\n", state.Buttons.Start, state.Buttons.Back);
+		text += string.Format("\tButtons LeftStick {0} RightStick {1} LeftShoulder {2} RightShoulder {3}\n", state.Buttons.LeftStick, state.Buttons.RightStick, state.Buttons.LeftShoulder, state.Buttons.RightShoulder);
+		text += string.Format("\tButtons A {0} B {1} X {2} Y {3}\n", state.Buttons.A, state.Buttons.B, state.Buttons.X, state.Buttons.Y);
+		text += string.Format("\tSticks Left {0} {1} Right {2} {3}\n", state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+		GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
+
+		Debug.Log (text);
 			
 		Vector3 lArmDirection = transform.position + transform.forward - leftArm.transform.position;
 		Vector3 rArmDirection = transform.position + transform.forward - rightArm.transform.position;
@@ -100,55 +113,59 @@ public class Attack : MonoBehaviour {
 		}
 
 		if (!Energy.isDisabled ()) {
-						if ((Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0) && (Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingLlow && !punchingRlow) {
-								if (debug) {
-										Debug.Log ("Bloqueando" + Time.deltaTime);
-								}
-								blocking = true;
+			if ((
+				((Input.GetAxisRaw ("punchLDebug") > 0 && (Input.GetAxisRaw ("punchRDebug") > 0 && debug)) ||
+			 	((state.Triggers.Left > 0)  && state.Triggers.Right > 0))) 
+			    && !punchingLlow && !punchingRlow) {
+					if (debug) {
+							Debug.Log ("Bloqueando" + Time.deltaTime);
+					}
+					blocking = true;
 
-								setJointforBlock (leftHJ, true, true);
-								setJointforBlock (rightHJ, true, false);
+					setJointforBlock (leftHJ, true, true);
+					setJointforBlock (rightHJ, true, false);
 
-								//por lookAts
-								rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
-								leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
+					//por lookAts
+					rightShoulder.transform.LookAt (rightShoulder.transform.position + transform.up, transform.right);
+					leftShoulder.transform.LookAt (leftShoulder.transform.position + transform.up, -transform.right);
 
-						} else if (blocking) {
-								StartCoroutine (waitBlock (punchDelay));
-						} else { //if not blocking
-								setJointforBlock (leftHJ, false, false);
-								setJointforBlock (rightHJ, false, false);
-						}
+			} else if (blocking) {
+					StartCoroutine (waitBlock (punchDelay));
+			} else { //if not blocking
+					setJointforBlock (leftHJ, false, false);
+					setJointforBlock (rightHJ, false, false);
+			}
 
-						//punching
-						//XInput version
-						//if (Energy.energyCurrent - punchConsume > 0 && state.Triggers.Left > 0 && !punchingL && !punchingRlow && !blocking) {
-						if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchL" + player) > 0 || state.Triggers.Left > 0) && !punchingL && !punchingRlow && !blocking) {
-								punchingL = true;
-								Energy.consumeEnergy (punchConsume);
-								if (debug)
-										Debug.Log ("pega con la iqda");
-								leftArm.transform.LookAt (transform.position + transform.forward);
-								leftCJ.linearLimit = jointRelaxed;  
-								leftCJ.angularYMotion = ConfigurableJointMotion.Limited;
-								leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
-								StartCoroutine (waitPunchL (punchDelay));
-						} 
+			//punching
+			//XInput version
+			if  (((Input.GetAxisRaw ("punchLDebug") > 0 && debug ) || state.Triggers.Left > 0) &&
+			     (Energy.energyCurrent - punchConsume > 0 && !punchingL && !punchingRlow && !blocking)) {
+					punchingL = true;
+					Energy.consumeEnergy (punchConsume);
+					if (debug)
+							Debug.Log ("pega con la iqda");
+					leftArm.transform.LookAt (transform.position + transform.forward);
+					leftCJ.linearLimit = jointRelaxed;  
+					leftCJ.angularYMotion = ConfigurableJointMotion.Limited;
+					leftArm.rigidbody.AddForce (lArmDirection * force, ForceMode.Impulse);
+					StartCoroutine (waitPunchL (punchDelay));
+			} 
 
-						if (Energy.energyCurrent - punchConsume > 0 && (Input.GetAxisRaw ("punchR" + player) > 0 || state.Triggers.Right > 0) && !punchingR && !punchingLlow && !blocking) {
-								//Input version if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !punchingLlow  && !blocking) {
-								punchingR = true;
-								Energy.consumeEnergy (punchConsume);
-								rightArm.transform.LookAt (transform.position + transform.forward);
-								if (debug)
-										Debug.Log ("pega con la dcha");
+			if  (((Input.GetAxisRaw ("punchRDebug") > 0 && debug ) || state.Triggers.Right > 0) &&
+			     (Energy.energyCurrent - punchConsume > 0 && !punchingR && !punchingLlow && !blocking)) {
+					//Input version if (Energy.energyCurrent - punchConsume > 0 && Input.GetAxisRaw ("punchR" + player) > 0 && !punchingR && !punchingLlow  && !blocking) {
+					punchingR = true;
+					Energy.consumeEnergy (punchConsume);
+					rightArm.transform.LookAt (transform.position + transform.forward);
+					if (debug)
+							Debug.Log ("pega con la dcha");
 
-								rightCJ.linearLimit = jointRelaxed;
-								rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
-								rightArm.rigidbody.AddForce (rArmDirection * force, ForceMode.Impulse);
-								StartCoroutine (waitPunchR (punchDelay));
-						}
-				}
+					rightCJ.linearLimit = jointRelaxed;
+					rightCJ.angularYMotion = ConfigurableJointMotion.Limited;
+					rightArm.rigidbody.AddForce (rArmDirection * force, ForceMode.Impulse);
+					StartCoroutine (waitPunchR (punchDelay));
+			}
+		}
 
 		prevState = state;
 	}
