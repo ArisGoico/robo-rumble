@@ -12,7 +12,7 @@ public class HullLogic : MonoBehaviour {
 	private float initialMass;
 	public GameObject lifeBar;							//GUI Life graphic representation
 	public int hullIntegrityCurrent			= 100;		//Current hull integrity / Current health
-	public int hullIntegrityMax				= 100;		//Max hull integrity / Max health
+	public int hullIntegrityMax				= 200;		//Max hull integrity / Max health
 	public float hullDensity				= 1f;		//Percentage of each hit damage that goes through (0 - 1)
 	public float hullPlating				= 0f;		//Min damage that goes through
 
@@ -80,6 +80,8 @@ public class HullLogic : MonoBehaviour {
 			temp -= (quantity - hullPlating) * hullDensity;
 			if (temp < hullIntegrityCurrent) {
 				hullIntegrityCurrent = Mathf.RoundToInt(temp);
+				float life = (float)hullIntegrityCurrent/(float)hullIntegrityMax;
+				lifeBar.GetComponent<lifeBar_Sprite>().ChangeLifeBar(life);
 				return true;
 			} else 
 				return false;
@@ -95,6 +97,8 @@ public class HullLogic : MonoBehaviour {
 		energyLastUsed = 0f;
 		lastStrongSoundPlayed = 0f;
 		disabled = false;
+		float life = (float)hullIntegrityCurrent/(float)hullIntegrityMax;
+		lifeBar.GetComponent<lifeBar_Sprite>().ChangeLifeBar(life);
 	}
 
 	public bool isDisabled() {
