@@ -81,7 +81,7 @@ public class HullLogic : MonoBehaviour {
 			if (temp < hullIntegrityCurrent) {
 				hullIntegrityCurrent = Mathf.RoundToInt(temp);
 				float life = (float)hullIntegrityCurrent/(float)hullIntegrityMax;
-				lifeBar.GetComponent<lifeBar_Sprite>().ChangeLifeBar(life);
+				lifeBar.GetComponent<lifeBarSprite>().ChangeLifeBar(life);
 				return true;
 			} else 
 				return false;
@@ -98,7 +98,7 @@ public class HullLogic : MonoBehaviour {
 		lastStrongSoundPlayed = 0f;
 		disabled = false;
 		float life = (float)hullIntegrityCurrent/(float)hullIntegrityMax;
-		lifeBar.GetComponent<lifeBar_Sprite>().ChangeLifeBar(life);
+		lifeBar.GetComponent<lifeBarSprite>().ChangeLifeBar(life);
 	}
 
 	public bool isDisabled() {
