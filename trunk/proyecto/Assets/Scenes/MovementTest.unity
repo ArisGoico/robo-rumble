@@ -12014,6 +12014,8 @@ MonoBehaviour:
   spawnpoints:
   - {fileID: 1666244541}
   - {fileID: 461447448}
+  timeRound: 10
+  numPlayers: 2
 --- !u!4 &1349852044
 Transform:
   m_ObjectHideFlags: 0
