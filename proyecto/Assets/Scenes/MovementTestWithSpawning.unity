@@ -5667,6 +5667,10 @@ Prefab:
       propertyPath: player
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: spark
+      value: 
+      objectReference: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_RootGameObject: {fileID: 217436448}
@@ -5968,12 +5972,10 @@ MonoBehaviour:
   textOpening: {fileID: 1769191571}
   textEnding: {fileID: 816536652}
   textEndingSubtitle: {fileID: 1766026739}
-  spawnPoint1: {fileID: 1401276240}
-  spawnPoint2: {fileID: 2114803308}
   players:
   - {fileID: 396845277}
   - {fileID: 217436448}
-  disabledPlayers: 
+  remainingPlayers: 
   activePlayers: 0
   spawnpoints:
   - {fileID: 215557055}
@@ -6420,6 +6422,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012
+  spark: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
 --- !u!82 &1600094512
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7177,6 +7180,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: f68a8579109adf34892bd4652398f161, type: 2}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: spark
+      value: 
+      objectReference: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_RootGameObject: {fileID: 396845277}
@@ -9054,6 +9061,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
   strongSoundDelay: .300000012
+  spark: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
 --- !u!82 &2135044167
 AudioSource:
   m_ObjectHideFlags: 0

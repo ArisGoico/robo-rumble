@@ -16,17 +16,27 @@ public class ControlLogic : MonoBehaviour {
 	private enum State {beginning, battle, win, lose};
 	private State state;
 
+	public float timeRound;
+	private float roundFinish;
+	private float roundStart;
+	public int numPlayers				= 2;
+	private int[] scorePlayers;
+
 	// Use this for initialization
 	void Start () {
 		remainingPlayers = new bool[players.Length];
 		playersHull = new HullLogic[players.Length];
 		activePlayers = players.Length;
+		scorePlayers = new int[players.Length];
 		for (int i = 0; i < players.Length; i++) {
 			playersHull [i] = players [i].GetComponentInChildren<HullLogic> ();
 			players[i].transform.position = spawnpoints[i].position;
 			remainingPlayers[i] = true;
+			scorePlayers[i] = 0;
 		}
 		state = State.battle;
+		roundStart = Time.time;
+		roundFinish = roundStart + timeRound;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +52,8 @@ public class ControlLogic : MonoBehaviour {
 					players[i].transform.position = spawnpoints[i].position;
 					remainingPlayers[i] = true;
 				}
+				roundStart = Time.time;
+				roundFinish = roundStart + timeRound;
 				state = State.battle;
 			}
 			break;
@@ -61,8 +73,26 @@ public class ControlLogic : MonoBehaviour {
 					winner = ((int)j+1).ToString();
 					textEnding.text = string.Format ("Player {0} wins!", winner);
 					textEndingSubtitle.text = "Press start for next round";
+					scorePlayers[j] = scorePlayers[j] + 1;
 					state = State.win;
 				}
+			}
+			if (Time.time > roundFinish) {
+				int playerWin = 0;
+				int maxHull = -1;
+				for (int i = 0; i < playersHull.Length; i++){
+					if (playersHull[i].hullIntegrityCurrent > maxHull) {
+						playerWin = i;
+						maxHull = playersHull[i].hullIntegrityCurrent;
+					}
+				}
+				for (int i = 0; i < playersHull.Length; i++){
+					playersHull[i].disable();
+				}
+				textEnding.text = string.Format ("Player {0} wins!", (playerWin + 1).ToString());
+				textEndingSubtitle.text = "Press start for next round";
+				scorePlayers[playerWin] = scorePlayers[playerWin] + 1;
+				state = State.win;
 			}
 			break;
 		case State.lose:
@@ -76,6 +106,8 @@ public class ControlLogic : MonoBehaviour {
 					players[i].transform.position = spawnpoints[i].position;
 					remainingPlayers[i] = true;
 				}
+				roundStart = Time.time;
+				roundFinish = roundStart + timeRound;
 				state = State.battle;
 			}
 			break;
