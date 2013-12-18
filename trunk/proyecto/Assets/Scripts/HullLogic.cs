@@ -10,9 +10,8 @@ public class HullLogic : MonoBehaviour {
 
 	//Hull Integrity / Salud 
 	private float initialMass;
-	public GameObject lifeBar;							//GUI Life graphic representation
-	public int hullIntegrityCurrent			= 100;		//Current hull integrity / Current health
-	public int hullIntegrityMax				= 200;		//Max hull integrity / Max health
+	public int hullCurrent					= 100;		//Current hull integrity / Current health
+	public int hullMax						= 100;		//Max hull integrity / Max health
 	public float hullDensity				= 1f;		//Percentage of each hit damage that goes through (0 - 1)
 	public float hullPlating				= 0f;		//Min damage that goes through
 
@@ -26,7 +25,10 @@ public class HullLogic : MonoBehaviour {
 	private float energyLastUsed			= 0f;		//Last time energy was used.
 	
 	//GUI
-	public GameObject energyBar;						//GUI Energy graphic representation
+	public GameObject spriteLifeBar;					//GUI Life sprite representation
+	public GUITexture lifeBar;							//GUI Life graphic representation
+	public GUIText lifeLabel;							//GUI Life text representation
+	public GUITexture energyBar;						//GUI Energy graphic representation
 	public GUIText energyLabel;							//GUI Energy text representation
 
 	//Hit Sounds and effects
@@ -43,15 +45,20 @@ public class HullLogic : MonoBehaviour {
 	void Start() {
 		player = transform.parent.GetComponent<Movement> ().player;
 		initialMass = transform.parent.rigidbody.mass;
-		hullIntegrityCurrent = hullIntegrityMax;
+		hullCurrent = hullMax;
 		energyCurrent = energyMax;
-		energyLabel.text = Mathf.FloorToInt(energyCurrent).ToString ();
 		SFXAudio = this.GetComponent<AudioSource>();
 	}
 	
 	void Update() {
 
+		float life = (float)hullCurrent/(float)hullMax;
+		spriteLifeBar.GetComponent<lifeBarSprite>().ChangeLifeBar(life);
+		lifeBar.pixelInset = new Rect (lifeBar.pixelInset.x, lifeBar.pixelInset.y, Mathf.Floor ((float)hullCurrent* 100f / (float)hullMax) * 2f, lifeBar.pixelInset.height);
+		lifeLabel.text = Mathf.FloorToInt(hullCurrent).ToString ();
 		energyLabel.text = Mathf.FloorToInt(energyCurrent).ToString ();
+		energyBar.pixelInset = new Rect (energyBar.pixelInset.x, energyBar.pixelInset.y, Mathf.Floor ((float)energyCurrent* 100f / (float)energyMax ) * 2f, energyBar.pixelInset.height);
+
 		if (energyCurrent < energyMax && (energyLastUsed + ((float)energyRegenDelay / 10)) < Time.time) {
 			energyCurrent += (energyRegenRate * Time.deltaTime);
 		}
@@ -76,12 +83,10 @@ public class HullLogic : MonoBehaviour {
 	
 	public bool damageHull(float quantity) {
 		if (!disabled){
-			float temp = hullIntegrityCurrent;
+			float temp = hullCurrent;
 			temp -= (quantity - hullPlating) * hullDensity;
-			if (temp < hullIntegrityCurrent) {
-				hullIntegrityCurrent = Mathf.RoundToInt(temp);
-				float life = (float)hullIntegrityCurrent/(float)hullIntegrityMax;
-				lifeBar.GetComponent<lifeBarSprite>().ChangeLifeBar(life);
+			if (temp < hullCurrent) {
+				hullCurrent = Mathf.RoundToInt(temp);
 				return true;
 			} else 
 				return false;
@@ -92,13 +97,11 @@ public class HullLogic : MonoBehaviour {
 	public void restartHull() {
 		transform.GetComponent<Attack> () .relaxArms (false);
 		transform.parent.rigidbody.mass = initialMass;
-		hullIntegrityCurrent = hullIntegrityMax;
+		hullCurrent = hullMax;
 		energyCurrent = energyMax;
 		energyLastUsed = 0f;
 		lastStrongSoundPlayed = 0f;
 		disabled = false;
-		float life = (float)hullIntegrityCurrent/(float)hullIntegrityMax;
-		lifeBar.GetComponent<lifeBarSprite>().ChangeLifeBar(life);
 	}
 
 	public bool isDisabled() {
@@ -107,6 +110,7 @@ public class HullLogic : MonoBehaviour {
 	
 	public void disable () {
 		disabled = true;
+		hullCurrent = 0;
 		//efectos de disabled
 		transform.parent.rigidbody.mass = 100;
 		transform.GetComponent<Attack> () .relaxArms (true);
@@ -148,6 +152,5 @@ public class HullLogic : MonoBehaviour {
 		yield return new WaitForSeconds(duration);
 		GamePad.SetVibration((PlayerIndex)player, 0f, 0f);
 
-	}
-		
+	}		
 }

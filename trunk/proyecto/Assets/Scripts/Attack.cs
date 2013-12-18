@@ -29,7 +29,7 @@ public class Attack : MonoBehaviour {
 	private 	bool 				punchingRlow 		= false;
 	private 	bool 				punchingLlow 		= false;
 	private 	bool 				blocking 			= false;
-	private 	float 				punchDelay 			= 0.5f;
+	public 	float 				punchDelay 			= 0.5f;
 
 	//joints
 	private ConfigurableJoint 	leftCJ;

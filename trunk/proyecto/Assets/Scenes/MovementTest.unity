@@ -400,7 +400,7 @@ GameObject:
   - 4: {fileID: 59529497}
   - 131: {fileID: 59529496}
   m_Layer: 0
-  m_Name: background
+  m_Name: GUI Tex Dummy background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,9 +417,9 @@ GUITexture:
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
-    x: -150
-    y: 50
-    width: 300
+    x: -200
+    y: 100
+    width: 400
     height: 100
   m_LeftBorder: 0
   m_RightBorder: 0
@@ -668,7 +668,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .25
+      scalar: .0850000009
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2511,6 +2511,7 @@ Transform:
   m_Children:
   - {fileID: 992315623}
   - {fileID: 2135044164}
+  - {fileID: 1316161990}
   m_Father: {fileID: 0}
 --- !u!82 &217436450
 AudioSource:
@@ -4065,11 +4066,11 @@ Prefab:
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: lifeBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1265794641}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: energyBar
       value: 
-      objectReference: {fileID: 487148767}
+      objectReference: {fileID: 487148769}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: energyLabel
       value: 
@@ -4145,6 +4146,26 @@ Prefab:
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: hullIntegrityMax
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: spriteLifeBar
+      value: 
+      objectReference: {fileID: 1316161989}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: lifeLabel
+      value: 
+      objectReference: {fileID: 242443976}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: hullMax
+      value: 3415
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: energyRegenRate
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: punchDelay
+      value: .100000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -5550,15 +5571,15 @@ Prefab:
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: lifeBar
       value: 
-      objectReference: {fileID: 1757821159}
+      objectReference: {fileID: 196712958}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: energyBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1495222770}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: energyLabel
       value: 
-      objectReference: {fileID: 242443976}
+      objectReference: {fileID: 1381334236}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: targetSpeed
       value: 10
@@ -5621,7 +5642,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: energyMax
-      value: 100
+      value: 249
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: spriteLifeBar
+      value: 
+      objectReference: {fileID: 1757821159}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: lifeLabel
+      value: 
+      objectReference: {fileID: 1113366740}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: hullMax
+      value: 548
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: hullCurrent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: energyCurrent
+      value: 154
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
@@ -7209,17 +7250,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  lifeBar: {fileID: 1757821159}
-  hullIntegrityCurrent: 100
-  hullIntegrityMax: 100
+  hullCurrent: 1
+  hullMax: 548
   hullDensity: 1
   hullPlating: 15
-  energyCurrent: 100
-  energyMax: 100
+  energyCurrent: 154
+  energyMax: 249
   energyRegenRate: 20
   energyRegenDelay: 0
-  energyBar: {fileID: 0}
-  energyLabel: {fileID: 242443976}
+  spriteLifeBar: {fileID: 1757821159}
+  lifeBar: {fileID: 196712958}
+  lifeLabel: {fileID: 1113366740}
+  energyBar: {fileID: 1495222770}
+  energyLabel: {fileID: 1381334236}
   torsoHitSFX:
   - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
   - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
@@ -7345,6 +7388,7 @@ MonoBehaviour:
   punchConsume: 15
   blockConsume: .300000012
   blockTickConsume: 1.5
+  punchDelay: .5
   relaxedLimit: .5
 --- !u!23 &807552479
 Renderer:
@@ -10798,6 +10842,66 @@ MeshFilter:
   m_PrefabInternal: {fileID: 225572433}
   m_GameObject: {fileID: 1290680675}
   m_Mesh: {fileID: 4300012, guid: c316fc2fe29c0444280a690496d9b6a2, type: 3}
+--- !u!1 &1316161989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1316161990}
+  - 114: {fileID: 1316161992}
+  - 131: {fileID: 1316161991}
+  m_Layer: 0
+  m_Name: Robot0LifeBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1316161990
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1316161989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 217436449}
+--- !u!131 &1316161991
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1316161989}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 077bcda4265627b4182130d21af779ec, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
+--- !u!114 &1316161992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1316161989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b656650a0f14b4cbcc21c1604ee202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteManager: {fileID: 406634034}
+  lifeBarClient: {fileID: 1316161989}
 --- !u!1 &1317380934
 GameObject:
   m_ObjectHideFlags: 0
@@ -10927,15 +11031,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  lifeBar: {fileID: 0}
-  hullIntegrityCurrent: 100
-  hullIntegrityMax: 100
+  hullCurrent: 100
+  hullMax: 200
   hullDensity: 1
   hullPlating: 15
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
   energyRegenDelay: 0
+  spriteLifeBar: {fileID: 0}
+  lifeBar: {fileID: 0}
+  lifeLabel: {fileID: 0}
   energyBar: {fileID: 0}
   energyLabel: {fileID: 242443976}
   torsoHitSFX:
@@ -11079,6 +11185,7 @@ MonoBehaviour:
   punchConsume: 15
   blockConsume: .300000012
   blockTickConsume: 1.5
+  punchDelay: .5
   relaxedLimit: .5
 --- !u!23 &1320127905
 Renderer:
@@ -11526,6 +11633,7 @@ MonoBehaviour:
   textOpening: {fileID: 678378617}
   textEnding: {fileID: 2039434453}
   textEndingSubtitle: {fileID: 2039359666}
+  background: {fileID: 59529496}
   players:
   - {fileID: 217436448}
   - {fileID: 887572075}
@@ -11534,7 +11642,7 @@ MonoBehaviour:
   spawnpoints:
   - {fileID: 1666244541}
   - {fileID: 461447448}
-  timeRound: 99
+  timeRound: 99999
   numPlayers: 2
 --- !u!4 &1349852044
 Transform:
@@ -12356,7 +12464,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1495222771}
   - 131: {fileID: 1495222770}
-  - 114: {fileID: 1495222772}
   m_Layer: 0
   m_Name: energyBar2
   m_TagString: Untagged
@@ -12394,19 +12501,6 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 358902038}
---- !u!114 &1495222772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1495222769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2b656650a0f14b4cbcc21c1604ee202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteManager: {fileID: 406634034}
-  lifeBarClient: {fileID: 1495222769}
 --- !u!1 &1503463495
 GameObject:
   m_ObjectHideFlags: 0
@@ -13825,6 +13919,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1757821160}
   - 114: {fileID: 1757821161}
+  - 131: {fileID: 1757821162}
   m_Layer: 0
   m_Name: Robot1LifeBar
   m_TagString: Untagged
@@ -13856,6 +13951,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteManager: {fileID: 406634034}
   lifeBarClient: {fileID: 1757821159}
+--- !u!131 &1757821162
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1757821159}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 077bcda4265627b4182130d21af779ec, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &1764594838
 GameObject:
   m_ObjectHideFlags: 0
@@ -15184,15 +15298,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  lifeBar: {fileID: 0}
-  hullIntegrityCurrent: 100
-  hullIntegrityMax: 100
+  hullCurrent: 100
+  hullMax: 200
   hullDensity: 1
   hullPlating: 15
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
   energyRegenDelay: 0
+  spriteLifeBar: {fileID: 0}
+  lifeBar: {fileID: 0}
+  lifeLabel: {fileID: 0}
   energyBar: {fileID: 0}
   energyLabel: {fileID: 0}
   torsoHitSFX:
@@ -15336,6 +15452,7 @@ MonoBehaviour:
   punchConsume: 15
   blockConsume: .300000012
   blockTickConsume: 1.5
+  punchDelay: .5
   relaxedLimit: .5
 --- !u!23 &1942150186
 Renderer:
@@ -16545,16 +16662,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  lifeBar: {fileID: 0}
-  hullIntegrityCurrent: 100
-  hullIntegrityMax: 100
+  hullCurrent: 100
+  hullMax: 3415
   hullDensity: 1
   hullPlating: 15
   energyCurrent: 100
   energyMax: 100
-  energyRegenRate: 20
+  energyRegenRate: 125
   energyRegenDelay: 0
-  energyBar: {fileID: 487148767}
+  spriteLifeBar: {fileID: 1316161989}
+  lifeBar: {fileID: 1265794641}
+  lifeLabel: {fileID: 242443976}
+  energyBar: {fileID: 487148769}
   energyLabel: {fileID: 1633028986}
   torsoHitSFX:
   - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
@@ -16681,6 +16800,7 @@ MonoBehaviour:
   punchConsume: 15
   blockConsume: .300000012
   blockTickConsume: 1.5
+  punchDelay: .100000001
   relaxedLimit: .5
 --- !u!23 &2135044170
 Renderer:
