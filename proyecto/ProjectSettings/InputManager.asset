@@ -403,7 +403,7 @@ InputManager:
     invert: 0
     type: 0
     axis: 4
-    joyNum: 2
+    joyNum: 1
   - serializedVersion: 3
     m_Name: start1
     descriptiveName: 

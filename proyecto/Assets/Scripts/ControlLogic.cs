@@ -6,6 +6,7 @@ public class ControlLogic : MonoBehaviour {
 	public GUIText textOpening;
 	public GUIText textEnding;
 	public GUIText textEndingSubtitle;
+	public GUITexture background;
 
 	public GameObject[] players;
 	public bool[] remainingPlayers;
@@ -24,6 +25,7 @@ public class ControlLogic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		hideGUIBox ();
 		remainingPlayers = new bool[players.Length];
 		playersHull = new HullLogic[players.Length];
 		activePlayers = players.Length;
@@ -43,7 +45,7 @@ public class ControlLogic : MonoBehaviour {
 	void Update () {
 		switch (state) {
 		case State.beginning:
-			textEndingSubtitle.text = "Press start to battle!";
+			showGuiBox("GET READY", "The battle begins!", "Press start");
 			if (Input.GetAxisRaw ("start0") > 0  || Input.GetAxisRaw ("start1") > 0) {
 				activePlayers = players.Length;
 				textEndingSubtitle.text = "";
@@ -59,21 +61,25 @@ public class ControlLogic : MonoBehaviour {
 			break;
 		case State.battle:
 			string winner;
+			hideGUIBox();
 			for (int i = 0; i < playersHull.Length; i++){
-				if (playersHull[i].hullIntegrityCurrent < 0 ){
+				if (playersHull[i].hullCurrent < 0 ){
 					playersHull[i].disable();
 					remainingPlayers[i] = false;
 					activePlayers--;
 				}
-				if (activePlayers == 1) {
-					int j = 0;
-					while (j < remainingPlayers.Length && !remainingPlayers[j]){
-						j++;
+				if (activePlayers < 2) {
+					if (activePlayers == 1){ 
+						int j = 0;
+						while (j < remainingPlayers.Length && !remainingPlayers[j]){
+							j++;
+						}
+						winner = ((int)j+1).ToString();
+						showGuiBox("BATTLE REPORT", string.Format ("Player {0} wins!", winner.ToString()), "Press start for next round");
+						scorePlayers[j] = scorePlayers[j] + 1;
+					} else {
+						showGuiBox("BATTLE REPORT", "The match was a draw!", "Press start for next round");
 					}
-					winner = ((int)j+1).ToString();
-					textEnding.text = string.Format ("Player {0} wins!", winner);
-					textEndingSubtitle.text = "Press start for next round";
-					scorePlayers[j] = scorePlayers[j] + 1;
 					state = State.win;
 				}
 			}
@@ -81,16 +87,16 @@ public class ControlLogic : MonoBehaviour {
 				int playerWin = 0;
 				int maxHull = -1;
 				for (int i = 0; i < playersHull.Length; i++){
-					if (playersHull[i].hullIntegrityCurrent > maxHull) {
+					if (playersHull[i].hullCurrent > maxHull) {
 						playerWin = i;
-						maxHull = playersHull[i].hullIntegrityCurrent;
+						maxHull = playersHull[i].hullCurrent;
 					}
 				}
 				for (int i = 0; i < playersHull.Length; i++){
 					playersHull[i].disable();
 				}
-				textEnding.text = string.Format ("Player {0} wins!", (playerWin + 1).ToString());
-				textEndingSubtitle.text = "Press start for next round";
+
+				showGuiBox("BATTLE REPORT", string.Format ("Player {0} wins!", (playerWin + 1).ToString()), "Press start for next round");
 				scorePlayers[playerWin] = scorePlayers[playerWin] + 1;
 				state = State.win;
 			}
@@ -100,6 +106,7 @@ public class ControlLogic : MonoBehaviour {
 			break;
 		case State.win:
 			if (Input.GetAxisRaw ("start0") > 0 || Input.GetAxis ("start1") > 0) {
+				hideGUIBox();
 				activePlayers = players.Length;
 				for (int i = 0; i < playersHull.Length; i++){
 					playersHull[i].restartHull();
@@ -116,25 +123,22 @@ public class ControlLogic : MonoBehaviour {
 
 	}
 
-	void OnGUI() {
-		//Antes de la batalla
-		if (state == State.beginning) {
-			textOpening.enabled = true;
-		}
-		else {
-			textOpening.enabled = false;
-		}
+	public void showGuiBox(string super, string message, string subtitle) {
+		textOpening.enabled = true;
+		textEnding.enabled = true;
+		textEndingSubtitle.enabled = true;
+		background.enabled = true;
 
-		//Despues 
-		if (state == State.lose || state == State.win) {
-			textEnding.enabled = true;
-			textEndingSubtitle.enabled = true;
-		}
-		else {
-			textEnding.enabled = false;
-			textEndingSubtitle.enabled = false;
-		}
-
-
+		textOpening.text = super;
+		textEnding.text = message;
+		textEndingSubtitle.text = subtitle;
 	}
+
+	public void hideGUIBox() {
+		textOpening.enabled = false;
+		textEnding.enabled = false;
+		textEndingSubtitle.enabled = false;
+		background.enabled = false;
+	}
+
 }
