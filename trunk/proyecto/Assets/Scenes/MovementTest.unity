@@ -1990,7 +1990,6 @@ GameObject:
   - 153: {fileID: 160984897}
   - 114: {fileID: 160984896}
   - 82: {fileID: 160984895}
-  - 114: {fileID: 160984894}
   - 65: {fileID: 160984893}
   - 65: {fileID: 160984892}
   m_Layer: 0
@@ -2026,32 +2025,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .595870018, y: .590317905, z: .180000007}
   m_Center: {x: -.00285899639, y: -.00786624849, z: .689999998}
---- !u!114 &160984894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400012, guid: d579034e863d3f843a64ea1ad0c1a6a9,
-    type: 2}
-  m_PrefabInternal: {fileID: 526274490}
-  m_GameObject: {fileID: 160984891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  torsoHitSFX:
-  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
-  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
-  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
-  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
-  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
-  blockHitSFX:
-  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
-  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
-  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
-  softHitSFX:
-  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
-  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
-  strongSoundDelay: .300000012
 --- !u!82 &160984895
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2136,6 +2109,12 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX:
+  - {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+  - {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+  - {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+  - {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+  - {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
   strongSoundDelay: .300000012
 --- !u!153 &160984897
 ConfigurableJoint:
@@ -2524,7 +2503,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 64c7ff1ca2a7a304f9db6cc109142dfa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: .300000012
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4023,6 +4002,18 @@ Prefab:
       propertyPath: dashSound.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_LocalPosition.x
       value: -11.4605951
@@ -4167,7 +4158,73 @@ Prefab:
       propertyPath: punchDelay
       value: .100000001
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
+    - target: {fileID: 8200000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_Volume
+      value: .300000012
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400012, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+    - {fileID: 11400006, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_RootGameObject: {fileID: 217436448}
   m_IsPrefabParent: 0
@@ -4873,6 +4930,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!82 &505214194
 AudioSource:
@@ -4958,6 +5016,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!153 &505214196
 ConfigurableJoint:
@@ -5114,7 +5173,6 @@ GameObject:
   - 153: {fileID: 521716731}
   - 114: {fileID: 521716730}
   - 82: {fileID: 521716729}
-  - 114: {fileID: 521716728}
   - 65: {fileID: 521716727}
   - 65: {fileID: 521716726}
   m_Layer: 0
@@ -5161,32 +5219,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .595870018, y: .590317905, z: .180000007}
   m_Center: {x: -.00285899639, y: -.00786624849, z: .689999998}
---- !u!114 &521716728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: d579034e863d3f843a64ea1ad0c1a6a9,
-    type: 2}
-  m_PrefabInternal: {fileID: 526274490}
-  m_GameObject: {fileID: 521716724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  torsoHitSFX:
-  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
-  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
-  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
-  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
-  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
-  blockHitSFX:
-  - {fileID: 8300000, guid: 73c735eec39d299409ff2b7fe06d4ad0, type: 3}
-  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
-  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
-  softHitSFX:
-  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
-  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
-  strongSoundDelay: .300000012
 --- !u!82 &521716729
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5271,6 +5303,12 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX:
+  - {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+  - {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+  - {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+  - {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+  - {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
   strongSoundDelay: .300000012
 --- !u!153 &521716731
 ConfigurableJoint:
@@ -5423,6 +5461,18 @@ Prefab:
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: dashSound.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: m_LocalPosition.x
@@ -5664,7 +5714,73 @@ Prefab:
       propertyPath: energyCurrent
       value: 154
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+    - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+    - target: {fileID: 11400004, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+    - target: {fileID: 11400010, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: sandHitSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
+    - target: {fileID: 8200000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+      propertyPath: m_Volume
+      value: .300000012
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400006, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
+    - {fileID: 11400012, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
   m_RootGameObject: {fileID: 887572075}
   m_IsPrefabParent: 0
@@ -7254,6 +7370,7 @@ MonoBehaviour:
   hullMax: 548
   hullDensity: 1
   hullPlating: 15
+  terrainPlatingFact: 2
   energyCurrent: 154
   energyMax: 249
   energyRegenRate: 20
@@ -7276,6 +7393,12 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX:
+  - {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+  - {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+  - {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+  - {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+  - {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
   strongSoundDelay: .300000012
   spark: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
 --- !u!82 &807552476
@@ -7536,6 +7659,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!82 &823272308
 AudioSource:
@@ -7621,6 +7745,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!153 &823272310
 ConfigurableJoint:
@@ -8266,7 +8391,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 64c7ff1ca2a7a304f9db6cc109142dfa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: .300000012
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8554,7 +8679,6 @@ GameObject:
   - 153: {fileID: 905422331}
   - 114: {fileID: 905422335}
   - 82: {fileID: 905422336}
-  - 114: {fileID: 905422338}
   - 65: {fileID: 905422330}
   - 65: {fileID: 905422329}
   m_Layer: 0
@@ -8767,6 +8891,12 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX:
+  - {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+  - {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+  - {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+  - {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+  - {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
   strongSoundDelay: .300000012
 --- !u!82 &905422336
 AudioSource:
@@ -8827,32 +8957,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &905422338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: d579034e863d3f843a64ea1ad0c1a6a9,
-    type: 2}
-  m_PrefabInternal: {fileID: 409445232}
-  m_GameObject: {fileID: 905422327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  torsoHitSFX:
-  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
-  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
-  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
-  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
-  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
-  blockHitSFX:
-  - {fileID: 8300000, guid: 73c735eec39d299409ff2b7fe06d4ad0, type: 3}
-  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
-  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
-  softHitSFX:
-  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
-  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
-  strongSoundDelay: .300000012
 --- !u!1 &910056050
 GameObject:
   m_ObjectHideFlags: 0
@@ -10254,7 +10358,7 @@ GameObject:
   - 154: {fileID: 1130316546}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -11087,6 +11191,7 @@ MonoBehaviour:
   hullMax: 100
   hullDensity: 1
   hullPlating: 15
+  terrainPlatingFact: 2
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
@@ -11109,6 +11214,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
   spark: {fileID: 0}
 --- !u!82 &1320127901
@@ -12641,6 +12747,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!82 &1503463500
 AudioSource:
@@ -12726,6 +12833,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!153 &1503463502
 ConfigurableJoint:
@@ -15094,6 +15202,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!82 &1937179409
 AudioSource:
@@ -15179,6 +15288,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
 --- !u!153 &1937179411
 ConfigurableJoint:
@@ -15395,6 +15505,7 @@ MonoBehaviour:
   hullMax: 100
   hullDensity: 1
   hullPlating: 15
+  terrainPlatingFact: 2
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 20
@@ -15417,6 +15528,7 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX: []
   strongSoundDelay: .300000012
   spark: {fileID: 0}
 --- !u!82 &1942150182
@@ -15765,7 +15877,6 @@ GameObject:
   - 153: {fileID: 1988944360}
   - 114: {fileID: 1988944364}
   - 82: {fileID: 1988944365}
-  - 114: {fileID: 1988944367}
   - 65: {fileID: 1988944359}
   - 65: {fileID: 1988944358}
   m_Layer: 0
@@ -15977,6 +16088,12 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX:
+  - {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+  - {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+  - {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+  - {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+  - {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
   strongSoundDelay: .300000012
 --- !u!82 &1988944365
 AudioSource:
@@ -16037,32 +16154,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &1988944367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400012, guid: d579034e863d3f843a64ea1ad0c1a6a9,
-    type: 2}
-  m_PrefabInternal: {fileID: 409445232}
-  m_GameObject: {fileID: 1988944356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1905a828e50823241ab5b6dd198fac0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  torsoHitSFX:
-  - {fileID: 8300000, guid: 8616fcc1c07781f47bff7b84842c4080, type: 3}
-  - {fileID: 8300000, guid: 9449ab6631a4db141bc9e329cacbabb8, type: 3}
-  - {fileID: 8300000, guid: cc452f439cd06d942909a459221b7c87, type: 3}
-  - {fileID: 8300000, guid: 9dfc3be4487d6674fafc2e3795e61dd0, type: 3}
-  - {fileID: 8300000, guid: 0ad5355c19b6ecd498f84b7c4966e31c, type: 3}
-  blockHitSFX:
-  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
-  - {fileID: 8300000, guid: 42e78052a304bb140866948102cbaaac, type: 3}
-  - {fileID: 8300000, guid: 30e6a4d67960abd45a774884e9236c98, type: 3}
-  softHitSFX:
-  - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
-  - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
-  strongSoundDelay: .300000012
 --- !u!1 &2007525826
 GameObject:
   m_ObjectHideFlags: 0
@@ -16759,6 +16850,7 @@ MonoBehaviour:
   hullMax: 3415
   hullDensity: 1
   hullPlating: 15
+  terrainPlatingFact: 2
   energyCurrent: 100
   energyMax: 100
   energyRegenRate: 125
@@ -16781,6 +16873,12 @@ MonoBehaviour:
   softHitSFX:
   - {fileID: 8300000, guid: 4af80f019ce75a64eb8290d56e5075a7, type: 3}
   - {fileID: 8300000, guid: b6ff2f04671075a429d083d8a3f63d24, type: 3}
+  sandHitSFX:
+  - {fileID: 8300000, guid: caacb8cac2a2ec049acb54d714d4f569, type: 3}
+  - {fileID: 8300000, guid: e3e0451421cb47949bdb57257f5af745, type: 3}
+  - {fileID: 8300000, guid: ec2e20e743d144d499ad9144b7e3325e, type: 3}
+  - {fileID: 8300000, guid: 36601340551506f46ad85845655f9602, type: 3}
+  - {fileID: 8300000, guid: 289fcf99f6cd7244c991cff9cfbea05e, type: 3}
   strongSoundDelay: .300000012
   spark: {fileID: 100002, guid: 953933107d1e2eb4c904f04444f8018d, type: 2}
 --- !u!82 &2135044167
