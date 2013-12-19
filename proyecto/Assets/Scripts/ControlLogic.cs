@@ -20,8 +20,11 @@ public class ControlLogic : MonoBehaviour {
 	public float timeRound;
 	private float roundFinish;
 	private float roundStart;
-	public int numPlayers				= 2;
 	private int[] scorePlayers;
+
+	public GameObject battleZone;
+	public float maxTimeOutside			= 5f;
+	private float[] timeOutsidePlayers;
 
 	// Use this for initialization
 	void Start () {
@@ -30,11 +33,13 @@ public class ControlLogic : MonoBehaviour {
 		playersHull = new HullLogic[players.Length];
 		activePlayers = players.Length;
 		scorePlayers = new int[players.Length];
+		timeOutsidePlayers = new float[players.Length];
 		for (int i = 0; i < players.Length; i++) {
 			playersHull [i] = players [i].GetComponentInChildren<HullLogic> ();
 			players[i].transform.position = spawnpoints[i].position;
 			remainingPlayers[i] = true;
 			scorePlayers[i] = 0;
+			timeOutsidePlayers[i] = 0f;
 		}
 		state = State.battle;
 		roundStart = Time.time;
@@ -60,46 +65,11 @@ public class ControlLogic : MonoBehaviour {
 			}
 			break;
 		case State.battle:
-			string winner;
 			hideGUIBox();
-			for (int i = 0; i < playersHull.Length; i++){
-				if (playersHull[i].hullCurrent < 0 ){
-					playersHull[i].disable();
-					remainingPlayers[i] = false;
-					activePlayers--;
-				}
-				if (activePlayers < 2) {
-					if (activePlayers == 1){ 
-						int j = 0;
-						while (j < remainingPlayers.Length && !remainingPlayers[j]){
-							j++;
-						}
-						winner = ((int)j+1).ToString();
-						showGuiBox("BATTLE REPORT", string.Format ("Player {0} wins!", winner.ToString()), "Press start for next round");
-						scorePlayers[j] = scorePlayers[j] + 1;
-					} else {
-						showGuiBox("BATTLE REPORT", "The match was a draw!", "Press start for next round");
-					}
-					state = State.win;
-				}
-			}
-			if (Time.time > roundFinish) {
-				int playerWin = 0;
-				int maxHull = -1;
-				for (int i = 0; i < playersHull.Length; i++){
-					if (playersHull[i].hullCurrent > maxHull) {
-						playerWin = i;
-						maxHull = playersHull[i].hullCurrent;
-					}
-				}
-				for (int i = 0; i < playersHull.Length; i++){
-					playersHull[i].disable();
-				}
-
-				showGuiBox("BATTLE REPORT", string.Format ("Player {0} wins!", (playerWin + 1).ToString()), "Press start for next round");
-				scorePlayers[playerWin] = scorePlayers[playerWin] + 1;
-				state = State.win;
-			}
+			hullCheck();
+			zoneCheck();
+			victoryCheck();
+			timeCheck();
 			break;
 		case State.lose:
 			//TODO No se usa esto porque no hay red, pero se deja por si en el futuro la hay... ;)
@@ -121,6 +91,79 @@ public class ControlLogic : MonoBehaviour {
 		}
 
 
+	}
+
+	private void hullCheck() {
+		for (int i = 0; i < playersHull.Length; i++){
+			if (playersHull[i].hullCurrent < 0 ){
+				if (!playersHull[i].isDisabled()) {
+					remainingPlayers[i] = false;
+					activePlayers--;
+					playersHull[i].disable();
+				}
+			}
+		}
+	}
+
+	private void timeCheck() {
+		if (Time.time > roundFinish) {
+			int playerWin = 0;
+			int maxHull = -1;
+			for (int i = 0; i < playersHull.Length; i++){
+				if (playersHull[i].hullCurrent > maxHull) {
+					playerWin = i;
+					maxHull = playersHull[i].hullCurrent;
+				}
+			}
+			for (int i = 0; i < playersHull.Length; i++){
+				playersHull[i].disable();
+			}
+			
+			showGuiBox("BATTLE REPORT", string.Format ("Player {0} wins!", (playerWin + 1).ToString()), "Press start for next round");
+			scorePlayers[playerWin] = scorePlayers[playerWin] + 1;
+			state = State.win;
+		}
+	}
+
+	private void zoneCheck() {
+		for (int i = 0; i < players.Length; i++){
+			if (!battleZone.collider.bounds.Contains(players[i].transform.position)) {
+				if (timeOutsidePlayers[i] != 0f) {
+					if (Time.time > timeOutsidePlayers[i]) {
+						if (!playersHull[i].isDisabled()) {
+							remainingPlayers[i] = false;
+							activePlayers--;
+							playersHull[i].disable();
+						}
+					}
+					//TODO Poner un aviso en la GUI para este jugador
+				}
+				else {
+					timeOutsidePlayers[i] = Time.time + maxTimeOutside;
+				}
+			}
+			else {
+				timeOutsidePlayers[i] = 0f;
+			}
+		}
+	}
+
+	private void victoryCheck() {
+		string winner;
+		if (activePlayers < 2) {
+			if (activePlayers == 1){ 
+				int j = 0;
+				while (j < remainingPlayers.Length && !remainingPlayers[j]){
+					j++;
+				}
+				winner = ((int)j+1).ToString();
+				showGuiBox("BATTLE REPORT", string.Format ("Player {0} wins!", winner.ToString()), "Press start for next round");
+				scorePlayers[j] = scorePlayers[j] + 1;
+			} else {
+				showGuiBox("BATTLE REPORT", "The match was a draw!", "Press start for next round");
+			}
+			state = State.win;
+		}
 	}
 
 	public void showGuiBox(string super, string message, string subtitle) {
