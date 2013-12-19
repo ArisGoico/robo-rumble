@@ -7,6 +7,7 @@ public class FistImpact : MonoBehaviour {
 	public AudioClip[] torsoHitSFX;
 	public AudioClip[] blockHitSFX;
 	public AudioClip[] softHitSFX;
+	public AudioClip[] sandHitSFX;
 	private AudioSource SFXAudio;
 	private float lastStrongSoundPlayed		= 0f;
 	public float strongSoundDelay			= 0.3f;
@@ -19,6 +20,9 @@ public class FistImpact : MonoBehaviour {
 		AudioClip audioTemp;
 		if (collision.collider.transform.IsChildOf(this.transform.parent.parent)) {
 			return;
+		}
+		if (collision.collider.tag == "Terrain") {
+			audioTemp = sandHitSFX[Random.Range(0, sandHitSFX.Length)];
 		}
 		if (collision.relativeVelocity.magnitude > 15f) { 
 			//Cuanto daño se manda exactamente? 

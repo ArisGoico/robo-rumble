@@ -14,6 +14,7 @@ public class HullLogic : MonoBehaviour {
 	public int hullMax						= 100;		//Max hull integrity / Max health
 	public float hullDensity				= 1f;		//Percentage of each hit damage that goes through (0 - 1)
 	public float hullPlating				= 0f;		//Min damage that goes through
+	public float terrainPlatingFact			= 2f;		//Factor of hullPlating that affects terrain hits
 
 	//Energy
 	public float energyCurrent				= 100f;		//Current energy
@@ -35,6 +36,7 @@ public class HullLogic : MonoBehaviour {
 	public AudioClip[] torsoHitSFX;
 	public AudioClip[] blockHitSFX;
 	public AudioClip[] softHitSFX;
+	public AudioClip[] sandHitSFX;
 	private AudioSource SFXAudio;
 	private bool strongHitSoundPlaying		= false;
 	private float lastStrongSoundPlayed		= 0f;
@@ -121,23 +123,45 @@ public class HullLogic : MonoBehaviour {
 			return;
 		}
 		AudioClip audioTemp;
-		if (collision.relativeVelocity.magnitude > hullPlating) {
-			//Cuanto daño se manda exactamente? 
-			float temp = collision.relativeVelocity.magnitude;
-			if (damageHull(temp)) {
-				audioTemp = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
-				strongHitSoundPlaying = true;
-				Instantiate(spark, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
-				StartCoroutine(rumbleForSecs(player, 1-Vector3.Dot(collision.contacts[0].normal, -transform.right), 1-Vector3.Dot(collision.contacts[0].normal, transform.right) , 0.5f));
+		if (collision.collider.tag == "Terrain") {
+			if (collision.relativeVelocity.magnitude > (hullPlating * terrainPlatingFact)) {
+				//Cuanto daño se manda exactamente? 
+				float temp = collision.relativeVelocity.magnitude;
+				if (damageHull(temp)) {
+					audioTemp = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
+					strongHitSoundPlaying = true;
+					Instantiate(spark, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
+					StartCoroutine(rumbleForSecs(player, 1-Vector3.Dot(collision.contacts[0].normal, -transform.right), 1-Vector3.Dot(collision.contacts[0].normal, transform.right) , 0.5f));
+				}
+				else {
+					audioTemp = sandHitSFX[Random.Range(0, sandHitSFX.Length)];
+					strongHitSoundPlaying = false;
+				}
+			}
+			else {
+				audioTemp = sandHitSFX[Random.Range(0, sandHitSFX.Length)];
+				strongHitSoundPlaying = false;
+			}
+		}
+		else {
+			if (collision.relativeVelocity.magnitude > hullPlating) {
+				//Cuanto daño se manda exactamente? 
+				float temp = collision.relativeVelocity.magnitude;
+				if (damageHull(temp)) {
+					audioTemp = torsoHitSFX[Random.Range(0, torsoHitSFX.Length)];
+					strongHitSoundPlaying = true;
+					Instantiate(spark, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
+					StartCoroutine(rumbleForSecs(player, 1-Vector3.Dot(collision.contacts[0].normal, -transform.right), 1-Vector3.Dot(collision.contacts[0].normal, transform.right) , 0.5f));
+				}
+				else {
+					audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];
+					strongHitSoundPlaying = false;
+				}
 			}
 			else {
 				audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];
 				strongHitSoundPlaying = false;
 			}
-		}
-		else {
-			audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];
-			strongHitSoundPlaying = false;
 		}
 		if ((strongHitSoundPlaying || !SFXAudio.isPlaying) && (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
 			SFXAudio.clip = audioTemp;
