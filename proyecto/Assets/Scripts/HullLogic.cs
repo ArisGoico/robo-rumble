@@ -112,7 +112,6 @@ public class HullLogic : MonoBehaviour {
 	
 	public void disable () {
 		disabled = true;
-		hullCurrent = 0;
 		//efectos de disabled
 		transform.parent.rigidbody.mass = 100;
 		transform.GetComponent<Attack> () .relaxArms (true);
