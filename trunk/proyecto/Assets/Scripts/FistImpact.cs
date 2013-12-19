@@ -36,7 +36,7 @@ public class FistImpact : MonoBehaviour {
 		else {
 			audioTemp = softHitSFX[Random.Range(0, softHitSFX.Length)];
 		}
-		if (!SFXAudio.isPlaying && (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
+		if (!SFXAudio.isPlaying || (lastStrongSoundPlayed + strongSoundDelay) < Time.time) {
 			SFXAudio.clip = audioTemp;
 			SFXAudio.Play();
 			lastStrongSoundPlayed = Time.time;
