@@ -14,9 +14,9 @@ SceneSettings:
 RenderSettings:
   m_Fog: 1
   m_FogColor: {r: .642138898, g: .750857592, b: .786764741, a: 1}
-  m_FogMode: 3
-  m_FogDensity: .00999999978
-  m_LinearFogStart: 0
+  m_FogMode: 2
+  m_FogDensity: .00499999989
+  m_LinearFogStart: 100
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .661764741, g: .269001305, b: .0145977652, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: a2126534b3a11b34e977105bd9e3cc03, type: 2}
