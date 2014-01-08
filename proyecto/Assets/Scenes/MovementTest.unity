@@ -2584,7 +2584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a56cf4db79cc044089e29b99eddb5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
+  debug: 1
   inputCapture: {fileID: 118178478}
   player: 0
   torso: {fileID: 2135044163}
@@ -4144,7 +4144,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: debug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: dashSound.Array.data[0]
@@ -4212,15 +4212,15 @@ Prefab:
       objectReference: {fileID: 242443976}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: hullMax
-      value: 3415
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: energyRegenRate
-      value: 125
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11400016, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: punchDelay
-      value: .100000001
+      value: .300000012
       objectReference: {fileID: 0}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: sandHitSFX.Array.data[0]
@@ -5768,7 +5768,7 @@ Prefab:
       objectReference: {fileID: 1113366740}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: hullMax
-      value: 548
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 11400014, guid: d579034e863d3f843a64ea1ad0c1a6a9, type: 2}
       propertyPath: hullCurrent
@@ -7431,7 +7431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   hullCurrent: 1
-  hullMax: 548
+  hullMax: 100
   hullDensity: 1
   hullPlating: 15
   terrainPlatingFact: 2
@@ -16912,13 +16912,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   hullCurrent: 100
-  hullMax: 3415
+  hullMax: 100
   hullDensity: 1
   hullPlating: 15
   terrainPlatingFact: 2
   energyCurrent: 100
   energyMax: 100
-  energyRegenRate: 125
+  energyRegenRate: 15
   energyRegenDelay: 0
   spriteLifeBar: {fileID: 1316161989}
   lifeBar: {fileID: 1265794641}
@@ -17056,7 +17056,7 @@ MonoBehaviour:
   punchConsume: 15
   blockConsume: .300000012
   blockTickConsume: 1.5
-  punchDelay: .100000001
+  punchDelay: .300000012
   relaxedLimit: .5
 --- !u!23 &2135044170
 Renderer:
