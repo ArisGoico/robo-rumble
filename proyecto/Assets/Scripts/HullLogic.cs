@@ -26,7 +26,6 @@ public class HullLogic : MonoBehaviour {
 	private float energyLastUsed			= 0f;		//Last time energy was used.
 	
 	//GUI
-	public GameObject spriteLifeBar;					//GUI Life sprite representation
 	public GUITexture lifeBar;							//GUI Life graphic representation
 	public GUIText lifeLabel;							//GUI Life text representation
 	public GUITexture energyBar;						//GUI Energy graphic representation
@@ -54,8 +53,6 @@ public class HullLogic : MonoBehaviour {
 	
 	void Update() {
 
-		float life = (float)hullCurrent/(float)hullMax;
-		spriteLifeBar.GetComponent<lifeBarSprite>().ChangeLifeBar(life);
 		lifeBar.pixelInset = new Rect (lifeBar.pixelInset.x, lifeBar.pixelInset.y, Mathf.Floor ((float)hullCurrent* 100f / (float)hullMax) * 2f, lifeBar.pixelInset.height);
 		lifeLabel.text = Mathf.FloorToInt(hullCurrent).ToString ();
 		energyLabel.text = Mathf.FloorToInt(energyCurrent).ToString ();
