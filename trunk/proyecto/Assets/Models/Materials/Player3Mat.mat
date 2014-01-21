@@ -55,4 +55,4 @@ Material:
       data:
         first:
           name: _ReflectColor
-        second: {r: .124746442, g: .441176474, b: 0, a: .501960814}
+        second: {r: .0882353187, g: .441176474, b: 0, a: .501960814}
